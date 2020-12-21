@@ -4,6 +4,8 @@
 
 Purpose: To allow user to create and update a list of scholarships.
 
+Project is deployed to https://scholarshiptracker.herokuapp.com/.
+
 Scholarship data to include Name, Sponsor, website, amount, deadline, documents required (including count of recommendations and essays), date applied, and date winner to be announced.
 
 User will be able to complete profile information to be used in the future.
