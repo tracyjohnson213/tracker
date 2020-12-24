@@ -91,6 +91,7 @@
 
     <main class="container">
         
+        {% if request.path == "/login" %}
         <!-- INFORMATION FOR LOGIN  PAGE -->
 
         <div class="col s12 m4">
@@ -126,7 +127,45 @@
             </div>
             </div>
         </div>
+        {% endif %}
 
+        {% if request.path == "/" or request.path == "/register"%}
+        <!-- INFORMATION FOR REGISTER PAGE -->
+
+        <div class="col s12 m4">
+            <!--<h2 class="header">Horizontal Card</h2>-->
+            <div class="card horizontal">
+            <!--<div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+            </div>-->
+            <div class="card-stacked">
+                <div class="card-content">
+                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                </div>
+                <!--<div class="card-action">
+                <a href="#">This is a link</a>
+                </div>-->
+            </div>
+            </div>
+        </div>
+
+        <div class="col s12 m4">
+            <!--<h2 class="header">Horizontal Card</h2>-->
+            <div class="card horizontal">
+            <!--<div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+            </div>-->
+            <div class="card-stacked">
+                <div class="card-content">
+                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                </div>
+                <!--<div class="card-action">
+                <a href="#">This is a link</a>
+                </div>-->
+            </div>
+            </div>
+        </div>
+        {% endif %}
                     
         {% block content %}
         {% endblock %}
