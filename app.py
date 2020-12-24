@@ -1,7 +1,9 @@
 import os
-from flask import Flask, render_template
+from flask import (
+    Flask, render_template, request, flash, redirect, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 
 if os.path.exists("env.py"):
     import env
@@ -14,11 +16,26 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
+
 @app.route("/get_scholarships")
 def get_scholarships():
     scholarships = mongo.db.scholarships.find()
     return render_template("scholarships.html",
                            scholarships=scholarships)
+
+
+@app.route("/view_scholarship/<scholarship_id>", methods=["GET"])
+def view_scholarship(scholarship_id):
+    scholarship = mongo.db.scholarships.find_one(
+        {"_id": ObjectId(scholarship_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("view_scholarship.html",
+                           scholarship=scholarship,
+                           categories=categories)
 
 
 if __name__ == "__main__":

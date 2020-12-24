@@ -15,10 +15,6 @@
     {% block styles %}
     {% endblock %}
 
-    
-    {% block scripts %}
-    {% endblock %}
-
     <title>Scholarship Tracker</title>
   </head>
   <body>
@@ -61,7 +57,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Forgot Password</a>
-                            <a class="dropdown-item" href="#">Register</a>
                             <a class="dropdown-item" href="#">About</a>
                             </div>
                         </li>
@@ -76,11 +71,68 @@
                         
                     </div>
                 </nav>
+
+        <!-- MOBILE NAVBAR -->
  
   </header>
-                
-    {% block content %}
-    {% endblock %}
+
+    <!-- FLASH MESSAGES -->
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="lighten-4 center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    <main class="container">
+        
+        <!-- INFORMATION FOR LOGIN  PAGE -->
+
+        <div class="col s12 m4">
+            <!--<h2 class="header">Horizontal Card</h2>-->
+            <div class="card horizontal">
+            <!--<div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+            </div>-->
+            <div class="card-stacked">
+                <div class="card-content">
+                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                </div>
+                <!--<div class="card-action">
+                <a href="#">This is a link</a>
+                </div>-->
+            </div>
+            </div>
+        </div>
+
+        <div class="col s12 m4">
+            <!--<h2 class="header">Horizontal Card</h2>-->
+            <div class="card horizontal">
+            <!--<div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+            </div>-->
+            <div class="card-stacked">
+                <div class="card-content">
+                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                </div>
+                <!--<div class="card-action">
+                <a href="#">This is a link</a>
+                </div>-->
+            </div>
+            </div>
+        </div>
+
+                    
+        {% block content %}
+        {% endblock %}
+
+    </main>
+    
 
 </body>
     <!-- Optional JavaScript -->
@@ -95,11 +147,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <script src="{{ url_for('static', filename="js/script.js")}}"></script>
-    <script>
- 
- $(".button-collapse").sidenav();
- 
-</script>
-
-  
+    
+    {% block scripts %}
+    {% endblock %}
+      
 </html>
