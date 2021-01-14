@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <form class="row" action="{{ url_for('register') }}">
+    <form class="row" method="POST" action="{{ url_for('register') }}">
         <div class="col s6 m4">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                     <!-- FIRST NAME -->
                     <div class="input-field col s6">
-                        <input id="first_name" type="text" class="validate">
+                        <input id="first_name" name="first_name" type="text" class="validate">
                         <label for="first_name">First Name</label>
                     </div>
                     <!-- LAST NAME -->
                     <div class="input-field col s6">
-                        <input id="last_name" type="text" class="validate">
+                        <input id="last_name" name="last_name" type="text" class="validate">
                         <label for="last_name">Last Name</label>
                     </div>
                 </div>
                 <div class="card-content white-text">
                     <!-- EMAIL -->
                     <div class="input-field col s6">
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
+                        <input id="username" name="username" type="email" class="validate">
+                        <label for="username">Email</label>
                     </div>
                     <!-- PASSWORD -->
                     <div class="input-field col s6">
-                        <input id="password" type="password" class="validate" 
+                        <input id="password" name="password" type="password" class="validate" 
                         pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                         <label for="password">Password</label>
                         <span class="helper-text" data-error="wrong" data-success="right">UpperCase, LowerCase, Number/SpecialChar and min 8 Chars</span>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-action">
                     <!-- REGISTER BUTTON -->
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Register
+                    <button class="btn waves-effect waves-light" type="submit">Register
                         <i class="material-icons right">send</i>
                     </button>
                     <span class="helper-text">Already have a login?<a href="{{url_for('login')}}"> Login</a></span>

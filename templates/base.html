@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,65 +16,33 @@
     {% endblock %}
 
     <title>Scholarship Tracker</title>
-  </head>
-  <body>
+</head>
+<body>
 
-  <header>
+    <header>
                
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand brand-logo right" href="{{ url_for('get_scholarships')}}">
-                        <img src="/static/images/scholarship.jpg" width="100" height="30" alt="">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav" class="right hide-on-med-and-down">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ url_for('get_scholarships')}}">Home<span class="sr-only">(current)</span></a>
-                        </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand brand-logo right" href="{{ url_for('get_scholarships')}}">
+                <img src="/static/images/scholarship.jpg" width="100" height="30" alt="">
+            </a>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">New Scholarship</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Manage Categories</a>
-                        </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Reset Password</a>
-                            <a class="dropdown-item" href="#">Logout</a>
-                            <a class="dropdown-item" href="#">Contact</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Login
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Forgot Password</a>
-                            <a class="dropdown-item" href="#">About</a>
-                            </div>
-                        </li>
-                        </ul>
-                            <!--<form>
-                                <div class="input-field col s6">
-                                    <input id="search" type="search" required>
-                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>-->
-                        
-                    </div>
-                </nav>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" class="right hide-on-med-and-down">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('get_scholarships')}}">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login')}}">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-        <!-- MOBILE NAVBAR -->
- 
-  </header>
+    </header>
 
     <!-- FLASH MESSAGES -->
     <section>
@@ -102,7 +70,7 @@
             </div>-->
             <div class="card-stacked">
                 <div class="card-content">
-                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                <p>Welcome to the scholarship tracker.  We are glad that you have decided to continue to use our tool.</p>
                 </div>
                 <!--<div class="card-action">
                 <a href="#">This is a link</a>
@@ -119,7 +87,7 @@
             </div>-->
             <div class="card-stacked">
                 <div class="card-content">
-                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                <p>New scholarship opportunites are always becomming available.  We hope to be a small part of your success in obtaining them.</p>
                 </div>
                 <!--<div class="card-action">
                 <a href="#">This is a link</a>
@@ -140,7 +108,7 @@
             </div>-->
             <div class="card-stacked">
                 <div class="card-content">
-                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                <p>We welcome you to try out our tool to track the scholarships you have found.</p>
                 </div>
                 <!--<div class="card-action">
                 <a href="#">This is a link</a>
@@ -157,7 +125,7 @@
             </div>-->
             <div class="card-stacked">
                 <div class="card-content">
-                <p>Welcome to the scholarship tracker.  We are glad that you have decided to use our tool.</p>
+                <p>Here you will register an email address to create your own records.</p>
                 </div>
                 <!--<div class="card-action">
                 <a href="#">This is a link</a>
