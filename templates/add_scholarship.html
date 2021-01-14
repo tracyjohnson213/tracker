@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+        <form class="row" method="POST" action="{{ url_for('add_scholarship') }}">
+            <div class="col s6 m4">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <!-- SCHOLARSHIP NAME -->
+                        <div class="input-field col s6">
+                            <input id="scholarship_name" type="text" class="validate">
+                            <label for="scholarship_name">Scholarship Name</label>
+                        </div>
+                        <!-- SCHOLARSHIP SPONSOR -->
+                        <div class="input-field col s6">
+                            <input id="scholarship_sponsor" type="text" class="validate">
+                            <label for="scholarship_sponsor">Scholarship Sponsor</label>
+                        </div>
+                        <!-- CATEGORY -->
+                        <div class="input-field col s6">
+                            <select id="category" name="category" class="validate" required>
+                                {% for category in categories %}
+                                    <option value="{{ category.category }}">{{ category.category }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="category">Category</label>
+                        </div>
+                        <!-- SCHOLARSHIP AMOUNT -->
+                        <div class="input-field col s6">
+                            <input id="scholarship_amount" type="text" class="validate">
+                            <label for="scholarship_amount">Amount</label>
+                        </div>
+                        <!-- SCHOLARSHIP URL -->
+                        <div class="input-field col s6">
+                            <input id="scholarship_url" type="text" class="validate">
+                            <label for="scholarship_url">Website</label>
+                        </div>
+                        <!-- SCHOLARSHIP DEADLINE -->
+                        <div class="input-field col s6">
+                            <input id="scholarship_deadline" type="date" class="validate">
+                            <label for="scholarship_deadline">Deadline</label>
+                        </div>
+                        <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                        <div class="input-field col s6">
+                            <input id="date_winner_announced" type="date" class="validate">
+                            <label for="date_winner_announced">Date to annouce winner</label>
+                        </div>
+                        <!-- SCHOLARSHIP NOTE -->
+                        <div class="input-field col s6">
+                            <textarea id="note" type="text" rows="6" class="validate">
+                            </textarea>
+                            <label for="note">Notes</label>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                    <!-- ADD BUTTON -->
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Add
+                        <i class="material-icons right">addchart</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+{% endblock %}
+

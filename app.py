@@ -93,6 +93,14 @@ def view_scholarship(scholarship_id):
                            categories=categories)
 
 
+# add new scholarship
+@app.route("/add_scholarship", methods=["GET", "POST"])
+def add_scholarship():
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_scholarship.html",
+                           categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
