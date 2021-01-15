@@ -104,6 +104,23 @@ def view_scholarship(scholarship_id):
 # add new scholarship
 @app.route("/add_scholarship", methods=["GET", "POST"])
 def add_scholarship():
+    if request.method == "POST":
+        scholarship = {
+            "scholarship_name": request.form.get("scholarship_name"),
+            "scholarship_sponsor": request.form.get("scholarship_sponsor"),
+            "category": request.form.get("category"),
+            "scholarship_amount": request.form.get("scholarship_amount"),
+            "scholarship_url": request.form.get("scholarship_url"),
+            "scholarship_deadline": request.form.get("scholarship_deadline"),
+            "date_winner_announced": request.form.get("date_winner_announced"),
+            "note": request.form.get("note"),
+            # "created_by": session["user"],
+            "create_date": datetime.datetime.now()
+        }
+        mongo.db.scholarships.insert_one(scholarship)
+        flash("Scholarship Successfully Added")
+        return redirect(url_for("get_scholarships"))
+
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_scholarship.html",
                            categories=categories)
