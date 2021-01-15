@@ -126,6 +126,35 @@ def add_scholarship():
                            categories=categories)
 
 
+
+# edit existing scholarship
+@app.route("/edit_scholarship/<scholarship_id>", methods=["GET", "POST"])
+def edit_scholarship(scholarship_id):
+    if request.method == "POST":
+        scholarship = {
+            "scholarship_name": request.form.get("scholarship_name"),
+            "scholarship_sponsor": request.form.get("scholarship_sponsor"),
+            "category": request.form.get("category"),
+            "scholarship_amount": request.form.get("scholarship_amount"),
+            "scholarship_url": request.form.get("scholarship_url"),
+            "scholarship_deadline": request.form.get("scholarship_deadline"),
+            "date_winner_announced": request.form.get("date_winner_announced"),
+            "note": request.form.get("note"),
+            "last_updated": datetime.datetime.now()
+        }
+        mongo.db.scholarships.update(
+            {"_id": ObjectId(scholarship_id)}, scholarship)
+        flash("Scholarship Successfully Updated")
+
+    scholarship = mongo.db.scholarships.find_one(
+        {"_id": ObjectId(scholarship_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_scholarship.html",
+                           scholarship=scholarship,
+                           categories=categories)
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
