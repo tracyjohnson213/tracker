@@ -59,6 +59,12 @@
                     <div class="row flashes">
                         <h4 class="lighten-4 center-align">{{ message }}</h4>
                     </div>
+                    <!-- DELETE BUTTON -->
+                    <button class="btn waves-effect waves-light" name="delete">
+                        <a href="{{ url_for('get_scholarships') }}">Back to List
+                            <i class="material-icons right">rule</i>
+                        </a>
+                    </button>
                 {% endfor %}
             {% endif %}
         {% endwith %}

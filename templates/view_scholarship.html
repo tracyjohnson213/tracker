@@ -10,9 +10,10 @@
                         <!-- SCHOLARSHIP AMOUNT -->
                         <p>
                             {% if scholarship.scholarship_amount.isnumeric() %}
-                            $
-                            {% endif %}
+                            Award: ${{ scholarship.scholarship_amount }}
+                            {% else %}
                             Award: {{ scholarship.scholarship_amount }}
+                            {% endif %}
                         </p>
                         <!-- SCHOLARSHIP CATEGORY -->
                         <p>Category: {{ scholarship.category }}</p>
@@ -25,6 +26,18 @@
                         <!-- SCHOLARSHIP URL -->
                         <div class="card-action">
                             <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
+                            <!-- EDIT BUTTON -->
+                            <button class="btn waves-effect waves-light" name="edit">
+                                <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">Edit
+                                    <i class="material-icons right">edit</i>
+                                </a>
+                            </button>
+                            <!-- DELETE BUTTON -->
+                            <button class="btn waves-effect waves-light" name="delete">
+                                <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}">Delete
+                                    <i class="material-icons right">delete</i>
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </div>

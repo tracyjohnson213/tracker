@@ -64,6 +64,14 @@
                     <button class="btn waves-effect waves-light" type="submit" name="edit_scholarship">Update
                         <i class="material-icons right">edit</i>
                     </button>
+
+                   
+                    <!-- CANCEL BUTTON -->
+                    <button class="btn waves-effect waves-light" name="cancel_edit">
+                        <a href="{{ url_for('view_scholarship', scholarship_id=scholarship._id) }}">
+                        Cancel<i class="material-icons right">cancel_presentation</i>
+                        </a>
+                    </button>
                 </div>
             </div>
         </form>
