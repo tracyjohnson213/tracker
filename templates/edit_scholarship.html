@@ -16,11 +16,15 @@
                         </div>
                         <!-- CATEGORY -->
                         <div class="input-field col s6">
-                            <select id="category" name="category" class="validate" required>
-                                <option value="{{ scholarship.category }}">{{ scholarship.category }}</option>
-                                {% for category in categories %}
-                                    <option value="{{ category.category }}">{{ category.category }}</option>
-                                {% endfor %}
+                            <select id="category" name="category" class="validate">
+                                <option value="" disabled>Choose Category</option>
+                                    {% for category in categories %}
+                                        {% if category.category == scholarship.category %}
+                                            <option value="{{ category.category }}" selected>{{ category.category }}</option>
+                                        {% else %}
+                                            <option value="{{ category.category }}">{{ category.category }}</option>
+                                        {% endif %}
+                                    {% endfor %}
                             </select>
                             <label for="category">Category</label>
                         </div>
