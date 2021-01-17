@@ -165,36 +165,9 @@ def edit_scholarship(scholarship_id):
 def delete_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
-    """
     mongo.db.scholarships.remove({"_id": ObjectId(scholarship_id)})
-    """
-
-    if request.method == "POST":
-        """
-        mongo.db.scholarships.update_one(
-            {"_id": ObjectId(scholarship_id)},
-            {"$set": {"scholarship_staus": "Inactive"}})
-        """
-
-        scholarship = {
-            "scholarship_name": scholarship.scholarship_name,
-            "scholarship_sponsor": scholarship.scholarship_sponsor,
-            "category": scholarship.category,
-            "scholarship_amount": scholarship.scholarship_amount,
-            "scholarship_url": scholarship.scholarship_url,
-            "scholarship_deadline": scholarship.scholarship_deadline,
-            "date_winner_announced": scholarship.date_winner_announced,
-            "note": scholarship.note,
-            "scholarship_status": "Inactive",
-            "updated_by": "alivia@example.com",
-            # "updated_by": session["user"],
-            "last_updated": datetime.datetime.now()
-        }
-        mongo.db.scholarships.update(
-            {"_id": ObjectId(scholarship_id)}, scholarship)
-
-        flash("Scholarship Successfully Deleted")
-    return render_template("delete_scholarship.html",
+    flash("Scholarship Successfully Deleted")
+    return render_template("scholarships.html",
                            scholarship=scholarship)
 
 
