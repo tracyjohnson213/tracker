@@ -97,7 +97,7 @@ def get_scholarships():
 def view_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
+    categories = mongo.db.categories.find().sort("category", 1)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
                            categories=categories)
@@ -125,7 +125,7 @@ def add_scholarship():
         flash("Scholarship Successfully Added")
         return redirect(url_for("get_scholarships"))
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
+    categories = mongo.db.categories.find().sort("category", 1)
     return render_template("add_scholarship.html",
                            categories=categories)
 
@@ -154,7 +154,7 @@ def edit_scholarship(scholarship_id):
 
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
+    categories = mongo.db.categories.find().sort("category", 1)
     return render_template("edit_scholarship.html",
                            scholarship=scholarship,
                            categories=categories)
