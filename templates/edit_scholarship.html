@@ -56,6 +56,19 @@
                             <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
                             <label for="date_winner_announced">Date to annouce winner</label>
                         </div>
+                        <!-- APPLICATION STATUS -->
+                        <div class="col s6">
+                            <input type="radio" class="with-gap" id="planned" name="application_status" value="planned">
+                            <label for="planned"> Plan to Apply</label><br>
+                            <input type="radio" id="applied" name="application_status" value="applied">
+                            <label for="applied"> Applied</label><br>
+                            <input type="radio" id="awarded" name="application_status" value="awarded">
+                            <label for="awarded"> Awarded</label><br>
+                            <input type="radio" id="notgiven" name="application_status" value="notgiven">
+                            <label for="notgiven"> Not Awared</label><br>
+                            <input type="radio" id="declined" name="application_status" value="declined">
+                            <label for="declined"> Declined</label><br>
+                        </div>
                         <!-- SCHOLARSHIP NOTE -->
                         <div class="input-field col s6">
                             <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate">

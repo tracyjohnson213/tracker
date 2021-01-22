@@ -13,6 +13,16 @@
                         <p>Amount: ${{ scholarship.scholarship_amount }}</p>
                         <!-- DEADLINE -->
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
+                        <!-- SCHOLARSHIP CATEGORY -->
+                        <div class="chip">
+                            Category: {{ scholarship.category }}
+                            <i class="close material-icons">close</i>
+                        </div>
+                        <!-- SCHOLARSHIP STATUS -->
+                        <div class="chip">
+                            Status: {{ scholarship.application_status }}
+                            <i class="close material-icons">close</i>
+                        </div>
                     </div>
                     <div class="card-action">
                         <!-- URL -->

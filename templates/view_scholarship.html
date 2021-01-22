@@ -16,11 +16,26 @@
                             {% endif %}
                         </p>
                         <!-- SCHOLARSHIP CATEGORY -->
-                        <p>Category: {{ scholarship.category }}</p>
+                        <div class="chip">
+                            Category: {{ scholarship.category }}
+                            <i class="close material-icons">close</i>
+                        </div>
                         <!-- SCHOLARSHIP DEADLINE -->
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
                         <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
+                        <!-- APPLICATION STATUS -->
+                            {% if scholarship.application_status == "Plan to Apply" %}
+                            <p>Application status: {{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</p>
+                            {% elif scholarship.application_status == "Applied" %}
+                            <p>Application submitted: {{ scholarship.date_applied }}</p>
+                            {% elif scholarship.application_status == "Awarded" %}
+                            <p>Application status: {{ scholarship.date_awarded }}</p>
+                            {% elif scholarship.application_status == "Not Awarded" %}
+                            <p>Notification of Denial: {{ scholarship.date_rejected }}</p>
+                            {% elif scholarship.application_status == "Declined" %}
+                            <p>Declined: {{ scholarship.date_declined }}</p>
+                            {% endif %}
                         <!-- SCHOLARSHIP NOTE -->
                         <p>Notes: {{ scholarship.note }}</p>
                         <!-- SCHOLARSHIP URL -->
