@@ -11,7 +11,7 @@
                         </div>
                         <!-- SCHOLARSHIP SPONSOR -->
                         <div class="input-field col s6">
-                            <input id="scholarship_sponsor" id="scholarship_sponsor" type="text" class="validate">
+                            <input id="scholarship_sponsor" name="scholarship_sponsor" type="text" class="validate">
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
                         <!-- CATEGORY -->
@@ -42,6 +42,19 @@
                         <div class="input-field col s6">
                             <input id="date_winner_announced" name="date_winner_announced" type="date" class="validate">
                             <label for="date_winner_announced">Date to annouce winner</label>
+                        </div>
+                        <!-- APPLICATION STATUS -->
+                        <div>
+                            <input type="radio" id="planned" name="application_status" value="planned">
+                            <label for="planned"> Plan to Apply</label><br>
+                            <input type="radio" id="applied" name="application_status" value="applied">
+                            <label for="applied"> Applied</label><br>
+                            <input type="radio" id="awarded" name="application_status" value="awarded">
+                            <label for="awarded"> Awarded</label><br>
+                            <input type="radio" id="notgiven" name="application_status" value="notgiven">
+                            <label for="notgiven"> Not Awared</label><br>
+                            <input type="radio" id="declined" name="application_status" value="declined">
+                            <label for="declined"> Declined</label><br>
                         </div>
                         <!-- SCHOLARSHIP NOTE -->
                         <div class="input-field col s6">
