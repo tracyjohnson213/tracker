@@ -14,55 +14,104 @@ User will be able to view page about website creation and contact site owner wit
 
 ## UI/UX
 
-Home page
-- shows register user form
-- shows sign in form
-- shows link to contact form
-- shows link to about page
-- shows footer with copyright
-
-User page
-- shows list of stored scholarships
-- displays button linking to add scholarship form
-- displays button linking to edit scholarship form
-- displays button linking to remove scholarship from displayed list
-- allows search of scholarship by Name
-- allows filter by category
-
-Scholarship displays:
-- Name
-- Sponsor
-- amount
-- deadline
-- documents required:
-* recommendations
-* recommendation count
-* transcript
-* essays
-* essay count
-* 3 other document items
-- notes
-- status
-* plan to apply
-* applied
-* awarded
-* not awarded
-* declined
-- date applied
-- date winner announced
-- website
-
-Admin page
-- manage users
+User Stories:
+    * As a user, I want to register my email, in order to gain a login to access the application.
+    * As a system, I want to store the user password encrypted, in order to provide security of user data.
+    * :thumbsdown: As a user, I want to log into the application, in order to add scholarships for tracking.
+    * As a user, I want to view all scholarships previously added for tracking, in order to compare deadlines.
+    * :thumbsdown: As a system, I want to display only the scholarships that have been stored by a specific user, in order to not provide incorrect data.
+    * As a user, I want to view all scholarships previously added for tracking, in order to compare status.
+    * As a user, I want to edit a scholarship, in order to update the related information.
+    * As a user, I want to remove a scholarships, in order to longer view it as a tracked scholarship. 
+    * As a user, I want to link to the url of a scholarship or sponsor, in order to gain information not recorded in the application.
 
 Nice to haves
-- user profile
+    * As a user, I want to view information about the application or site owner, in order to build a rapport with the site owner.
+    * As a user, I want to contact the site owner within the application, in order to share information.
 - user dashboard
-* total scholarship count
-* applied for vs total count
-* accepted scholarship vs applied for
-* deadline within 30, 60, or 90 displays
+    * total scholarship count
+    * applied for vs total count
+    * accepted scholarship vs applied for
+    * deadline within 30, 60, or 90 displays
 - deadline in red when past due
 - awarded in red when past due
-- link to url
+- scholarship status to record if plan to apply, applied, awarded, or award denied
+- scholarship documents required
 - email notification of deadlines
+
+## Features
+
+## Technologies Used
+
+https://www.html5pattern.com/Passwords
+
+## Testing
+
+1. Home page
+    * Verify display of marketing text
+    * Verify display of Register form
+    * Verify display of Login button
+1. Registration page
+    * Try to submit registration without first name and verify display of error message about required field.
+    * Try to submit registration without last name and verify display of error message about required field.
+    * Try to submit registration without email and verify display of error message about required field.
+    * Try to submit registration without password and verify display of error message about required field.
+    * Try to submit registration with no data and verify display of error message about required fields.
+    * Try to submit registration with invalid email and verify display of error message about valid format.
+    * Try to submit registration with invalid password and verify display of error message about valid format.
+    * Try to submit registration with valid set of data and verify display message about sucessful registration.
+1. Login page
+    * Try to login with email that does not exist in database and verify display of error message.
+    * Try to login without email and verify display of error message about required field.
+    * Try to login without password and verify display of error message about required field.
+1. User - Logout page
+    * Verify display of logout confirmation
+1. Scholarship List page
+    * Verify scholarship name is displayed
+    * Verify scholarship sponsor is displayed
+    * Verify scholarship award amount is displayed
+    * Verify scholarship deadline is displayed
+    * Verify scholarship website address is displayed
+    * Verify scholarship website links to new page with results of listed url
+    * Verify scholarship name links to page with more details
+1. Scholarship Details page
+    * Verify scholarship name is displayed
+    * Verify scholarship sponsor is displayed
+    * Verify scholarship award amount is displayed
+    * Verify scholarship deadline is displayed
+    * Verify scholarship website address is displayed
+    * Verify date to announce winner of scholarship is displayed
+    * Verify inputted notes for scholarship are displayed
+    * Verify scholarship website links to new page with results of listed url
+    * Verify edit button is displayed
+    * Verify edit button links to new page displaying input fields with data
+    * Verify delete button is displayed
+1. Add Scholarship page
+    * Try to add scholarship without name and verify error is displayed
+    * Try to add scholarship with only name
+1. edit
+1. delete
+    * Try to delete scholarship and cancel confirmation of deletion to verify scholarship remains in list of all scholarships
+    * Try to delete scholarship and confirm deletion to verify scholarship no longer displays in list of all scholarships
+
+1. Look and Feel in browsers
+1. Bugs
+    * (Login Page) Try to login with valid email and password combination and verify display of /scholarships.
+    * (Scholarship Details page) Verify delete button leads to new page requesting confirmation before deleting
+    * Verify Login button is not displayed after login
+    * Verify Logout button is not displayed before login
+    * Verify navigation link to view all is not displayed after logout
+    * Verify all scholarships are displayed after delete of one
+
+## Deployment
+
+## Credits
+
+Favicon - https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-cap-152-190967.html
+
+## Media
+
+- photos used
+
+## Acknowledgements
+

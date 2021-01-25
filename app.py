@@ -74,6 +74,7 @@ def login():
     return render_template("login.html")
 
 
+# logout current user
 @app.route("/logout")
 def logout():
     # remove user from session cookie
@@ -161,7 +162,7 @@ def edit_scholarship(scholarship_id):
 
 
 # delete existing scholarship
-@app.route("/delete_scholarship/<scholarship_id>")
+@app.route("/delete_scholarship/<scholarship_id>", methods=["GET"])
 def delete_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
@@ -169,6 +170,73 @@ def delete_scholarship(scholarship_id):
     flash("Scholarship Successfully Deleted")
     return render_template("scholarships.html",
                            scholarship=scholarship)
+
+
+# view admin panel to manage items in database
+@app.route("/get_adminpanel", methods=["GET"])
+def get_adminpanel():
+    return render_template("admin.html")
+
+
+# view existing categories in database
+@app.route("/get_categories", methods=["GET", "POST"])
+def get_categories():
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("categories.html", categories=categories)
+
+
+# add new category
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        category = {
+            "category": request.form.get("category")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("Category Successfully Added")
+        return redirect(url_for("get_categories"))
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("add_category.html", categories=categories)
+
+
+# edit existing category
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        category = {
+            "category": request.form.get("category")
+        }
+        mongo.db.categories.update(
+            {"_id": ObjectId(category_id)}, category)
+        flash("Category Successfully Updated")
+    return redirect(url_for("get_categories",
+                            category=category))
+
+
+# delete existing category
+@app.route("/delete_category/<category_id>", methods=["GET", "POST"])
+def delete_category(category_id):
+    category = mongo.db.categories.find({"_id": ObjectId(category_id)})
+    if request.method == "POST":
+        mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
+        flash("Category Successfully Deleted")
+        return redirect(url_for("delete_category",
+                                category=category))
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("delete_category.html",
+                           category=category,
+                           categories=categories)
+    """
+    if request.method == "POST":
+        category = mongo.db.categories.find({"_id": ObjectId(category_id)})
+        mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
+        flash("Category Successfully Deleted")
+        return redirect(url_for("delete_category",
+                                category=category))
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("get_categories.html",
+                           categories=categories)
+                           """
 
 
 if __name__ == "__main__":
