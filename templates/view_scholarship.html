@@ -18,11 +18,63 @@
                         <!-- SCHOLARSHIP CATEGORY -->
                         <p>Category: {{ scholarship.category }}</p>
                         <!-- SCHOLARSHIP DEADLINE -->
-                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
+                        <p>Deadline: {{ scholarship.scholarship_deadline.date().strftime('%m-%d-%Y') }}</p>
                         <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
-                        <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
+                        <p>Date to annouce winner: {{ scholarship.date_winner_announced.date().strftime('%m-%d-%Y') }}</p>
                         <!-- SCHOLARSHIP NOTE -->
                         <p>Notes: {{ scholarship.note }}</p>
+                        <div class="card-content white-text">
+                        <!-- APPLICATION STATUS -->
+                        <span class="black badge">Current Status: {{ date.current_application_status }}</span>
+                        <!-- Date Applied -->
+                        <p>Date Applied: {{ date.date_applied.date().strftime('%m-%d-%Y') }}</p>
+                        <!-- Date Awarded -->
+                        <p>Date Awarded: {{ date.date_awarded.date().strftime('%m-%d-%Y') }}</p>
+                        <!-- Date Rejected -->
+                        <p>Date Rejected: {{ date.date_rejected.date().strftime('%m-%d-%Y') }}</p>
+                        <!-- Date Declined -->
+                        <p>Date Declined: {{ date.date_declined.date().strftime('%m-%d-%Y') }}</p>
+                        </div>
+                        <!-- DOCUMENTS REQUIRED -->
+                        <div class="card-content white-text">
+                        <span class="black badge">Documents Required</span>
+                        <!-- RECOMMENDATION REQUIRED -->
+                        {% if document.recommendation_required=="true" %}
+                        <p>Recommendation(s) Required: {{ document.recomendation_count }}</p>
+                        {% else %}
+                        <p>Recommendation Required: No</p>
+                        {% endif %}
+                        {% if document.transcript_required=="true" %}
+                        <!-- TRANSCRIPT REQUIRED -->
+                        <p>Transcript Required: Yes</p>
+                        {% else %}
+                        <p>Transcript Required: No</p>
+                        {% endif %}
+                        {% if document.essay_required=="true" %}
+                        <!-- ESSAY REQUIRED -->
+                        <p>Essay(s) Required: {{ document.essay_count }}</p>
+                        {% else %}
+                        <p>Essay(s) Required: No</p>
+                        {% endif %}
+                        {% if document.other1.required=="true" %}
+                        <!-- FIRST OTHER DOCUMENT -->
+                        <p>{{ document.other1.document_name }} ~ Required</p>
+                        {% else %}
+                        <p>{{ document.other1.document_name }} ~ Optional</p>
+                        {% endif %}
+                        {% if document.other2.required=="true" %}
+                        <!-- SECOND OTHER DOCUMENT -->
+                        <p>{{ document.other2.document_name }} ~ Required</p>
+                        {% else %}
+                        <p>{{ document.other2.document_name }} ~ Optional</p>
+                        {% endif %}
+                        {% if document.other3.required=="true" %}
+                        <!-- THIRD OTHER DOCUMENT -->
+                        <p>{{ document.other3.document_name }} ~ Required</p>
+                        {% else %}
+                        <p>{{ document.other3.document_name }} ~ Optional</p>
+                        {% endif %}
+                        </div>
                         <!-- SCHOLARSHIP URL -->
                         <div class="card-action">
                             <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>

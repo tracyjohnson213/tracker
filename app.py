@@ -97,9 +97,16 @@ def get_scholarships():
 def view_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
+    date = mongo.db.dates.find_one(
+        {"scholarship_id": ObjectId(scholarship_id)})
+    document = mongo.db.documents.find_one(
+        {"scholarship_id": ObjectId(scholarship_id)}
+    )
     categories = mongo.db.categories.find().sort("category", 1)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
+                           date=date,
+                           document=document,
                            categories=categories)
 
 
@@ -154,9 +161,16 @@ def edit_scholarship(scholarship_id):
 
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
+    date = mongo.db.dates.find_one(
+        {"scholarship_id": ObjectId(scholarship_id)})
+    document = mongo.db.documents.find_one(
+        {"scholarship_id": ObjectId(scholarship_id)}
+    )
     categories = mongo.db.categories.find().sort("category", 1)
     return render_template("edit_scholarship.html",
                            scholarship=scholarship,
+                           date=date,
+                           document=document,
                            categories=categories)
 
 
