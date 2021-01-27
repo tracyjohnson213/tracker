@@ -18,7 +18,11 @@
                         <div class="input-field col s6">
                             <select id="category" name="category" class="validate" required>
                                 {% for category in categories %}
-                                    <option value="{{ category.category }}">{{ category.category }}</option>
+                                    {% if category.category == "College" %}
+                                        <option value="{{ category.category }}" selected>{{ category.category }}</option>
+                                    {% else %}
+                                        <option value="{{ category.category }}">{{ category.category }}</option>
+                                    {% endif %}   
                                 {% endfor %}
                             </select>
                             <label for="category">Category</label>
@@ -47,8 +51,12 @@
                         <div class="input-field col s6">
                             <select id="application_status" name="application_status" class="validate">
                                 {% for status in statuses %}
-                                            <option value="{{ status.status }}">{{ status.status }}</option>
-                                            {% endfor %}
+                                    {% if status.status == "Information" %}
+                                        <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                                    {% else %}
+                                        <option value="{{ status.status }}">{{ status.status }}</option>
+                                    {% endif %}
+                                {% endfor %}
                             </select>
                             <label for="application_status">Application Status</label>
                         </div>
