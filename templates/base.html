@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
 
     {% block styles %}
+    <style>
+    .sidenav {
+        transform: translateX(0%) !important;
+    }'
+    </style>
     {% endblock %}
 
     <title>Scholarship Tracker</title>
@@ -37,7 +42,7 @@
                         <a class="nav-link" href="{{ url_for('get_scholarships')}}">Back to List<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_scholarship')}}">Add New<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ url_for('add_scholarship')}}">Add New</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('login')}}">Login</a>
@@ -163,12 +168,20 @@
     <script src="{{ url_for('static', filename="js/script.js")}}"></script>
     
     {% block scripts %}
+   
+    <script>
+      // to make sidebar default to open
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+
     <script>
     // to make select options on form visible
     $(document).ready(function(){
         $('select').formSelect();
     });
     </script>
+  
     {% endblock %}
       
 </html>
