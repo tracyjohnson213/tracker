@@ -238,25 +238,15 @@ def edit_category(category_id):
 def delete_category(category_id):
     category = mongo.db.categories.find({"_id": ObjectId(category_id)})
     if request.method == "POST":
-        mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
-        flash("Category Successfully Deleted")
-        return redirect(url_for("delete_category",
-                                category=category))
-    categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("delete_category.html",
-                           category=category,
-                           categories=categories)
-    """
-    if request.method == "POST":
         category = mongo.db.categories.find({"_id": ObjectId(category_id)})
         mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
-        flash("Category Successfully Deleted")
-        return redirect(url_for("delete_category",
+        flash("category Successfully Deleted")
+        return redirect(url_for("get_categories",
                                 category=category))
+    flash("Are you sure you want to delete this category?")
     categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("get_categories.html",
+    return render_template("delete_category.html",
                            categories=categories)
-                           """
 
 
 # view existing statuses via admin panel
@@ -299,13 +289,14 @@ def edit_status(status_id):
 def delete_status(status_id):
     status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
     if request.method == "POST":
+        status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
         mongo.db.statuses.remove({"_id": ObjectId(status_id)}, status)
-        flash("status Successfully Deleted")
-        return redirect(url_for("delete_status",
+        flash("Status Successfully Deleted")
+        return redirect(url_for("get_statuses",
                                 status=status))
+    flash("Are you sure you want to delete this status?")
     statuses = list(mongo.db.statuses.find().sort("status", 1))
     return render_template("delete_status.html",
-                           status=status,
                            statuses=statuses)
 
 
@@ -355,11 +346,13 @@ def edit_user(user_id):
 def delete_user(user_id):
     user = mongo.db.users.find({"_id": ObjectId(user_id)})
     if request.method == "POST":
+        user = mongo.db.users.find({"_id": ObjectId(user_id)})
         mongo.db.users.remove({"_id": ObjectId(user_id)}, user)
         flash("User Successfully Deleted")
-        return redirect(url_for("delete_user",
+        return redirect(url_for("get_users",
                                 user=user))
-    users = list(mongo.db.users.find().sort("username", 1))
+    flash("Are you sure you want to delete this user?")
+    users = list(mongo.db.users.find().sort("user", 1))
     return render_template("delete_user.html",
                            user=user,
                            users=users)

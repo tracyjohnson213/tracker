@@ -1,15 +1,15 @@
 {% extends "admin.html" %}
 {% block content %}
-        <!-- CATEGORY TABLE -->
+        <!-- USER TABLE -->
         <div class="row">
             <table class="responsive-table centered striped table-sm" style="width:100%">
-                {% for category in categories %}
-                <form class="card-content white-text" method="POST" action="{{ url_for('delete_category', category_id=category._id) }}">
+                {% for user in users %}
+                <form class="card-content white-text" method="POST" action="{{ url_for('delete_user', user_id=user._id) }}">
                     <tr>
                         <th>
-                            <!-- SCHOLARSHIP CATEGORY -->
+                            <!-- SCHOLARSHIP USER -->
                                 <div class="input-field col s6">
-                                    <input id="category" name="category" value="{{ category.category }}" type="text" class="validate" required>
+                                    <input id="username" name="username" value="{{ user.username }}" type="text" class="validate" required>
                                 </div>
                         </th>
                         <th>
@@ -32,4 +32,3 @@
             </table>
         </div>
 {% endblock %}
-

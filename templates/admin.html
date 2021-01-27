@@ -15,13 +15,6 @@
 
     {% block styles %}
     <style>
-    .sidenav {
-        transform: translateX(0%) !important;
-    }
-    main.container,
-    section {
-        margin-left: 30%;
-    }
     </style>
     {% endblock %}
 
@@ -31,27 +24,41 @@
 
 <body>
 
-<nav> <!-- navbar content here  --> </nav>
+<header>
+               
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand brand-logo right" href="{{ url_for('get_scholarships')}}">
+                <img src="/static/images/scholarship.jpg" alt="scholarship tracker" width="100" height="30">
+            </a>
 
-  <ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
-      <div class="background">
-        <img src="/static/images/scholarship.jpg" alt="scholarship tracker" width="100" height="35">
-      </div>
-      <!--<a href="#user"><img class="circle" src="images/yuna.jpg" alt="user"></a>
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
-    </div></li>
-    <li><a href="{{ url_for('get_categories')}}"><i class="material-icons">cloud</i>Categories</a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="{{ url_for('get_statuses')}}"><i class="material-icons">cloud</i>Application Statuses</a></li>
-    <li><div class="divider"></div></li>
-    <li><a href="{{ url_for('get_users')}}"><i class="material-icons">cloud</i>Users</a></li>
-    <li><div class="divider"></div></li>
-    <!--<li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>-->
-  </ul>
-  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" class="right hide-on-med-and-down">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('get_categories')}}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('get_statuses')}}">Statuses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('get_users')}}">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+                    </li>
+                </ul>
+                <nav class="light-blue lighten-1" role="navigation">
+                    <div class="nav-wrapper container">
+                        <a href="#!" class="brand-logo">Admin Management</a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+
+    </header>
 
 <!-- FLASH MESSAGES -->
     <section>
