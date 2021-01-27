@@ -24,22 +24,20 @@
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>                 <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                         <!-- APPLICATION STATUS -->
-                            {% if scholarship.application_status == "Plan to Apply" %}
-                            <p>Application status: {{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</p>
-                            {% elif scholarship.application_status == "Applied" %}
-                            <p>Application submitted: {{ scholarship.date_applied }}</p>
-                            {% elif scholarship.application_status == "Awarded" %}
-                            <p>Application status: {{ scholarship.date_awarded }}</p>
-                            {% elif scholarship.application_status == "Not Awarded" %}
-                            <p>Notification of Denial: {{ scholarship.date_rejected }}</p>
-                            {% elif scholarship.application_status == "Declined" %}
-                            <p>Declined: {{ scholarship.date_declined }}</p>
-                            {% endif %}
+                        {% if scholarship.application_status == "Plan to Apply" %}
+                        <span class="black badge">{{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</span>
+                        {% elif scholarship.application_status == "Applied" %}
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_applied }}</span>
+                        {% elif scholarship.application_status == "Awarded" %}
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_awarded }}</span>
+                        {% elif scholarship.application_status == "Not Awarded" %}
+                        <span class="black badge">Notification of Denial: {{ scholarship.date_rejected }}</span>
+                        {% elif scholarship.application_status == "Declined" %}
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_declined }}</span>
+                        {% endif %}
                         <!-- SCHOLARSHIP NOTE -->
                         <p>Notes: {{ scholarship.note }}</p>
                         <div class="card-content white-text">
-                        <!-- APPLICATION STATUS -->
-                        <span class="black badge">Current Status: {{ scholarship.application_status }}</span>
                         <!-- Date Applied -->
                         <p>Date Applied: {{ scholarship.dates.date_applied }}</p>
                         <!-- Date Awarded -->
