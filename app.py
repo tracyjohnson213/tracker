@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 def register():
     if request.method == "POST":
         # check if username already exists in db
-        existing_user = mongo.db.users.find_one(
+        existing_user = mongo.db.users.find_one_or_404(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -52,7 +52,7 @@ def register():
 def login():
     if request.method == "POST":
         # check if username exists in db
-        existing_user = mongo.db.users.find_one(
+        existing_user = mongo.db.users.find_one_or_404(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -111,7 +111,7 @@ def search():
 # view selected scholarship details
 @app.route("/view_scholarship/<scholarship_id>", methods=["GET"])
 def view_scholarship(scholarship_id):
-    scholarship = mongo.db.scholarships.find_one(
+    scholarship = mongo.db.scholarships.find_one_or_404(
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
@@ -192,7 +192,7 @@ def edit_scholarship(scholarship_id):
             {"_id": ObjectId(scholarship_id)}, scholarship)
         flash("Scholarship Successfully Updated")
 
-    scholarship = mongo.db.scholarships.find_one(
+    scholarship = mongo.db.scholarships.find_one_or_404(
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
@@ -205,7 +205,7 @@ def edit_scholarship(scholarship_id):
 # delete existing scholarship
 @app.route("/delete_scholarship/<scholarship_id>", methods=["GET"])
 def delete_scholarship(scholarship_id):
-    scholarship = mongo.db.scholarships.find_one(
+    scholarship = mongo.db.scholarships.find_one_or_404(
         {"_id": ObjectId(scholarship_id)})
     mongo.db.scholarships.remove({"_id": ObjectId(scholarship_id)})
     flash("Scholarship Successfully Deleted")
