@@ -168,12 +168,20 @@
     <script src="{{ url_for('static', filename="js/script.js")}}"></script>
     
     {% block scripts %}
-
+   
     <script>
+      // to make sidebar default to open
         $(document).ready(function(){
             $('.sidenav').sidenav();
         });
+
+    <script>
+    // to make select options on form visible
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
     </script>
+  
     {% endblock %}
       
 </html>

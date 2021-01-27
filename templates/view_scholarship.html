@@ -18,14 +18,29 @@
                         <!-- SCHOLARSHIP CATEGORY -->
                         <p>Category: {{ scholarship.category }}</p>
                         <!-- SCHOLARSHIP DEADLINE -->
-                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
-                        <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>                 <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                         <!-- SCHOLARSHIP NOTE -->
                         <p>Notes: {{ scholarship.note }}</p>
+                        <div class="card-content white-text">
+                        <!-- APPLICATION STATUS -->
+                        <span class="black badge">Current Status: {{ scholarship.application_status }}</span>
+                        <!-- Date Applied -->
+                        <p>Date Applied: {{ scholarship.dates.date_applied }}</p>
+                        <!-- Date Awarded -->
+                        <p>Date Awarded: {{ scholarship.dates.date_awarded }}</p>
+                        <!-- Date Rejected -->
+                        <p>Date Rejected: {{ scholarship.dates.date_rejected }}</p>
+                        <!-- Date Declined -->
+                        <p>Date Declined: {{ scholarship.dates.date_declined }}</p>
+                        </div>
+                        
+                        </div>
                         <!-- SCHOLARSHIP URL -->
                         <div class="card-action">
                             <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
+                        </div>
+                        <div class="card-action">
                             <!-- EDIT BUTTON -->
                             <button class="btn waves-effect waves-light" name="edit">
                                 <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">Edit
