@@ -74,6 +74,7 @@ def login():
     return render_template("login.html")
 
 
+# logout current user
 @app.route("/logout")
 def logout():
     # remove user from session cookie
@@ -98,9 +99,11 @@ def view_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # add new scholarship
@@ -116,6 +119,13 @@ def add_scholarship():
             "scholarship_deadline": request.form.get("scholarship_deadline"),
             "date_winner_announced": request.form.get("date_winner_announced"),
             "note": request.form.get("note"),
+            "dates": {
+                "date_applied": "2000-01-01",
+                "date_awarded": "2000-01-01",
+                "date_rejected": "2000-01-01",
+                "date_declined": "2000-01-01"
+            },
+            "application_status": "Information",
             "scholarship_status": "Active",
             "application_status": request.form.get("application_status"),
             "created_by": "alivia@example.com",
@@ -127,8 +137,10 @@ def add_scholarship():
         return redirect(url_for("get_scholarships"))
 
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("add_scholarship.html",
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # edit existing scholarship
@@ -144,7 +156,16 @@ def edit_scholarship(scholarship_id):
             "scholarship_deadline": request.form.get("scholarship_deadline"),
             "date_winner_announced": request.form.get("date_winner_announced"),
             "note": request.form.get("note"),
+            "dates": {
+                "date_applied": request.form.get("date_applied"),
+                "date_awarded": request.form.get("date_awarded"),
+                "date_rejected": request.form.get("date_rejected"),
+                "date_declined": request.form.get("date_declined")
+            },
+            "application_status": request.form.get("application_status"),
             "scholarship_status": "Active",
+            "created_by": "alivia@example.com",
+            # "created_by": session["user"],
             "application_status": request.form.get("application_status"),
             "updated_by": "alivia@example.com",
             # "updated_by": session["user"],
@@ -157,13 +178,15 @@ def edit_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("edit_scholarship.html",
                            scholarship=scholarship,
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # delete existing scholarship
-@app.route("/delete_scholarship/<scholarship_id>")
+@app.route("/delete_scholarship/<scholarship_id>", methods=["GET"])
 def delete_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
@@ -171,6 +194,172 @@ def delete_scholarship(scholarship_id):
     flash("Scholarship Successfully Deleted")
     return render_template("scholarships.html",
                            scholarship=scholarship)
+
+
+# view admin panel to manage items in database
+@app.route("/get_adminpanel", methods=["GET"])
+def get_adminpanel():
+    return render_template("admin.html")
+
+
+# view existing categories via admin panel
+@app.route("/get_categories", methods=["GET", "POST"])
+def get_categories():
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("categories.html", categories=categories)
+
+
+# add new category via admin panel
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        category = {
+            "category": request.form.get("category")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("Category Successfully Added")
+        return redirect(url_for("get_categories"))
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("add_category.html", categories=categories)
+
+
+# edit existing category via admin panel
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        category = {
+            "category": request.form.get("category")
+        }
+        mongo.db.categories.update(
+            {"_id": ObjectId(category_id)}, category)
+        flash("Category Successfully Updated")
+    return redirect(url_for("get_categories",
+                            category=category))
+
+
+# delete existing category via admin panel
+@app.route("/delete_category/<category_id>", methods=["GET", "POST"])
+def delete_category(category_id):
+    category = mongo.db.categories.find({"_id": ObjectId(category_id)})
+    if request.method == "POST":
+        category = mongo.db.categories.find({"_id": ObjectId(category_id)})
+        mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
+        flash("category Successfully Deleted")
+        return redirect(url_for("get_categories",
+                                category=category))
+    flash("Are you sure you want to delete this category?")
+    categories = list(mongo.db.categories.find().sort("category", 1))
+    return render_template("delete_category.html",
+                           categories=categories)
+
+
+# view existing statuses via admin panel
+@app.route("/get_statuses", methods=["GET", "POST"])
+def get_statuses():
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("statuses.html", statuses=statuses)
+
+
+# add new status via admin panel
+@app.route("/add_status", methods=["GET", "POST"])
+def add_status():
+    if request.method == "POST":
+        status = {
+            "status": request.form.get("status")
+        }
+        mongo.db.statuses.insert_one(status)
+        flash("Status Successfully Added")
+        return redirect(url_for("get_statuses"))
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("add_status.html", statuses=statuses)
+
+
+# edit existing status via admin panel
+@app.route("/edit_status/<status_id>", methods=["GET", "POST"])
+def edit_status(status_id):
+    if request.method == "POST":
+        status = {
+            "status": request.form.get("status")
+        }
+        mongo.db.statuses.update(
+            {"_id": ObjectId(status_id)}, status)
+        flash("Status Successfully Updated")
+    return redirect(url_for("get_statuses",
+                            status=status))
+
+
+# delete existing status via admin panel
+@app.route("/delete_status/<status_id>", methods=["GET", "POST"])
+def delete_status(status_id):
+    status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
+    if request.method == "POST":
+        status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
+        mongo.db.statuses.remove({"_id": ObjectId(status_id)}, status)
+        flash("Status Successfully Deleted")
+        return redirect(url_for("get_statuses",
+                                status=status))
+    flash("Are you sure you want to delete this status?")
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("delete_status.html",
+                           statuses=statuses)
+
+
+# view existing users via admin panel
+@app.route("/get_users", methods=["GET", "POST"])
+def get_users():
+    users = list(mongo.db.users.find().sort("username", 1))
+    return render_template("users.html", users=users)
+
+
+# add new user via admin panel
+@app.route("/add_user", methods=["GET", "POST"])
+def add_user():
+    if request.method == "POST":
+        user = {
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "username": request.form.get("username").lower(),
+            "create_date": datetime.datetime.now()
+        }
+        mongo.db.users.insert_one(user)
+        flash("user Successfully Added")
+        return redirect(url_for("get_users"))
+    users = list(mongo.db.users.find().sort("username", 1))
+    return render_template("add_user.html", users=users)
+
+
+# edit existing user via admin panel
+@app.route("/edit_user/<user_id>", methods=["GET", "POST"])
+def edit_user(user_id):
+    if request.method == "POST":
+        user = {
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "username": request.form.get("username").lower(),
+            "create_date": datetime.datetime.now()
+        }
+        mongo.db.users.update(
+            {"_id": ObjectId(user_id)}, user)
+        flash("User Successfully Updated")
+    return redirect(url_for("get_users",
+                            user=user))
+
+
+# delete existing user via admin panel
+@app.route("/delete_user/<user_id>", methods=["GET", "POST"])
+def delete_user(user_id):
+    user = mongo.db.users.find({"_id": ObjectId(user_id)})
+    if request.method == "POST":
+        user = mongo.db.users.find({"_id": ObjectId(user_id)})
+        mongo.db.users.remove({"_id": ObjectId(user_id)}, user)
+        flash("User Successfully Deleted")
+        return redirect(url_for("get_users",
+                                user=user))
+    flash("Are you sure you want to delete this user?")
+    users = list(mongo.db.users.find().sort("user", 1))
+    return render_template("delete_user.html",
+                           user=user,
+                           users=users)
 
 
 if __name__ == "__main__":

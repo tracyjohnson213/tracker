@@ -9,11 +9,13 @@
                             <input id="scholarship_name" name="scholarship_name" value="{{ scholarship.scholarship_name }}" type="text" class="validate">
                             <label for="scholarship_name">Scholarship Name</label>
                         </div>
+
                         <!-- SCHOLARSHIP SPONSOR -->
                         <div class="input-field col s6">
                             <input id="scholarship_sponsor" name="scholarship_sponsor" value="{{ scholarship.scholarship_sponsor }}" type="text" class="validate">
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
+
                         <!-- CATEGORY -->
                         <div class="input-field col s6">
                             <select id="category" name="category" class="validate">
@@ -28,6 +30,7 @@
                             </select>
                             <label for="category">Category</label>
                         </div>
+
                         <!-- SCHOLARSHIP AMOUNT -->
                         {% if scholarship.scholarship_amount.isnumeric() %}
                             <div class="input-field col s6">
@@ -41,21 +44,27 @@
                                 <label for="note">Award</label>
                             </div>
                         {% endif %}
+
                         <!-- SCHOLARSHIP URL -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
                             <label for="scholarship_url">Website</label>
                         </div>
+
+                        <fieldset>
                         <!-- SCHOLARSHIP DEADLINE -->
                         <div class="input-field col s6">
                             <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline }}" type="date" class="validate">
                             <label for="scholarship_deadline">Deadline</label>
                         </div>
+
                         <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <div class="input-field col s6">
                             <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
                             <label for="date_winner_announced">Date to annouce winner</label>
                         </div>
+                        </fieldset>
+
                         <!-- APPLICATION STATUS -->
                         <div class="col s6">
                             <input type="radio" class="with-gap" id="planned" name="application_status" value="planned">
@@ -69,13 +78,56 @@
                             <input type="radio" id="declined" name="application_status" value="declined">
                             <label for="declined"> Declined</label><br>
                         </div>
-                        <!-- SCHOLARSHIP NOTE -->
+
+                      <!-- SCHOLARSHIP NOTE -->
                         <div class="input-field col s6">
                             <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate">
                             </textarea>
                             <label for="note">Notes</label>
                         </div>
+
+                        <!-- APPLICATION STATUS -->
+                        <div class="input-field col s6">
+                            <select id="application_status" name="application_status" class="validate">
+                                <option value="" disabled>Choose Status</option>
+                                    {% for status in statuses %}
+                                        {% if status.status == scholarship.application_status %}
+                                            <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                                        {% else %}
+                                            <option value="{{ status.status }}">{{ status.status }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                            </select>
+                            <label for="application_status">Application Status</label>
+                        </div>
+
+                        <fieldset>
+                        <!-- Date Applied -->
+                        <div class="input-field col s6">
+                            <input id="date_applied" name="date_applied" value="{{ scholarship.dates.date_applied  }}" type="date" class="validate">
+                            <label for="date_applied">Date Applied</label>
+                        </div>
+
+                        <!-- Date Awarded -->
+                        <div class="input-field col s6">
+                            <input id="date_awarded" name="date_awarded" value="{{ scholarship.dates.date_awarded  }}" type="date" class="validate">
+                            <label for="date_awarded">Date Awarded</label>
+                        </div>
+
+                        <!-- Date Rejected -->
+                        <div class="input-field col s6">
+                            <input id="date_rejected" name="date_rejected" value="{{ scholarship.dates.date_rejected  }}" type="date" class="validate">
+                            <label for="date_rejected">Date Rejected</label>
+                        </div>
+
+                        <!-- Date Declined -->
+                        <div class="input-field col s6">
+                            <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
+                            <label for="date_declined">Date Declined</label>
+                        </div>
+                    </fieldset>
                     </div>
+                        
                     <div class="card-action">
                     <!-- UPDATE BUTTON -->
                     <button class="btn waves-effect waves-light" type="submit" name="edit_scholarship">Update
