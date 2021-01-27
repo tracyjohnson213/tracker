@@ -93,6 +93,17 @@ def get_scholarships():
                            scholarships=scholarships)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    scholarships = list(mongo.db.scholarships.find(
+        {"scholarship_status": "Active",
+         "$text": {"$search": query}
+         }))
+    return render_template("scholarships.html",
+                           scholarships=scholarships)
+
+
 # view selected scholarship details
 @app.route("/view_scholarship/<scholarship_id>", methods=["GET"])
 def view_scholarship(scholarship_id):
