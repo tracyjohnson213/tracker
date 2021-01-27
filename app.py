@@ -259,6 +259,56 @@ def delete_category(category_id):
                            """
 
 
+# view existing statuses in database
+@app.route("/get_statuses", methods=["GET", "POST"])
+def get_statuses():
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("statuses.html", statuses=statuses)
+
+
+# add new status
+@app.route("/add_status", methods=["GET", "POST"])
+def add_status():
+    if request.method == "POST":
+        status = {
+            "status": request.form.get("status")
+        }
+        mongo.db.statuses.insert_one(status)
+        flash("Status Successfully Added")
+        return redirect(url_for("get_statuses"))
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("add_status.html", statuses=statuses)
+
+
+# edit existing status
+@app.route("/edit_status/<status_id>", methods=["GET", "POST"])
+def edit_status(status_id):
+    if request.method == "POST":
+        status = {
+            "status": request.form.get("status")
+        }
+        mongo.db.statuses.update(
+            {"_id": ObjectId(status_id)}, status)
+        flash("Status Successfully Updated")
+    return redirect(url_for("get_statuses",
+                            status=status))
+
+
+# delete existing status
+@app.route("/delete_status/<status_id>", methods=["GET", "POST"])
+def delete_status(status_id):
+    status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
+    if request.method == "POST":
+        mongo.db.statuses.remove({"_id": ObjectId(status_id)}, status)
+        flash("status Successfully Deleted")
+        return redirect(url_for("delete_status",
+                                status=status))
+    statuses = list(mongo.db.statuses.find().sort("status", 1))
+    return render_template("delete_status.html",
+                           status=status,
+                           statuses=statuses)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
