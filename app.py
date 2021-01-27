@@ -127,7 +127,6 @@ def add_scholarship():
             },
             "application_status": "Information",
             "scholarship_status": "Active",
-            "application_status": request.form.get("application_status"),
             "created_by": "alivia@example.com",
             # "created_by": session["user"],
             "create_date": datetime.datetime.now()
@@ -166,7 +165,6 @@ def edit_scholarship(scholarship_id):
             "scholarship_status": "Active",
             "created_by": "alivia@example.com",
             # "created_by": session["user"],
-            "application_status": request.form.get("application_status"),
             "updated_by": "alivia@example.com",
             # "updated_by": session["user"],
             "last_updated": datetime.datetime.now()
