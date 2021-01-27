@@ -88,7 +88,7 @@ def logout():
 def get_scholarships():
     scholarships = mongo.db.scholarships.find(
         {"scholarship_status": "Active"}
-    )
+    ).sort("scholarship_deadline", 1)
     return render_template("scholarships.html",
                            scholarships=scholarships)
 
