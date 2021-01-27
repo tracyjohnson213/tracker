@@ -97,17 +97,12 @@ def get_scholarships():
 def view_scholarship(scholarship_id):
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
-    date = mongo.db.dates.find_one(
-        {"scholarship_id": ObjectId(scholarship_id)})
-    document = mongo.db.documents.find_one(
-        {"scholarship_id": ObjectId(scholarship_id)}
-    )
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
-                           date=date,
-                           document=document,
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # add new scholarship
@@ -123,6 +118,13 @@ def add_scholarship():
             "scholarship_deadline": request.form.get("scholarship_deadline"),
             "date_winner_announced": request.form.get("date_winner_announced"),
             "note": request.form.get("note"),
+            "dates": {
+                "date_applied": "2000-01-01",
+                "date_awarded": "2000-01-01",
+                "date_rejected": "2000-01-01",
+                "date_declined": "2000-01-01"
+            },
+            "application_status": "Information",
             "scholarship_status": "Active",
             "created_by": "alivia@example.com",
             # "created_by": session["user"],
@@ -133,8 +135,10 @@ def add_scholarship():
         return redirect(url_for("get_scholarships"))
 
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("add_scholarship.html",
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # edit existing scholarship
@@ -150,9 +154,16 @@ def edit_scholarship(scholarship_id):
             "scholarship_deadline": request.form.get("scholarship_deadline"),
             "date_winner_announced": request.form.get("date_winner_announced"),
             "note": request.form.get("note"),
+            "dates": {
+                "date_applied": request.form.get("date_applied"),
+                "date_awarded": request.form.get("date_awarded"),
+                "date_rejected": request.form.get("date_rejected"),
+                "date_declined": request.form.get("date_declined")
+            },
+            "application_status": request.form.get("application_status"),
             "scholarship_status": "Active",
-            "updated_by": "alivia@example.com",
-            # "updated_by": session["user"],
+            "created_by": "alivia@example.com",
+            # "created_by": session["user"],
             "last_updated": datetime.datetime.now()
         }
         mongo.db.scholarships.update(
@@ -161,17 +172,12 @@ def edit_scholarship(scholarship_id):
 
     scholarship = mongo.db.scholarships.find_one(
         {"_id": ObjectId(scholarship_id)})
-    date = mongo.db.dates.find_one(
-        {"scholarship_id": ObjectId(scholarship_id)})
-    document = mongo.db.documents.find_one(
-        {"scholarship_id": ObjectId(scholarship_id)}
-    )
     categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     return render_template("edit_scholarship.html",
                            scholarship=scholarship,
-                           date=date,
-                           document=document,
-                           categories=categories)
+                           categories=categories,
+                           statuses=statuses)
 
 
 # delete existing scholarship

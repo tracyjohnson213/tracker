@@ -9,11 +9,13 @@
                             <input id="scholarship_name" name="scholarship_name" value="{{ scholarship.scholarship_name }}" type="text" class="validate">
                             <label for="scholarship_name">Scholarship Name</label>
                         </div>
+
                         <!-- SCHOLARSHIP SPONSOR -->
                         <div class="input-field col s6">
                             <input id="scholarship_sponsor" name="scholarship_sponsor" value="{{ scholarship.scholarship_sponsor }}" type="text" class="validate">
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
+
                         <!-- CATEGORY -->
                         <div class="input-field col s6">
                             <select id="category" name="category" class="validate">
@@ -28,6 +30,7 @@
                             </select>
                             <label for="category">Category</label>
                         </div>
+
                         <!-- SCHOLARSHIP AMOUNT -->
                         {% if scholarship.scholarship_amount.isnumeric() %}
                             <div class="input-field col s6">
@@ -41,105 +44,72 @@
                                 <label for="note">Award</label>
                             </div>
                         {% endif %}
+
                         <!-- SCHOLARSHIP URL -->
                         <div class="input-field col s12">
                             <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
                             <label for="scholarship_url">Website</label>
                         </div>
+
                         <fieldset>
                         <!-- SCHOLARSHIP DEADLINE -->
                         <div class="input-field col s6">
-                            <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline.date() }}" type="date" class="validate">
+                            <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline }}" type="date" class="validate">
                             <label for="scholarship_deadline">Deadline</label>
                         </div>
+
                         <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <div class="input-field col s6">
-                            <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced.date() }}" type="date" class="validate">
+                            <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
                             <label for="date_winner_announced">Date to annouce winner</label>
                         </div>
                         </fieldset>
+
                         <!-- SCHOLARSHIP NOTE -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate">
                             </textarea>
                             <label for="note">Notes</label>
                         </div>
-                    <fieldset>
+
+                        <!-- APPLICATION STATUS -->
+                        <div class="input-field col s6">
+                            <select id="application_status" name="application_status" class="validate">
+                                <option value="" disabled>Choose Status</option>
+                                    {% for status in statuses %}
+                                        {% if status.status == scholarship.application_status %}
+                                            <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                                        {% else %}
+                                            <option value="{{ status.status }}">{{ status.status }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                            </select>
+                            <label for="application_status">Application Status</label>
+                        </div>
+
+                        <fieldset>
                         <!-- Date Applied -->
                         <div class="input-field col s6">
-                            <input id="date_applied" name="date_applied" value="{{ date.date_applied.date()  }}" type="date" class="validate">
+                            <input id="date_applied" name="date_applied" value="{{ scholarship.dates.date_applied  }}" type="date" class="validate">
                             <label for="date_applied">Date Applied</label>
                         </div>
+
                         <!-- Date Awarded -->
                         <div class="input-field col s6">
-                            <input id="date_awarded" name="date_awarded" value="{{ date.date_awarded.date()  }}" type="date" class="validate">
+                            <input id="date_awarded" name="date_awarded" value="{{ scholarship.dates.date_awarded  }}" type="date" class="validate">
                             <label for="date_awarded">Date Awarded</label>
                         </div>
+
                         <!-- Date Rejected -->
                         <div class="input-field col s6">
-                            <input id="date_rejected" name="date_rejected" value="{{ date.date_rejected.date()  }}" type="date" class="validate">
+                            <input id="date_rejected" name="date_rejected" value="{{ scholarship.dates.date_rejected  }}" type="date" class="validate">
                             <label for="date_rejected">Date Rejected</label>
                         </div>
+
                         <!-- Date Declined -->
                         <div class="input-field col s6">
-                            <input id="date_declined" name="date_declined" value="{{ date.date_declined.date()  }}" type="date" class="validate">
+                            <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
                             <label for="date_declined">Date Declined</label>
-                        </div>
-                    </fieldset>
-                    <fieldset><legend>Documents Required</legend>
-                    <!-- Recommendation requirement -->
-                        <div class="input-field col s6">
-                            <label for="recommendation_required" >
-                                <input id="recommendation_required" name="recommendation_required" class="filled-in" type="checkbox" checked={{ document.transcript_required }}/>
-                                <span>{{ document.recomendation_count}} Recommendation(s) required</span>
-                            </label>
-                        </div>
-                    <!-- Transcript Requirement -->
-                        <div class="input-field col s6">
-                            <label for="transcript_required" >
-                                <input id="transcript_required" name="transcript_required" class="filled-in" type="checkbox" checked={{ document.transcript_required }}/>
-                                <span>Transcript required</span>
-                            </label>
-                        </div>
-                    <!-- Essay requirement -->
-                        <div class="input-field col s6">
-                            <label for="essay_required" >
-                                <input id="essay_required" name="essay_required" class="filled-in" type="checkbox" checked={{ document.essay_required }}/>
-                                <span>{{ document.essay_count}} Essay(s) required</span>
-                            </label>
-                        </div>
-                    <!-- First Other Document Requirement -->
-                        <div class="input-field col s6">
-                            <label for="document1_name" >
-                                <input id="document1_name" name="document1_name" class="filled-in" type="checkbox" checked={{ document.other1.required }}/>
-                                {% if document.other1.required=="true" %}
-                                <span>{{ document.other1.document_name }} ~ Required</span>
-                                {% else %}
-                                <span>{{ document.other1.document_name }} ~ Optional</span>
-                                {% endif %}
-                            </label>
-                        </div>
-                    <!-- Second Other Document Requirement -->
-                        <div class="input-field col s6">
-                            <label for="document2_name" >
-                                <input id="document2_name" name="document2_name" class="filled-in" type="checkbox" checked={{ document.other2.required }}/>
-                                {% if document.other2.required=="true" %}
-                                <span>{{ document.other2.document_name }} ~ Required</span>
-                                {% else %}
-                                <span>{{ document.other2.document_name }} ~ Optional</span>
-                                {% endif %}
-                            </label>
-                        </div>
-                    <!-- Third Other Document Requirement -->
-                        <div class="input-field col s6">
-                            <label for="document3_name" >
-                                <input id="document3_name" name="document3_name" class="filled-in" type="checkbox" checked={{ document.other3.required }}/>
-                                {% if document.other3.required=="true" %}
-                                <span>{{ document.other3.document_name }} ~ Required</span>
-                                {% else %}
-                                <span>{{ document.other3.document_name }} ~ Optional</span>
-                                {% endif %}
-                            </label>
                         </div>
                     </fieldset>
                     </div>
