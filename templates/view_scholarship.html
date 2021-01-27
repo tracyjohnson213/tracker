@@ -18,10 +18,19 @@
                         <!-- SCHOLARSHIP CATEGORY -->
                         <div class="chip">
                             Category: {{ scholarship.category }}
-                            <i class="close material-icons">close</i>
                         </div>
                         <!-- SCHOLARSHIP DEADLINE -->
-                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>                 <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                        {% if scholarship.scholarship_deadline < today.isoformat() %}
+                        <div class="chip red">
+                            Past Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% elif scholarship.scholarship_deadline < endate.isoformat() %}
+                        <div class="chip yellow">
+                            Upcoming Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% else %}
+                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>  
+                        {% endif %}               <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                         <!-- APPLICATION STATUS -->
                         {% if scholarship.application_status == "Plan to Apply" %}

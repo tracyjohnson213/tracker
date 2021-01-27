@@ -30,17 +30,27 @@
                         <p>Sponsor: {{ scholarship.scholarship_sponsor }}</p>
                         <!-- AMOUNT -->
                         <p>Amount: ${{ scholarship.scholarship_amount }}</p>
+                        
                         <!-- DEADLINE -->
+                        {% if scholarship.scholarship_deadline < today.isoformat() %}
+                        <div class="chip red">
+                            Past Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% elif scholarship.scholarship_deadline < endate.isoformat() %}
+                        <div class="chip yellow">
+                            Upcoming Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% else %}
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
+                        {% endif %}
+                        
                         <!-- SCHOLARSHIP CATEGORY -->
                         <div class="chip">
                             Category: {{ scholarship.category }}
-                            <i class="close material-icons">close</i>
                         </div>
                         <!-- SCHOLARSHIP STATUS -->
                         <div class="chip">
                             Status: {{ scholarship.application_status }}
-                            <i class="close material-icons">close</i>
                         </div>
                     </div>
                     <div class="card-action">

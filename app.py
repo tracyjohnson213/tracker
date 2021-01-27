@@ -4,7 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
+from datetime import datetime, timedelta
 
 if os.path.exists("env.py"):
     import env
@@ -89,8 +89,12 @@ def get_scholarships():
     scholarships = mongo.db.scholarships.find(
         {"scholarship_status": "Active"}
     ).sort("scholarship_deadline", 1)
+    today = datetime.now()
+    endate = datetime.now() + timedelta(30)
     return render_template("scholarships.html",
-                           scholarships=scholarships)
+                           scholarships=scholarships,
+                           today=today,
+                           endate=endate)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -111,10 +115,14 @@ def view_scholarship(scholarship_id):
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
+    today = datetime.now()
+    endate = datetime.now() + timedelta(30)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
                            categories=categories,
-                           statuses=statuses)
+                           statuses=statuses,
+                           today=today,
+                           endate=endate)
 
 
 # add new scholarship
