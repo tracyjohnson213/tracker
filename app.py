@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
+import datetime
 
 if os.path.exists("env.py"):
     import env
@@ -89,8 +90,8 @@ def get_scholarships():
     scholarships = mongo.db.scholarships.find(
         {"scholarship_status": "Active"}
     ).sort("scholarship_deadline", 1)
-    today = datetime.now()
-    endate = datetime.now() + timedelta(30)
+    today = datetime.datetime.now()
+    endate = datetime.datetime.now() + timedelta(30)
     return render_template("scholarships.html",
                            scholarships=scholarships,
                            today=today,
@@ -104,8 +105,12 @@ def search():
         {"scholarship_status": "Active",
          "$text": {"$search": query}
          }))
+    today = datetime.datetime.now()
+    endate = datetime.datetime.now() + timedelta(30)
     return render_template("scholarships.html",
-                           scholarships=scholarships)
+                           scholarships=scholarships,
+                           today=today,
+                           endate=endate)
 
 
 # view selected scholarship details
@@ -115,8 +120,8 @@ def view_scholarship(scholarship_id):
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
-    today = datetime.now()
-    endate = datetime.now() + timedelta(30)
+    today = datetime.datetime.now()
+    endate = datetime.datetime.now() + timedelta(30)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
                            categories=categories,
@@ -143,6 +148,27 @@ def add_scholarship():
                 "date_awarded": "2000-01-01",
                 "date_rejected": "2000-01-01",
                 "date_declined": "2000-01-01"
+            },
+            "documents": {
+                "recommendation_required":
+                request.form.get("recommendation_required"),
+                "recomendation_count": request.form.get("recomendation_count"),
+                "transcript_required": request.form.get("transcript_required"),
+                "transcript_count": request.form.get("transcript_count"),
+                "essay_required": request.form.get("essay_required"),
+                "essay_count": request.form.get("essay_count"),
+                "other1": {
+                    "document_name": request.form.get("document_name1"),
+                    "required": request.form.get("document_required1")
+                },
+                "other2": {
+                    "document_name": request.form.get("document_name2"),
+                    "required": request.form.get("document_required2")
+                },
+                "other3": {
+                    "document_name": request.form.get("document_name3"),
+                    "required": request.form.get("document_required3")
+                }
             },
             "application_status": "Information",
             "scholarship_status": "Active",
@@ -179,6 +205,27 @@ def edit_scholarship(scholarship_id):
                 "date_awarded": request.form.get("date_awarded"),
                 "date_rejected": request.form.get("date_rejected"),
                 "date_declined": request.form.get("date_declined")
+            },
+            "documents": {
+                "recommendation_required":
+                request.form.get("recommendation_required"),
+                "recomendation_count": request.form.get("recomendation_count"),
+                "transcript_required": request.form.get("transcript_required"),
+                "transcript_count": request.form.get("transcript_count"),
+                "essay_required": request.form.get("essay_required"),
+                "essay_count": request.form.get("essay_count"),
+                "other1": {
+                    "document_name": request.form.get("document_name1"),
+                    "required": request.form.get("document_required1")
+                },
+                "other2": {
+                    "document_name": request.form.get("document_name2"),
+                    "required": request.form.get("document_required2")
+                },
+                "other3": {
+                    "document_name": request.form.get("document_name3"),
+                    "required": request.form.get("document_required3")
+                }
             },
             "application_status": request.form.get("application_status"),
             "scholarship_status": "Active",

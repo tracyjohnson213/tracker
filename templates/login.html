@@ -1,31 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <form class="row" action="{{ url_for('login') }}">
-        <div class="col s6 m4">
-            <div class="card blue darken-4">
-                <div class="card-content white-text">
-                    <!-- EMAIL -->
-                    <div class="input-field col s6">
-                        <input id="username" type="email" class="validate">
-                        <label for="username">Email</label>
-                    </div>
-                    <!-- PASSWORD -->
-                    <div class="input-field col s6">
-                        <input id="password" type="password" class="validate" 
-                        pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <!-- REGISTER BUTTON -->
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Login
-                        <i class="material-icons right">login</i>
-                    </button>
-                    <span class="helper-text">Don't have a user?<a href="{{url_for('register')}}"> Register</a></span>
-                    <span class="helper-text">Forgot Password?<a href="#"> Request Reset</a></span>
-                </div>
+    <main>
+    <center>
+      <img class="responsive-img" style="width: 250px;" src="/static/images/scholarship.jpg" />
+      <div class="section"></div>
+
+      <h5 class="green-text">Please, login into your account</h5>
+      <div class="section"></div>
+
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+          <form class="col s12" action="{{ url_for('login') }}" method="post">
+            <div class="row">
+              <div class='col s12'>
+              </div>
             </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='email' name='username' id='username' 
+                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                <label for='username'>Email</label>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='password' name='password' id='password' />
+                <label for='password'>Password</label>
+              </div>
+            </div>
+              <label style='float: right;'>
+				    <a class='orange-text' href='#!'><b>Forgot Password?</b></a>
+			    </label>
+            </div>
+
+            <br />
+            <center>
+              <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect green darken-4'>Login</button>
+              </div>
+            </center>
+          </form>
         </div>
-    </form>
+      </div>
+      <a class='brown-text' href="{{url_for('register')}}">Create account</a>
+    </center>
+
+    <div class="section"></div>
+    <div class="section"></div>
+  </main>
 {% endblock %}
