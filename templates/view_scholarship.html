@@ -30,7 +30,8 @@
                         </div>
                         {% else %}
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>  
-                        {% endif %}               <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                        {% endif %}               
+                        <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                         <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                         <!-- APPLICATION STATUS -->
                         {% if scholarship.application_status == "Plan to Apply" %}
@@ -56,7 +57,74 @@
                         <!-- Date Declined -->
                         <p>Date Declined: {{ scholarship.dates.date_declined }}</p>
                         </div>
-                        
+                        <!-- DOCUMENTS REQUIRED -->
+                <div class="card-content white-text">
+                    <span class="black badge">Documents Required</span>
+                    <!-- RECOMMENDATION REQUIRED -->
+                    <label>
+                    {% if scholarship.documents.recommendation_required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>{{ scholarship.documents.recomendation_count }} Recommendation(s) Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>Recommendation(s) Required </span>
+                    {% endif %}
+                    </label><br>
+                    <!-- TRANSCRIPT REQUIRED -->
+                    <label>
+                    {% if scholarship.documents.transcript_required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>Transcript Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>Transcript Required </span>
+                    {% endif %}
+                    </label><br>
+                    <!-- ESSAY REQUIRED -->
+                    <label>
+                    {% if scholarship.documents.essay_required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>{{ scholarship.documents.essay_count }} Essay(s) Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>Essay(s) Required </span>
+                    {% endif %}
+                    </label><br>
+                    <!-- FIRST OTHER DOCUMENT -->
+                    {% if scholarship.documents.other1.document_name != null %}
+                    <label>
+                    {% if scholarship.documents.other1.required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>{{ scholarship.documents.other1.document_name }} Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>{{ scholarship.documents.other1.document_name }} Optional </span>
+                    {% endif %}
+                    </label><br>
+                    <!-- SECOND OTHER DOCUMENT -->
+                    <label>
+                    {% if scholarship.documents.other2.required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>{{ scholarship.documents.other2.document_name }} Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>{{ scholarship.documents.other2.document_name }} Optional </span>
+                    {% endif %}
+                    </label><br>
+                    {% endif %}
+                    <!-- THIRD OTHER DOCUMENT -->
+                    {% if scholarship.documents.other2.document_name != null %}
+                    <label>
+                    {% if scholarship.documents.other3.required == "yes" %}
+                    <input type="checkbox" checked="checked" disabled/>
+                    <span>{{ scholarship.documents.other3.document_name }} Required </span>
+                    {% else %}
+                    <input type="checkbox" disabled/>
+                    <span>{{ scholarship.documents.other3.document_name }} Optional </span>
+                    {% endif %}
+                    </label><br>
+                    {% endif %}
+                </div>
                         </div>
                         <!-- SCHOLARSHIP URL -->
                         <div class="card-action">
@@ -73,6 +141,12 @@
                             <button class="btn waves-effect waves-light" name="delete">
                                 <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}">Delete
                                     <i class="material-icons right">delete</i>
+                                </a>
+                            </button>
+                            <!-- BACK TO LIST BUTTON -->
+                            <button class="btn waves-effect waves-light" name="return">
+                                <a href="{{ url_for('get_scholarships')}}">Back to List
+                                    <i class="material-icons right">arrow_back</i>
                                 </a>
                             </button>
                         </div>
