@@ -105,8 +105,12 @@ def search():
         {"scholarship_status": "Active",
          "$text": {"$search": query}
          }))
+    today = datetime.datetime.now()
+    endate = datetime.datetime.now() + timedelta(30)
     return render_template("scholarships.html",
-                           scholarships=scholarships)
+                           scholarships=scholarships,
+                           today=today,
+                           endate=endate)
 
 
 # view selected scholarship details
