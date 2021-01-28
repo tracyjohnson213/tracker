@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+<main>
+    <center>
+<div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
         <div class="row">
             <div class="col s6 m4">
-                <div class="card blue darken-4">
+                <div class="card light-green darken-4">
                     <div class="card-content white-text">
                         <!-- SCHOLARSHIP NAME -->
-                        <span class="card-title">{{ scholarship.scholarship_name}}</span>
+                        <span class="card-title black-text">{{ scholarship.scholarship_name}}</span>
                         <p>Sponsor: {{ scholarship.scholarship_sponsor }}</p>
                         <!-- SCHOLARSHIP AMOUNT -->
                         <p>
@@ -18,36 +22,36 @@
                         <!-- SCHOLARSHIP CATEGORY -->
                         <div class="chip">
                             Category: {{ scholarship.category }}
-                        </div>
+                        </div></br>
                         <!-- SCHOLARSHIP DEADLINE -->
                         {% if scholarship.scholarship_deadline < today.isoformat() %}
-                        <div class="chip red">
+                        <div class="chip red accent-1">
                             Past Deadline: {{ scholarship.scholarship_deadline }}
-                        </div>
+                        </div></br>
                         {% elif scholarship.scholarship_deadline < endate.isoformat() %}
-                        <div class="chip yellow">
+                        <div class="chip lime accent-2">
                             Upcoming Deadline: {{ scholarship.scholarship_deadline }}
-                        </div>
+                        </div></br>
                         {% else %}
                         <p>Deadline: {{ scholarship.scholarship_deadline }}</p>  
                         {% endif %}               
                         <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
-                        <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
+                        <p class="left-align">Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                         <!-- APPLICATION STATUS -->
                         {% if scholarship.application_status == "Plan to Apply" %}
-                        <span class="black badge">{{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</span>
+                        <span class="black badge">{{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</span></br>
                         {% elif scholarship.application_status == "Applied" %}
-                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_applied }}</span>
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_applied }}</span></br>
                         {% elif scholarship.application_status == "Awarded" %}
-                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_awarded }}</span>
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_awarded }}</span></br>
                         {% elif scholarship.application_status == "Not Awarded" %}
-                        <span class="black badge">Notification of Denial: {{ scholarship.date_rejected }}</span>
+                        <span class="black badge">Notification of Denial: {{ scholarship.date_rejected }}</span></br>
                         {% elif scholarship.application_status == "Declined" %}
-                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_declined }}</span>
+                        <span class="black badge">{{ scholarship.application_status }} {{ scholarship.date_declined }}</span></br>
                         {% endif %}
                         <!-- SCHOLARSHIP NOTE -->
-                        <p>Notes: {{ scholarship.note }}</p>
-                        <div class="card-content white-text">
+                        <p class="left-align">Notes: {{ scholarship.note }}</p>
+                        <div class="card-content white-text left-align">
                         <!-- Date Applied -->
                         <p>Date Applied: {{ scholarship.dates.date_applied }}</p>
                         <!-- Date Awarded -->
@@ -58,7 +62,7 @@
                         <p>Date Declined: {{ scholarship.dates.date_declined }}</p>
                         </div>
                         <!-- DOCUMENTS REQUIRED -->
-                <div class="card-content white-text">
+                <div class="card-content white-text left-align">
                     <span class="black badge">Documents Required</span>
                     <!-- RECOMMENDATION REQUIRED -->
                     <label>
@@ -131,28 +135,37 @@
                             <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
                         </div>
                         <div class="card-action">
+                        <div class="row justify-content-around">
                             <!-- EDIT BUTTON -->
-                            <button class="btn waves-effect waves-light" name="edit">
+                            <button class="btn waves-effect amber darken-4" name="edit">
                                 <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">Edit
                                     <i class="material-icons right">edit</i>
                                 </a>
                             </button>
+                            <!-- BACK TO LIST BUTTON -->
+                            <button class="btn waves-effect amber darken-4" name="return">
+                                <a href="{{ url_for('get_scholarships')}}">Back
+                                    <i class="material-icons right">arrow_back</i>
+                                </a>
+                            </button>
+                            
+                            </div>
+                            <div class="row justify-content-center">
                             <!-- DELETE BUTTON -->
-                            <button class="btn waves-effect waves-light" name="delete">
+                            <button class="btn btn-small waves-effect amber darken-4" name="delete">
                                 <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}">Delete
                                     <i class="material-icons right">delete</i>
                                 </a>
                             </button>
-                            <!-- BACK TO LIST BUTTON -->
-                            <button class="btn waves-effect waves-light" name="return">
-                                <a href="{{ url_for('get_scholarships')}}">Back to List
-                                    <i class="material-icons right">arrow_back</i>
-                                </a>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+            </div>
+            </main>
+    </center>
 {% endblock %}
 

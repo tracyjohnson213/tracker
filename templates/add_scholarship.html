@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+<main>
+    <center>
+<div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
         <form class="row" method="POST" action="{{ url_for('add_scholarship') }}">
             <div class="col s6 m4">
-                <div class="card blue darken-4">
+                <div class="card light-green darken-4">
                     <div class="card-content white-text">
                         <!-- SCHOLARSHIP NAME -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="scholarship_name" name="scholarship_name" type="text" class="validate" required>
                             <label for="scholarship_name">Scholarship Name</label>
                         </div>
                         <!-- SCHOLARSHIP SPONSOR -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="scholarship_sponsor" name="scholarship_sponsor" type="text" class="validate">
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
                         <!-- CATEGORY -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <select id="category" name="category" class="validate" required>
                                 {% for category in categories %}
                                     {% if category.category == "College" %}
@@ -28,7 +32,7 @@
                             <label for="category">Category</label>
                         </div>
                         <!-- SCHOLARSHIP AMOUNT -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="scholarship_amount" name="scholarship_amount" type="text" class="validate">
                             <label for="scholarship_amount">Award</label>
                         </div>
@@ -38,7 +42,7 @@
                             <label for="scholarship_url">Website</label>
                         </div>
                         <!-- SCHOLARSHIP DEADLINE -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="scholarship_deadline" name="scholarship_deadline" type="date" class="validate">
                             <label for="scholarship_deadline">Deadline</label>
                         </div>
@@ -64,7 +68,7 @@
                         <div class="input-field col s12">
                             <textarea id="note" name="note" type="text" rows="6" class="validate">
                             </textarea>
-                            <label for="note">Notes</label>
+                            <label for="note"><span class="black badge">Notes</span></label>
                         </div>
                     </div>
                     
@@ -73,20 +77,21 @@
                 <span class="black badge">Documents Required</span>
 
                 <!-- RECOMMENDATION REQUIRED -->
-                <label class="input-field col s6">
+                <label class="input-field col s12">
                     <input type="checkbox" value="yes" class="filled-in" id="recommendation_required" name="recommendation_required" />
                     <span><input class=" col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty">
                         Recommendation(s) Required </span>
                     </label>
 
                 <!-- TRANSCRIPT REQUIRED -->
-                <label class="input-field col s6">
-                <input id="transcript_required" name="transcript_required" type="checkbox" value="yes" class="filled-in" />
-                <span>Transcript Required </span>
+                <label class="input-field col s12">
+                    <input id="transcript_required" name="transcript_required" type="checkbox" value="yes" class="filled-in" />
+                    <span><input class=" col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty">
+                    Transcript Required </span>
                 </label>
 
                 <!-- ESSAY REQUIRED -->
-                <label class="input-field col s6">
+                <label class="input-field col s12">
                 <input type="checkbox" class="filled-in" id="essay_required" name="essay_required" value="yes" />
                 <span>
                 <input class=" col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty">
@@ -94,22 +99,41 @@
                 </label>
 
                 <!-- FIRST OTHER DOCUMENT -->
-                <label class="input-field col s6">
-                <input type="checkbox" id="document_required1" name="document_required1" value="yes" class="filled-in"/>
-                <span>
+                <label for="document_name1"hidden>Document 1</label>
                 <input class=" col s6" id="document_name1" name="document_name1" type="text" placeholder="Document Name">
-                Required 
-                </span>
+                <label for="document_required1" class="input-field col s6">
+                    <input type="checkbox" id="document_required1" name="document_required1" value="yes" class="filled-in"/>
+                    <span>Required</span>
+                </label>
+
+                <!-- SECOND OTHER DOCUMENT -->
+                <label for="document_name2"hidden>Document 2</label>
+                <input class=" col s6" id="document_name2" name="document_name2" type="text" placeholder="Document Name">
+                <label for="document_required2" class="input-field col s6">
+                    <input type="checkbox" id="document_required2" name="document_required2" value="yes" class="filled-in"/>
+                    <span>Required</span>
+                </label>
+
+                <!-- THIRD OTHER DOCUMENT -->
+                <label for="document_name3"hidden>Document 3</label>
+                <input class=" col s6" id="document_name3" name="document_name3" type="text" placeholder="Document Name">
+                <label for="document_required3" class="input-field col s6">
+                    <input type="checkbox" id="document_required3" name="document_required3" value="yes" class="filled-in"/>
+                    <span>Required</span>
                 </label>
             </div>
             
                     <div class="card-action">
                     <!-- ADD BUTTON -->
-                    <button class="btn waves-effect waves-light" type="submit" name="add_scholarship">Add
+                    <button class="btn waves-effect amber darken-4" type="submit" name="add_scholarship">Add
                         <i class="material-icons right">addchart</i>
                     </button>
                 </div>
             </div>
         </form>
+        </div>
+            </div>
+            </main>
+    </center>
 {% endblock %}
 

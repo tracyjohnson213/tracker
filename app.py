@@ -154,6 +154,7 @@ def add_scholarship():
                 request.form.get("recommendation_required"),
                 "recomendation_count": request.form.get("recomendation_count"),
                 "transcript_required": request.form.get("transcript_required"),
+                "transcript_count": request.form.get("transcript_count"),
                 "essay_required": request.form.get("essay_required"),
                 "essay_count": request.form.get("essay_count"),
                 "other1": {
@@ -210,6 +211,7 @@ def edit_scholarship(scholarship_id):
                 request.form.get("recommendation_required"),
                 "recomendation_count": request.form.get("recomendation_count"),
                 "transcript_required": request.form.get("transcript_required"),
+                "transcript_count": request.form.get("transcript_count"),
                 "essay_required": request.form.get("essay_required"),
                 "essay_count": request.form.get("essay_count"),
                 "other1": {
