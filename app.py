@@ -24,7 +24,7 @@ mongo = PyMongo(app)
 def register():
     if request.method == "POST":
         # check if username already exists in db
-        existing_user = mongo.db.users.find_one_or_404(
+        existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -43,8 +43,9 @@ def register():
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("first_name").title()
+        session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for("login"))
 
     return render_template("register.html")
 
@@ -54,15 +55,17 @@ def register():
 def login():
     if request.method == "POST":
         # check if username exists in db
-        existing_user = mongo.db.users.find_one_or_404(
+        existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("first_name").title()
+                session["user"] = request.form.get("username").lower()
+                session["first_name"] = request.form.get("first_name").lower()
                 flash("Welcome, {}".format(request.form.get("first_name")))
+                return redirect(url_for("get_profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -82,6 +85,26 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
+    return redirect(url_for("login"))
+
+
+# display user dashboard
+@app.route("/get_profile", methods=["GET"])
+def get_profile():
+    if session["user"]:
+        user = mongo.db.users.find_one_or_404({"username": session["user"]})
+        categories = list(mongo.db.categories.find())
+        scholarships = mongo.db.scholarships.find(
+            {"created_by": user['username']},
+            {"scholarship_status": "Active"}
+        ).sort("scholarship_deadline", 1)
+        today = datetime.datetime.now()
+        endate = datetime.datetime.now() + timedelta(30)
+        return render_template("scholarships.html",
+                               scholarships=scholarships,
+                               categories=categories,
+                               today=today,
+                               endate=endate)
     return redirect(url_for("login"))
 
 
@@ -427,6 +450,7 @@ def delete_user(user_id):
                            users=users)
 
 
+# error handling
 @app.errorhandler(HTTPException)
 def page_not_found(e):
     return render_template('404.html'), 404

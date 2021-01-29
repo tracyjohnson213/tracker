@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <center>
+<div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+    <div class="row card-panel orange lighten-5">
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+            <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 m8">
+                    <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                    <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                    <label for="query">Search Scholarships</label>
+                </div>
+                <div class="col s12 m4">
+                    <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Reset</a>
+                    <button type="submit" class="light-green darken-1 btn text-shadow">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% for scholarship in scholarships %}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card light-green darken-4">
+                    <div class="card-content white-text">
+                        <!-- NAME -->
+                        <span class="card-title"><a href="{{ url_for('view_scholarship', scholarship_id=scholarship._id) }}" class="black-text">{{ scholarship.scholarship_name }}</a></span>
+                        <!-- SPONSOR -->
+                        <p>Sponsor: {{ scholarship.scholarship_sponsor }}</p>
+                        <!-- AMOUNT -->
+                        <p>Amount: ${{ scholarship.scholarship_amount }}</p>
+                        
+                        <!-- DEADLINE -->
+                        {% if scholarship.scholarship_deadline < today.isoformat() %}
+                        <div class="chip red accent-1">
+                            Past Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% elif scholarship.scholarship_deadline < endate.isoformat() %}
+                        <div class="chip lime accent-2">
+                            Upcoming Deadline: {{ scholarship.scholarship_deadline }}
+                        </div>
+                        {% else %}
+                        <p>Deadline: {{ scholarship.scholarship_deadline }}</p>
+                        {% endif %}
+                        
+                        <!-- SCHOLARSHIP CATEGORY -->
+                        <div class="chip">
+                            Category: {{ scholarship.category }}
+                        </div>
+                        <!-- SCHOLARSHIP STATUS -->
+                        <div class="chip">
+                            Status: {{ scholarship.application_status }}
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <!-- URL -->
+                        <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card light-green darken-4">
+                <div class="card-content white-text">
+                    <h3 class="red-text center-align">No Results Found<h3>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+            </div>
+            </main>
+    </center>
+
+    {% endfor %}
+{% endblock %}
