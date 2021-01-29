@@ -6,7 +6,6 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import HTTPException
 from datetime import datetime, timedelta
-import datetime
 
 if os.path.exists("env.py"):
     import env
@@ -65,7 +64,8 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 session["first_name"] = request.form.get("first_name").lower()
                 flash("Welcome, {}".format(request.form.get("first_name")))
-                return redirect(url_for("get_profile", username=session["user"]))
+                return redirect(url_for("get_profile",
+                                username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -196,8 +196,7 @@ def add_scholarship():
             },
             "application_status": "Information",
             "scholarship_status": "Active",
-            "created_by": "alivia@example.com",
-            # "created_by": session["user"],
+            "created_by": session["user"],
             "create_date": datetime.datetime.now()
         }
         mongo.db.scholarships.insert_one(scholarship)
@@ -253,10 +252,8 @@ def edit_scholarship(scholarship_id):
             },
             "application_status": request.form.get("application_status"),
             "scholarship_status": "Active",
-            "created_by": "alivia@example.com",
-            # "created_by": session["user"],
-            "updated_by": "alivia@example.com",
-            # "updated_by": session["user"],
+            "created_by": session["user"],
+            "updated_by": session["user"],
             "last_updated": datetime.datetime.now()
         }
         mongo.db.scholarships.update(
