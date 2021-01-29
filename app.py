@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.exceptions import HTTPException
 from datetime import datetime, timedelta
 import datetime
 
@@ -424,6 +425,16 @@ def delete_user(user_id):
     return render_template("delete_user.html",
                            user=user,
                            users=users)
+
+
+@app.errorhandler(HTTPException)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(Exception)
+def internal_server_error(e):
+    return render_template('500.html'), 500
 
 
 if __name__ == "__main__":
