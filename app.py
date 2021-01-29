@@ -111,9 +111,7 @@ def get_profile():
 # show scholarships listed in database
 @app.route("/get_scholarships")
 def get_scholarships():
-    scholarships = mongo.db.scholarships.find(
-        {"scholarship_status": "Active"}
-    ).sort("scholarship_deadline", 1)
+    scholarships = mongo.db.scholarships.find().sort("scholarship_deadline", 1)
     today = datetime.datetime.now()
     endate = datetime.datetime.now() + timedelta(30)
     return render_template("scholarships.html",
