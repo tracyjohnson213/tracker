@@ -28,7 +28,7 @@
     <header>
                
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand brand-logo right" href="{{ url_for('get_scholarships')}}">
+            <a class="navbar-brand brand-logo right" href="{{ url_for('register')}}">
                 <img src="/static/images/scholarship.jpg" alt="scholarship tracker" width="100" height="30">
             </a>
 
@@ -38,21 +38,21 @@
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav" class="right hide-on-med-and-down">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('get_scholarships')}}">Back to List<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_scholarship')}}">Add New</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_adminpanel')}}">Admin Panel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login')}}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
-                    </li>
+                    {% if "/register" == request.path or "/" == request.path%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login')}}">Login</a>
+                        </li>
+                    {% elif "/login" != request.path %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('add_scholarship')}}">Add New</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('get_adminpanel')}}">Manage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -73,78 +73,26 @@
     </section>
 
     <main class="container">
-        
-        {% if request.path == "/login" %}
-        <!-- INFORMATION FOR LOGIN  PAGE -->
-
-        <div class="col s12 m4">
-            <!--<h2 class="header">Horizontal Card</h2>-->
-            <div class="card horizontal">
-            <!--<div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>-->
-            <div class="card-stacked">
-                <div class="card-content">
-                <p>Welcome to the scholarship tracker.  We are glad that you have decided to continue to use our tool.</p>
-                </div>
-                <!--<div class="card-action">
-                <a href="#">This is a link</a>
-                </div>-->
-            </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4">
-            <!--<h2 class="header">Horizontal Card</h2>-->
-            <div class="card horizontal">
-            <!--<div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>-->
-            <div class="card-stacked">
-                <div class="card-content">
-                <p>New scholarship opportunites are always becomming available.  We hope to be a small part of your success in obtaining them.</p>
-                </div>
-                <!--<div class="card-action">
-                <a href="#">This is a link</a>
-                </div>-->
-            </div>
-            </div>
-        </div>
-        {% endif %}
 
         {% if request.path == "/" or request.path == "/register"%}
         <!-- INFORMATION FOR REGISTER PAGE -->
 
         <div class="col s12 m4">
-            <!--<h2 class="header">Horizontal Card</h2>-->
             <div class="card horizontal">
-            <!--<div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>-->
             <div class="card-stacked">
                 <div class="card-content">
                 <p>We welcome you to try out our tool to track the scholarships you have found.</p>
                 </div>
-                <!--<div class="card-action">
-                <a href="#">This is a link</a>
-                </div>-->
             </div>
             </div>
         </div>
 
         <div class="col s12 m4">
-            <!--<h2 class="header">Horizontal Card</h2>-->
             <div class="card horizontal">
-            <!--<div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>-->
             <div class="card-stacked">
                 <div class="card-content">
                 <p>Here you will register an email address to create your own records.</p>
                 </div>
-                <!--<div class="card-action">
-                <a href="#">This is a link</a>
-                </div>-->
             </div>
             </div>
         </div>

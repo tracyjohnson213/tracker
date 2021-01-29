@@ -1,13 +1,14 @@
 import unittest
 # import env
 import os
-from mockupdb import MockupDB, go, Command
+# from mockupdb import MockupDB, go, Command
 from pymongo import MongoClient
 # from bson import ObjectId as mockup_oid
 # from json import dumps
 # from pymongo import MongoClient
 from datetime import datetime
-from app import string_to_array, app
+# from app import string_to_array
+from app import app
 
 scholarship = {
     "scholarship_name": "Create-A-Greeting-Card Scholarship",
@@ -116,7 +117,7 @@ datafilter = [
 ]
 
 
-class TestApp(unittest.TestCase):
+class TestAppScholarships(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         # create mongo connection to mock server
@@ -163,7 +164,7 @@ class TestApp(unittest.TestCase):
         scholarship_sponsor = self.scholarships_coll.find_one(
             {"scholarship_sponsor": "Collection of Memories"})
         self.assertEqual(scholarship_sponsor['scholarship_sponsor'],
-                            "Collection of Memories")
+                         "Collection of Memories")
 
     def test_update_scholarship2(self):
         self.scholarships_coll.remove()
@@ -177,37 +178,7 @@ class TestApp(unittest.TestCase):
                             "The Gallery Collection")
 
     # test delete
-    def test_remove_category(self):
-        categories = [
-            {"category": "First"},
-            {"category": "Second"},
-            {"category": "Third"}
-        ]
-        self.category_coll.insert(categories)
-        self.category_coll.remove({"category": "Second"})
-        num_categories = self.category_coll.find().count()
-        self.assertEqual(num_categories, 2)
 
-    def test_remove_category2(self):
-        categories = [
-            {"category": "First"},
-            {"category": "Second"},
-            {"category": "Third"}
-        ]
-        self.category_coll.insert(categories)
-        self.category_coll.remove({"category": "Second"})
-        num_categories = self.category_coll.find().count()
-        self.assertNotEqual(num_categories, 3)
-
-    # test search
-    def test_search(self):
-        self.scholarship_coll.remove()
-        self.scholarship_coll.insert(datafilter)
-        self.scholarship_coll.create_index([("$**", 'text')])
-        scholarships = self.scholarship_coll.find(
-            {"$text": {"$search": "Hunter"}})
-        count = scholarships.count()
-        self.assertEqual(count, 3)
 
 
 if __name__ == '__main__':
