@@ -153,10 +153,14 @@
                             <div class="row justify-content-center">
                             <!-- DELETE BUTTON -->
                             <button class="btn btn-small waves-effect amber darken-4" name="delete">
+                                <a href="#scholarship_delete_confirmation" rel="modal:open">
+                                Delete<i class="material-icons right">delete</i></a>
+                            </button>
+                            <!--<button class="btn btn-small waves-effect amber darken-4" name="delete">
                                 <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}">Delete
                                     <i class="material-icons right">delete</i>
                                 </a>
-                            </button>
+                            </button>-->
                             </div>
                         </div>
                     </div>
@@ -167,5 +171,17 @@
             </div>
             </main>
     </center>
+
+    <!-- Modal Structure -->
+    <div id="scholarship_delete_confirmation" class="modal orange lighten-5">
+        <div class="delete-modal-content center-align">
+            <h5>Delete {{ scholarship.scholarship_name}}</h5>
+            <p>Are you sure you want to proceed?</p>
+        </div>
+        <div class="delete-modal-footer center-align">
+            <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">Cancel</a>
+            <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Yes</a>
+        </div>
+    </div>
 {% endblock %}
 

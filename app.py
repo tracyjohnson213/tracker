@@ -197,7 +197,8 @@ def add_scholarship():
         }
         mongo.db.scholarships.insert_one(scholarship)
         flash("Scholarship Successfully Added")
-        return redirect(url_for("get_scholarships"))
+        return redirect(url_for("get_profile",
+                                username=session["user"]))
 
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
@@ -255,6 +256,8 @@ def edit_scholarship(scholarship_id):
         mongo.db.scholarships.update(
             {"_id": ObjectId(scholarship_id)}, scholarship)
         flash("Scholarship Successfully Updated")
+        return redirect(url_for("get_profile",
+                                username=session["user"]))
 
     scholarship = mongo.db.scholarships.find_one_or_404(
         {"_id": ObjectId(scholarship_id)})
@@ -269,12 +272,10 @@ def edit_scholarship(scholarship_id):
 # delete existing scholarship
 @app.route("/delete_scholarship/<scholarship_id>", methods=["GET"])
 def delete_scholarship(scholarship_id):
-    scholarship = mongo.db.scholarships.find_one_or_404(
-        {"_id": ObjectId(scholarship_id)})
     mongo.db.scholarships.remove({"_id": ObjectId(scholarship_id)})
     flash("Scholarship Successfully Deleted")
-    return render_template("scholarships.html",
-                           scholarship=scholarship)
+    return redirect(url_for("get_profile",
+                            username=session["user"]))
 
 
 # view admin panel to manage items in database
