@@ -63,7 +63,7 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("get_profile",
+                return redirect(url_for("get_scholarships",
                                 username=session["user"]))
             else:
                 # invalid password match
@@ -87,9 +87,9 @@ def logout():
     return redirect(url_for("login"))
 
 
-# display user dashboard
-@app.route("/get_profile", methods=["GET"])
-def get_profile():
+# show scholarships listed in database
+@app.route("/get_scholarships", methods=["GET"])
+def get_scholarships():
     if session["user"]:
         user = mongo.db.users.find_one_or_404({"username": session["user"]})
         categories = list(mongo.db.categories.find())
@@ -104,18 +104,6 @@ def get_profile():
                                today=today,
                                endate=endate)
     return redirect(url_for("login"))
-
-
-# show scholarships listed in database
-@app.route("/get_scholarships")
-def get_scholarships():
-    scholarships = mongo.db.scholarships.find().sort("scholarship_deadline", 1)
-    today = datetime.now()
-    endate = datetime.now() + timedelta(30)
-    return render_template("scholarships.html",
-                           scholarships=scholarships,
-                           today=today,
-                           endate=endate)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -205,7 +193,7 @@ def add_scholarship():
         }
         mongo.db.scholarships.insert_one(scholarship)
         flash("Scholarship Successfully Added")
-        return redirect(url_for("get_profile",
+        return redirect(url_for("get_scholarships",
                                 username=session["user"]))
 
     categories = mongo.db.categories.find().sort("category", 1)
@@ -272,7 +260,7 @@ def edit_scholarship(scholarship_id):
         mongo.db.scholarships.update(
             {"_id": ObjectId(scholarship_id)}, scholarship)
         flash("Scholarship Successfully Updated")
-        return redirect(url_for("get_profile",
+        return redirect(url_for("get_scholarships",
                                 username=session["user"]))
 
     scholarship = mongo.db.scholarships.find_one_or_404(
@@ -290,7 +278,7 @@ def edit_scholarship(scholarship_id):
 def delete_scholarship(scholarship_id):
     mongo.db.scholarships.remove({"_id": ObjectId(scholarship_id)})
     flash("Scholarship Successfully Deleted")
-    return redirect(url_for("get_profile",
+    return redirect(url_for("get_scholarships",
                             username=session["user"]))
 
 
