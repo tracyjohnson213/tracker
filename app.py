@@ -37,7 +37,7 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(
                     request.form.get("password")),
-            "create_date": datetime.datetime.now()
+            "create_date": datetime.now()
         }
         mongo.db.users.insert_one(register)
 
@@ -82,7 +82,7 @@ def login():
 @app.route("/logout")
 def logout():
     # remove user from session cookie
-    flash("You have been logged out")
+    flash("You have been logged out.  Thanks.  Please visit us again.")
     session.pop("user")
     return redirect(url_for("login"))
 
@@ -94,11 +94,10 @@ def get_profile():
         user = mongo.db.users.find_one_or_404({"username": session["user"]})
         categories = list(mongo.db.categories.find())
         scholarships = mongo.db.scholarships.find(
-            {"created_by": user['username']},
-            {"scholarship_status": "Active"}
+            {"created_by": user['username']}
         ).sort("scholarship_deadline", 1)
-        today = datetime.datetime.now()
-        endate = datetime.datetime.now() + timedelta(30)
+        today = datetime.now()
+        endate = datetime.now() + timedelta(30)
         return render_template("scholarships.html",
                                scholarships=scholarships,
                                categories=categories,
@@ -111,8 +110,8 @@ def get_profile():
 @app.route("/get_scholarships")
 def get_scholarships():
     scholarships = mongo.db.scholarships.find().sort("scholarship_deadline", 1)
-    today = datetime.datetime.now()
-    endate = datetime.datetime.now() + timedelta(30)
+    today = datetime.now()
+    endate = datetime.now() + timedelta(30)
     return render_template("scholarships.html",
                            scholarships=scholarships,
                            today=today,
@@ -126,8 +125,8 @@ def search():
         {"scholarship_status": "Active",
          "$text": {"$search": query}
          }))
-    today = datetime.datetime.now()
-    endate = datetime.datetime.now() + timedelta(30)
+    today = datetime.now()
+    endate = datetime.now() + timedelta(30)
     return render_template("scholarships.html",
                            scholarships=scholarships,
                            today=today,
@@ -141,8 +140,8 @@ def view_scholarship(scholarship_id):
         {"_id": ObjectId(scholarship_id)})
     categories = mongo.db.categories.find().sort("category", 1)
     statuses = mongo.db.statuses.find().sort("status", 1)
-    today = datetime.datetime.now()
-    endate = datetime.datetime.now() + timedelta(30)
+    today = datetime.now()
+    endate = datetime.now() + timedelta(30)
     return render_template("view_scholarship.html",
                            scholarship=scholarship,
                            categories=categories,
@@ -194,7 +193,7 @@ def add_scholarship():
             "application_status": "Information",
             "scholarship_status": "Active",
             "created_by": session["user"],
-            "create_date": datetime.datetime.now()
+            "create_date": datetime.now()
         }
         mongo.db.scholarships.insert_one(scholarship)
         flash("Scholarship Successfully Added")
@@ -251,7 +250,7 @@ def edit_scholarship(scholarship_id):
             "scholarship_status": "Active",
             "created_by": session["user"],
             "updated_by": session["user"],
-            "last_updated": datetime.datetime.now()
+            "last_updated": datetime.now()
         }
         mongo.db.scholarships.update(
             {"_id": ObjectId(scholarship_id)}, scholarship)
@@ -401,7 +400,7 @@ def add_user():
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "username": request.form.get("username").lower(),
-            "create_date": datetime.datetime.now()
+            "create_date": datetime.now()
         }
         mongo.db.users.insert_one(user)
         flash("user Successfully Added")
@@ -418,7 +417,7 @@ def edit_user(user_id):
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "username": request.form.get("username").lower(),
-            "create_date": datetime.datetime.now()
+            "create_date": datetime.now()
         }
         mongo.db.users.update(
             {"_id": ObjectId(user_id)}, user)
