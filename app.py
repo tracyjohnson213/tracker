@@ -154,10 +154,18 @@ def view_scholarship(scholarship_id):
 @app.route("/add_scholarship", methods=["GET", "POST"])
 def add_scholarship():
     if request.method == "POST":
+        if request.form.get("category") == "other":
+            newcategory = request.form.get("categoryOther")
+        else:
+            newcategory = request.form.get("category")
+        if request.form.get("application_status") == "other":
+            newstatus = request.form.get("statusOther")
+        else:
+            newstatus = "Information"
         scholarship = {
             "scholarship_name": request.form.get("scholarship_name"),
             "scholarship_sponsor": request.form.get("scholarship_sponsor"),
-            "category": request.form.get("category"),
+            "category": newcategory,
             "scholarship_amount": request.form.get("scholarship_amount"),
             "scholarship_url": request.form.get("scholarship_url"),
             "scholarship_deadline": request.form.get("scholarship_deadline"),
@@ -190,7 +198,7 @@ def add_scholarship():
                     "required": request.form.get("document_required3")
                 }
             },
-            "application_status": "Information",
+            "application_status": newstatus,
             "scholarship_status": "Active",
             "created_by": session["user"],
             "create_date": datetime.now()
@@ -211,10 +219,18 @@ def add_scholarship():
 @app.route("/edit_scholarship/<scholarship_id>", methods=["GET", "POST"])
 def edit_scholarship(scholarship_id):
     if request.method == "POST":
+        if request.form.get("category") == "other":
+            newcategory = request.form.get("categoryOther")
+        else:
+            newcategory = request.form.get("category")
+        if request.form.get("application_status") == "other":
+            newstatus = request.form.get("statusOther")
+        else:
+            newstatus = request.form.get("application_status")
         scholarship = {
             "scholarship_name": request.form.get("scholarship_name"),
             "scholarship_sponsor": request.form.get("scholarship_sponsor"),
-            "category": request.form.get("category"),
+            "category": newcategory,
             "scholarship_amount": request.form.get("scholarship_amount"),
             "scholarship_url": request.form.get("scholarship_url"),
             "scholarship_deadline": request.form.get("scholarship_deadline"),
@@ -247,7 +263,7 @@ def edit_scholarship(scholarship_id):
                     "required": request.form.get("document_required3")
                 }
             },
-            "application_status": request.form.get("application_status"),
+            "application_status": newstatus,
             "scholarship_status": "Active",
             "created_by": session["user"],
             "updated_by": session["user"],

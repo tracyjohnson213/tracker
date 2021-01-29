@@ -41,6 +41,13 @@ Nice to haves
 
 ## Features
 
+Scholarships with deadline in past show with red colored tag.
+Scholarships with deadline within 30 days show with yellow colored tag.
+Associated documents for scholarship can be listed with quantity.
+Custom named documents for scholarship can be save as Required or Optional.
+Input field displayed when Other selected as Category or Status during Add Scholarship and Edit Scholarship.
+
+
 ## Technologies Used
 
 https://www.html5pattern.com/Passwords
@@ -111,6 +118,7 @@ https://materializecss.com/
 Favicon - https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-cap-152-190967.html
 Login form for materialize - https://codepen.io/T-P/pen/bpWqrr
 https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
+https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 
 ## Media
 

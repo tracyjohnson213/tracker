@@ -22,7 +22,7 @@
 
                         <!-- CATEGORY -->
                         <div class="input-field col s12">
-                            <select id="category" name="category" class="validate">
+                            <select onchange="categoryOtherCheck(this);" id="category" name="category" class="validate">
                                 <option value="" disabled>Choose Category</option>
                                     {% for category in categories %}
                                         {% if category.category == scholarship.category %}
@@ -31,8 +31,13 @@
                                             <option value="{{ category.category }}">{{ category.category }}</option>
                                         {% endif %}
                                     {% endfor %}
+                                    <option value="other">Other</option>
                             </select>
                             <label for="category">Category</label>
+                        </div>
+                        <div id="ifcategoryOther" class="input-field col s12" style="display: none;">
+                            <input id="categoryOther" name="categoryOther" type="text" class="validate">
+                            <label for="categoryOther">New Category</label>
                         </div>
 
                         <!-- SCHOLARSHIP AMOUNT -->
@@ -71,7 +76,7 @@
 
                         <!-- APPLICATION STATUS -->
                         <div class="input-field col s12">
-                            <select id="application_status" name="application_status" class="validate">
+                            <select onchange="statusOtherCheck(this);" id="application_status" name="application_status" class="validate">
                                 <option value="" disabled>Choose Status</option>
                                     {% for status in statuses %}
                                         {% if status.status == scholarship.application_status %}
@@ -80,8 +85,13 @@
                                             <option value="{{ status.status }}">{{ status.status }}</option>
                                         {% endif %}
                                     {% endfor %}
+                                    <option value="other">Other</option>
                             </select>
                             <label for="application_status">Application Status</label>
+                        </div>
+                        <div id="ifstatusOther" class="input-field col s12" style="display: none;">
+                            <input id="statusOther" name="statusOther" type="text" class="validate">
+                            <label for="statusOther">New Status</label>
                         </div>
 
                         <fieldset>

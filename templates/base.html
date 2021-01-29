@@ -160,7 +160,25 @@
     $(document).ready(function(){
         $('select').formSelect();
     });
+    
+    // to add text input when other selected as category
+    function categoryOtherCheck(that) {
+        if (that.value == "other") {
+            document.getElementById("ifcategoryOther").style.display = "block";
+        } else {
+            document.getElementById("ifcategoryOther").style.display = "none";
+        }
+    }
 
+    // to add text input when other selected as status
+    function statusOtherCheck(that) {
+        if (that.value == "other") {
+            document.getElementById("ifstatusOther").style.display = "block";
+        } else {
+            document.getElementById("ifstatusOther").style.display = "none";
+        }
+    }
+    
     
     </script>
   
