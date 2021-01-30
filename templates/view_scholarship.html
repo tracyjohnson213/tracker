@@ -4,7 +4,7 @@
     <center>
 <div class="container">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-        <div class="row">
+        <div class="row card-panel light-green darken-4">
             <div class="col s6 m4">
                 <div class="card light-green darken-4">
                     <div class="card-content white-text">
@@ -156,11 +156,6 @@
                                 <a href="#scholarship_delete_confirmation" rel="modal:open">
                                 Delete<i class="material-icons right">delete</i></a>
                             </button>
-                            <!--<button class="btn btn-small waves-effect amber darken-4" name="delete">
-                                <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}">Delete
-                                    <i class="material-icons right">delete</i>
-                                </a>
-                            </button>-->
                             </div>
                         </div>
                     </div>
@@ -175,7 +170,7 @@
     <!-- Modal Structure -->
     <div id="scholarship_delete_confirmation" class="modal orange lighten-5">
         <div class="delete-modal-content center-align">
-            <h5>Delete {{ scholarship.scholarship_name}}</h5>
+            <h5>Delete {{ scholarship.scholarship_name }}</h5>
             <p>Are you sure you want to proceed?</p>
         </div>
         <div class="delete-modal-footer center-align">
