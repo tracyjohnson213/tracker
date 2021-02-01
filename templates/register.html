@@ -21,7 +21,7 @@
             <div class='row'>
                 <!-- FIRST NAME -->
                 <div class='input-field col s6'>
-                    <input class='validate' type='text' name='first_name' id='first_name'/>
+                    <input class='validate' type='text' name='first_name' id='first_name' required/>
                     <label for='first_name'>First Name</label>
                 </div>
                 <!-- LAST NAME -->
@@ -33,7 +33,7 @@
             <div class='row'>
             <!-- EMAIL -->
               <div class='input-field col s12'>
-                <input class='validate' type='email' name='username' id='username'/>
+                <input class='validate' type='email' name='username' id='username' required/>
                 <label for='username'>Email</label>
               </div>
             </div>
@@ -42,7 +42,7 @@
             <!-- PASSWORD -->
               <div class='input-field col s12'>
                 <input class='validate' type='password' name='password' id='password'  
-                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
                 <label for='password'>Password</label>
                 <span class="helper-text" data-error="wrong" data-success="right">UpperCase, LowerCase, Number/SpecialChar and min 8 Chars</span>
               </div>
