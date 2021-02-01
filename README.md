@@ -41,11 +41,15 @@ Nice to haves
 
 ## Features
 
+View Scholarships:
 Scholarships with deadline in past show with red colored tag.
 Scholarships with deadline within 30 days show with yellow colored tag.
+Add/Edit Scholarships:
 Associated documents for scholarship can be listed with quantity.
 Custom named documents for scholarship can be save as Required or Optional.
-Input field displayed when Other selected as Category or Status during Add Scholarship and Edit Scholarship.
+Input field displayed when Other selected as Category and Status during Add Scholarship and Edit Scholarship.
+Category and Status list updated with submit of input to Other field.
+Category and Status can be removed from Add and Edit forms.
 
 
 ## Technologies Used

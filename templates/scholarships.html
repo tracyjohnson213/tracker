@@ -1,9 +1,152 @@
 {% extends "base.html" %}
 {% block content %}
 <main>
-    <center>
-<div class="container">
+    <div class="row">
+        
+    <div class="container col s6">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+        <div class="col s4 card-panel orange lighten-5" style="margin: 15px;">
+            <ul class="collapsible">
+                <li>
+                <div class="collapsible-header col s12">
+                    <i class="material-icons green-text">school</i>
+                    <a class="nav-link" href="{{ url_for('get_scholarships')}}">View All</a>
+                </div>
+                </li>
+                <li>
+                <div class="collapsible-header col s12">
+                    <i class="material-icons green-text">add_box</i>
+                    <a class="nav-link" href="{{ url_for('add_scholarship')}}">Add New</a>
+                </div>
+                </li>
+                <li>
+                <div class="collapsible-header col s12"><i class="material-icons green-text">filter_list</i>Category</div>
+                <div class="collapsible-body"><span>
+                    <!-- Dropdown Structure -->
+                    <ul id="managecategory" class="dropdown-content">
+                    <li><a class="modal-trigger" href="#category_edit">Edit</a></li>
+                    <li><a class="modal-trigger" href="#category_delete_confirmation">Remove</a></li>
+                    </ul>
+                    <div class="nav-wrapper">
+                        <!-- Add category -->
+                        <form method="POST" action="{{ url_for('add_category') }}">
+                            <div class="input-field col s8">
+                                <input id="category" name="category" type="text" class="validate" style="height: auto;" required>
+                                <label for="category" hidden>Category</label>
+                            </div>
+                            <a class="btn-floating btn-small waves-effect waves-light red accent-2"><i class="material-icons" type="submit" name="addcategory">add</i></a>
+                        </form>
+                        <!-- List categories -->
+                        <ul class="hide-on-med-and-down">
+                            {% for category in categories %}
+                            <li class="col s12">
+                                <a href="{{ url_for("get_category", category=category.category) }}">{{ category.category }}
+                                <i class="material-icons right dropdown-trigger black-text" data-target="managecategory">more_vert</i></a>
+                            </li>
+                            <!-- Delete Category Modal Structure -->
+                            <div id="category_delete_confirmation" class="modal orange lighten-5">
+                                <div class="delete-modal-content center-align">
+                                    <h5>Delete {{ category.category }}</h5>
+                                    <p>Are you sure you want to proceed?</p>
+                                </div>
+                                <div class="delete-modal-footer center-align">
+                                    <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">No</a>
+                                    <a href="{{ url_for('delete_category', category_id=category._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Yes</a>
+                                </div>
+                            </div>
+                            <!-- Edit Category Modal Structure -->
+                            <div id="category_edit" class="modal orange lighten-5">
+                                <div class="modal-content center-align">
+                                        <input id="category" name="category" value="{{ category.category }}" type="text" class="validate">
+                                        <label for="category" hidden>Category</label>
+                                </div>
+                                <div class="modal-footer center-align">
+                                    <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">Canel</a>
+                                    <a href="{{ url_for('edit_category', category_id=category._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Edit</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                </span></div>
+                </li>
+                <li>
+                <div class="collapsible-header col s12"><i class="material-icons green-text">remove_red_eye</i>Status</div>
+                <div class="collapsible-body"><span>
+                    <!-- Dropdown Structure -->
+                    <ul id="managestatus" class="dropdown-content">
+                    <li><a href="#!">Edit</a></li>
+                    <li><a class="modal-trigger" href="#status_delete_confirmation">Remove</a></li>
+                    </ul>
+                    <div class="nav-wrapper">
+                        <!-- Add status -->
+                        <form method="POST" action="{{ url_for('add_status') }}">
+                            <div class="input-field col s8">
+                                <input id="status" name="status" type="text" class="validate" style="height: auto;" required>
+                                <label for="status" hidden>Status</label>
+                            </div>
+                            <a class="btn-floating btn-small waves-effect waves-light red accent-2"><i class="material-icons" type="submit" name="addstatus">add</i></a>
+                        </form>
+                        <!-- List statuses -->
+                        <ul class="hide-on-med-and-down">
+                            {% for status in statuses %}
+                            <li class="col s12">
+                                <a href="{{ url_for("get_status", status=status.status) }}">{{ status.status }}
+                                <i class="material-icons right dropdown-trigger black-text" data-target="managestatus">more_vert</i></a>
+                            </li>
+                            <!-- Delete Status Modal Structure -->
+                            <div id="status_delete_confirmation" class="modal orange lighten-5">
+                                <div class="delete-modal-content center-align">
+                                    <h5>Delete {{ status.status }}</h5>
+                                    <p>Are you sure you want to proceed?</p>
+                                </div>
+                                <div class="delete-modal-footer center-align">
+                                    <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">No</a>
+                                    <a href="{{ url_for('delete_status', status_id=status._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Yes</a>
+                                </div>
+                            </div>
+                            <!-- Edit Status Modal Structure -->
+                            <div id="status_edit" class="modal orange lighten-5">
+                                <div class="modal-content center-align">
+                                        <input id="status" name="status" value="{{ status.status }}" type="text" class="validate">
+                                        <label for="status" hidden>Status</label>
+                                </div>
+                                <div class="modal-footer center-align">
+                                    <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">Canel</a>
+                                    <a href="{{ url_for('edit_status', status_id=status._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Edit</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                </span></div>
+                </li>
+                <!--<li>
+                <div class="collapsible-header col s12">
+                    <i class="material-icons green-text">whatshot</i>User
+                    </div>
+                <div class="collapsible-body"><span>
+                    <nav>
+                    <ul class="right hide-on-med-and-down">
+                        {% for user in users %}
+                        <li><a href="#" class="black-text">{{ user.username }}</a>
+                        <i class="material-icons black-text">more_vert</i></li>
+                        {% endfor %}
+                    </ul>
+                    </nav>
+                </span></div>
+                </li>-->
+                <li>
+                <div class="collapsible-header col s12">
+                    <i class="material-icons green-text">logout</i>
+                    <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+                </div>
+                </li>
+            </ul>
+        </div>
 
     <div class="row card-panel orange lighten-5">
         <form action="{{ url_for('search') }}" method="post" class="col s12">
@@ -41,7 +184,7 @@
                             Past Deadline: {{ scholarship.scholarship_deadline }}
                         </div>
                         {% elif scholarship.scholarship_deadline < endate.isoformat() %}
-                        <div class="chip lime accent-2">
+                        <div class="chip lime accent-2 black-text">
                             Upcoming Deadline: {{ scholarship.scholarship_deadline }}
                         </div>
                         {% else %}
@@ -69,7 +212,7 @@
 
     <div class="row">
         <div class="col s12 m6">
-            <div class="card red lighten-1">
+            <div class="card red accent-1">
                 <div class="card-content white-text">
                     <h3 class="black-text center-align">No Results Found<h3>
                 </div>
@@ -79,7 +222,11 @@
             </div>
             </div>
             </main>
-    </center>
+    </div>
 
     {% endfor %}
+
+    
 {% endblock %}
+
+

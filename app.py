@@ -93,6 +93,8 @@ def get_scholarships():
     if session["user"]:
         user = mongo.db.users.find_one_or_404({"username": session["user"]})
         categories = list(mongo.db.categories.find())
+        statuses = list(mongo.db.statuses.find())
+        users = list(mongo.db.users.find())
         scholarships = mongo.db.scholarships.find(
             {"created_by": user['username']}
         ).sort("scholarship_deadline", 1)
@@ -101,11 +103,66 @@ def get_scholarships():
         return render_template("scholarships.html",
                                scholarships=scholarships,
                                categories=categories,
+                               statuses=statuses,
+                               users=users,
                                today=today,
                                endate=endate)
     return redirect(url_for("login"))
 
 
+# show scholarships with specific category
+@app.route("/get_scholarships/<category>", methods=["GET"])
+def get_category(category):
+    if session["user"]:
+        user = mongo.db.users.find_one_or_404(
+            {"username": session["user"]})
+        categories = list(mongo.db.categories.find(
+            {"category": category}
+        ))
+        statuses = list(mongo.db.statuses.find())
+        users = list(mongo.db.users.find())
+        scholarships = mongo.db.scholarships.find(
+            {"created_by": user['username'],
+             "category": category}
+        ).sort("scholarship_deadline", 1)
+        today = datetime.now()
+        endate = datetime.now() + timedelta(30)
+        return render_template("scholarships.html",
+                               scholarships=scholarships,
+                               categories=categories,
+                               statuses=statuses,
+                               users=users,
+                               today=today,
+                               endate=endate)
+
+
+# show scholarships with specific status
+@app.route("/get_scholarships/<status>", methods=["GET"])
+def get_status(status):
+    if session["user"]:
+        user = mongo.db.users.find_one_or_404(
+            {"username": session["user"]})
+        categories = list(mongo.db.categories.find())
+        statuses = list(mongo.db.statuses.find(
+            {"status": status}
+        ))
+        users = list(mongo.db.users.find())
+        scholarships = mongo.db.scholarships.find(
+            {"created_by": user['username'],
+             "status": status}
+        ).sort("scholarship_deadline", 1)
+        today = datetime.now()
+        endate = datetime.now() + timedelta(30)
+        return render_template("scholarships.html",
+                               scholarships=scholarships,
+                               categories=categories,
+                               statuses=statuses,
+                               users=users,
+                               today=today,
+                               endate=endate)
+
+
+# search scholarship by text
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -192,6 +249,13 @@ def add_scholarship():
             "create_date": datetime.now()
         }
         mongo.db.scholarships.insert_one(scholarship)
+        # https://stackoverflow.com/questions/42629206/how-to-check-if-object-is-not-in-array-in-mongodb
+        mongo.db.categories.update(
+            {"categories.category": {"$nin": newcategory}},
+            {"$push": {"categories": {"category": newcategory}}})
+        mongo.db.statuses.update(
+            {"statuses.status": {"$nin": newstatus}},
+            {"$push": {"statuses": {"status": newstatus}}})
         flash("Scholarship Successfully Added")
         return redirect(url_for("get_scholarships",
                                 username=session["user"]))

@@ -29,7 +29,7 @@
                             Past Deadline: {{ scholarship.scholarship_deadline }}
                         </div></br>
                         {% elif scholarship.scholarship_deadline < endate.isoformat() %}
-                        <div class="chip lime accent-2">
+                        <div class="chip lime accent-2 black-text">
                             Upcoming Deadline: {{ scholarship.scholarship_deadline }}
                         </div></br>
                         {% else %}
