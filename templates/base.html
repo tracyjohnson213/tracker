@@ -120,8 +120,6 @@
         {% endblock %}
 
     </main>
-
-    
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -144,51 +142,60 @@
     
     {% block scripts %}
    
-    <script>
-      // to make sidebar default to open
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-        });
+        <script>
+            // to make sidebar default to open
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+            });
 
-    // to make select options on form visible
-    $(document).ready(function(){
-        $('select').formSelect();
-    });
+            // to make select options on form visible
+            $(document).ready(function(){
+                $('select').formSelect();
+            });
 
-    // to allow expansion of .collapsible item
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
-    });
+            // to allow expansion of .collapsible item
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
 
-    // to allow dropdown on side menu
-    $(".dropdown-trigger").dropdown();
+            // to allow dropdown on side menu
+            $(".dropdown-trigger").dropdown();
 
-    // initialize modal
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
-    
-    // to add text input when other selected as category
-    function categoryOtherCheck(that) {
-        if (that.value == "other") {
-            document.getElementById("ifcategoryOther").style.display = "block";
-        } else {
-            document.getElementById("ifcategoryOther").style.display = "none";
-        }
-    }
+            // initialize modal
+            $(document).ready(function(){
+                $('.modal').modal();
+            });
+            
+            // to add text input when other selected as category
+            function categoryOtherCheck(that) {
+                if (that.value == "other") {
+                    document.getElementById("ifcategoryOther").style.display = "block";
+                } else {
+                    document.getElementById("ifcategoryOther").style.display = "none";
+                }
+            }
 
-    // to add text input when other selected as status
-    function statusOtherCheck(that) {
-        if (that.value == "other") {
-            document.getElementById("ifstatusOther").style.display = "block";
-        } else {
-            document.getElementById("ifstatusOther").style.display = "none";
-        }
-    }
-    
-    
-    </script>
+            // to add text input when other selected as status
+            function statusOtherCheck(that) {
+                if (that.value == "other") {
+                    document.getElementById("ifstatusOther").style.display = "block";
+                } else {
+                    document.getElementById("ifstatusOther").style.display = "none";
+                }
+            }
+        
+        </script>
   
     {% endblock %}
-  </body>    
+  </body>
+
+  <footer class="page-footer center">
+          <div class="container">
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2021 Copyright Tracy Johnson, student at CodeInstitute </br>(for educational purposes only)
+            </div>
+          </div>
+        </footer>    
 </html>
