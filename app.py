@@ -270,19 +270,13 @@ def add_scholarship():
 # edit existing scholarship
 @app.route("/edit_scholarship/<scholarship_id>", methods=["GET", "POST"])
 def edit_scholarship(scholarship_id):
+    categories = mongo.db.categories.find().sort("category", 1)
+    statuses = mongo.db.statuses.find().sort("status", 1)
     if request.method == "POST":
-        if request.form.get("category") == "other":
-            newcategory = request.form.get("categoryOther")
-        else:
-            newcategory = request.form.get("category")
-        if request.form.get("application_status") == "other":
-            newstatus = request.form.get("statusOther")
-        else:
-            newstatus = request.form.get("application_status")
         scholarship = {
             "scholarship_name": request.form.get("scholarship_name"),
             "scholarship_sponsor": request.form.get("scholarship_sponsor"),
-            "category": newcategory,
+            "category": request.form.get("category"),
             "scholarship_amount": request.form.get("scholarship_amount"),
             "scholarship_url": request.form.get("scholarship_url"),
             "scholarship_deadline": request.form.get("scholarship_deadline"),
@@ -315,7 +309,7 @@ def edit_scholarship(scholarship_id):
                     "required": request.form.get("document_required3")
                 }
             },
-            "application_status": newstatus,
+            "application_status": request.form.get("application_status"),
             "scholarship_status": "Active",
             "created_by": session["user"],
             "updated_by": session["user"],
@@ -326,11 +320,9 @@ def edit_scholarship(scholarship_id):
         flash("Scholarship Successfully Updated")
         return redirect(url_for("get_scholarships",
                                 username=session["user"]))
-
     scholarship = mongo.db.scholarships.find_one_or_404(
         {"_id": ObjectId(scholarship_id)})
-    categories = mongo.db.categories.find().sort("category", 1)
-    statuses = mongo.db.statuses.find().sort("status", 1)
+
     return render_template("edit_scholarship.html",
                            scholarship=scholarship,
                            categories=categories,

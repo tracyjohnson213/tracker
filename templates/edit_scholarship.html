@@ -1,221 +1,210 @@
 {% extends "base.html" %}
 {% block content %}
-<main>
-    <center>
-<div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-        <form class="row" method="POST" action="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">
-            <div class="col s12 m4">
-                <div class="card light-green darken-4">
-                    <div class="card-content white-text">
+<ul class="collapsible">
+    <li class="active">
+        <div class="collapsible-header light-green darken-3">
+        <i class="material-icons">school</i>
+            <form method="POST" action="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">
+                <div class="container">
+                    <div class="row">
                         <!-- SCHOLARSHIP NAME -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6 l3">
                             <input id="scholarship_name" name="scholarship_name" value="{{ scholarship.scholarship_name }}" type="text" class="validate">
                             <label for="scholarship_name">Scholarship Name</label>
                         </div>
-
                         <!-- SCHOLARSHIP SPONSOR -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6 l3">
                             <input id="scholarship_sponsor" name="scholarship_sponsor" value="{{ scholarship.scholarship_sponsor }}" type="text" class="validate">
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
-
-                        <!-- CATEGORY -->
-                        <div class="input-field col s12">
-                            <select onchange="categoryOtherCheck(this);" id="category" name="category" class="validate">
-                                <option value="" disabled>Choose Category</option>
-                                    {% for category in categories %}
-                                        {% if category.category == scholarship.category %}
-                                            <option value="{{ category.category }}" selected>{{ category.category }}</option>
-                                        {% else %}
-                                            <option value="{{ category.category }}">{{ category.category }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <option value="other">Other</option>
-                            </select>
-                            <label for="category">Category</label>
-                        </div>
-                        <div id="ifcategoryOther" class="input-field col s12" style="display: none;">
-                            <input id="categoryOther" name="categoryOther" type="text" class="validate">
-                            <label for="categoryOther">New Category</label>
-                        </div>
-
+                    </div>
+                    <div class="row">
                         <!-- SCHOLARSHIP AMOUNT -->
-                            <div class="input-field col s12">
-                                <textarea id="scholarship_amount" name="scholarship_amount" value="{{ scholarship.scholarship_amount }}" type="text" rows="6" class="validate">
-                                </textarea>
-                                <label for="scholarship_amount">Award</label>
-                            </div>
-
-                        <!-- SCHOLARSHIP URL -->
-                        <div class="input-field col s12">
-                            <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
-                            <label for="scholarship_url">Website</label>
+                        <div class="input-field col s12 m6 l3">
+                            <textarea id="scholarship_amount" name="scholarship_amount" value="{{ scholarship.scholarship_amount }}" type="text" rows="6" class="validate"></textarea>
+                            <label for="scholarship_amount">Award</label>
                         </div>
-
-                        <fieldset>
+                    </div>
+                    <div class="row">
                         <!-- SCHOLARSHIP DEADLINE -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6 l3">
                             <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline }}" type="date" class="validate">
                             <label for="scholarship_deadline">Deadline</label>
                         </div>
-
-                        <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
-                        <div class="input-field col s12">
-                            <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
-                            <label for="date_winner_announced">Date to annouce winner</label>
+                    </div>
+                    <div class="row">
+                        <!-- CATEGORY -->
+                        <div class="input-field col s12 m6 l3">
+                            <select id="category" name="category" class="validate">
+                                <option value="" disabled>Choose Category</option>
+                                {% for category in categories %}
+                                {% if category.category == scholarship.category %}
+                                <option value="{{ category.category }}" selected>{{ category.category }}</option>
+                                {% else %}
+                                <option value="{{ category.category }}">{{ category.category }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            <label for="category">Category</label>
                         </div>
-                        </fieldset>
-
-                      <!-- SCHOLARSHIP NOTE -->
-                        <div class="input-field col s12">
-                            <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate">
-                            </textarea>
-                            <label for="note"><span class="black badge">Notes</span></label>
-                        </div>
-
                         <!-- APPLICATION STATUS -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6 l3">
                             <select onchange="statusOtherCheck(this);" id="application_status" name="application_status" class="validate">
                                 <option value="" disabled>Choose Status</option>
-                                    {% for status in statuses %}
-                                        {% if status.status == scholarship.application_status %}
-                                            <option value="{{ status.status }}" selected>{{ status.status }}</option>
-                                        {% else %}
-                                            <option value="{{ status.status }}">{{ status.status }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <option value="other">Other</option>
+                                {% for status in statuses %}
+                                {% if status.status == scholarship.application_status %}
+                                <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                                {% else %}
+                                <option value="{{ status.status }}">{{ status.status }}</option>
+                                {% endif %}
+                                {% endfor %}
                             </select>
                             <label for="application_status">Application Status</label>
                         </div>
-                        <div id="ifstatusOther" class="input-field col s12" style="display: none;">
-                            <input id="statusOther" name="statusOther" type="text" class="validate">
-                            <label for="statusOther">New Status</label>
+                    </div>
+                    <div class="row">
+                        <!-- SCHOLARSHIP URL -->
+                        <div class="input-field col s12 m6 l3">
+                            <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
+                            <label for="scholarship_url">Website</label>
                         </div>
-
-                        <fieldset>
+                    </div>
+                </div>
+        </div>
+        <div class="collapsible-body">
+            <span>
+                <div class="row">
+                    <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                        <div class="input-field col s12 m6 l3">
+                            <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
+                            <label for="date_winner_announced">Date to annouce winner</label>
+                        </div>
+                        <!-- APPLICATION STATUS -->
+                        <div class="input-field col s12 m6 l3">
+                            <select id="application_status" name="application_status" class="validate">
+                                <option value="" disabled>Choose Status</option>
+                                {% for status in statuses %}
+                                {% if status.status == scholarship.application_status %}
+                                <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                                {% else %}
+                                <option value="{{ status.status }}">{{ status.status }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            <label for="application_status">Application Status</label>
+                        </div></div>
+                        <div class="row">
+                        <!-- SCHOLARSHIP NOTE -->
+                        <span class="black badge">Notes</span>
+                        <div class="input-field col s12 m6 l3">
+                            <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate"></textarea>
+                            <label for="note" hidden></label>
+                        </div>
+                        </div>
+                        <hr><div class="row">
                         <!-- Date Applied -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l3">
                             <input id="date_applied" name="date_applied" value="{{ scholarship.dates.date_applied  }}" type="date" class="validate">
                             <label for="date_applied">Date Applied</label>
                         </div>
-
                         <!-- Date Awarded -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l3">
                             <input id="date_awarded" name="date_awarded" value="{{ scholarship.dates.date_awarded  }}" type="date" class="validate">
                             <label for="date_awarded">Date Awarded</label>
-                        </div>
-
+                        </div></div>
+                        <div class="row">
                         <!-- Date Rejected -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l3">
                             <input id="date_rejected" name="date_rejected" value="{{ scholarship.dates.date_rejected  }}" type="date" class="validate">
                             <label for="date_rejected">Date Rejected</label>
                         </div>
-
                         <!-- Date Declined -->
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l3">
                             <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
                             <label for="date_declined">Date Declined</label>
+                        </div></div>
+                        <hr>
+                        <div class="row">
+                            <!-- RECOMMENDATION REQUIRED -->
+                            <label class="input-field col s8 m4 black-text">
+                            {% if scholarship.documents.recommendation_required == "yes" %}
+                            <input type="checkbox" value="yes" class="filled-in" id="recommendation_required" name="recommendation_required" checked/>
+                            {% else %}
+                            <input type="checkbox" value="no" class="filled-in" id="recommendation_required" name="recommendation_required"/>
+                            {% endif %}
+                            <span>
+                            <input class="input-field col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty" value={{ scholarship.documents.recomendation_count }}>
+                            Recommendation(s) Required </span>
+                            </label>
                         </div>
-                    </fieldset>
-                    </div>
-                    <!-- DOCUMENTS REQUIRED -->
-            <div class="card-action">
-                <span class="black badge">Documents Required</span>
-                <!-- RECOMMENDATION REQUIRED -->
-                <label class="input-field col s12">
-                    {% if scholarship.documents.recommendation_required == "yes" %}
-                        <input type="checkbox" value="yes" class="filled-in" id="recommendation_required" name="recommendation_required" checked/>
-                    {% else %}
-                        <input type="checkbox" value="no" class="filled-in" id="recommendation_required" name="recommendation_required"/>
-                    {% endif %}
-                        <span>
-                            <input class=" col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty" value={{ scholarship.documents.recomendation_count }}>
-                        Recommendation(s) Required </span>
-                    </label>
-
-                
-
-                <!-- TRANSCRIPT REQUIRED -->
-                <label class="input-field col s12">
-                    {% if scholarship.documents.transcript_required == "yes" %}
-                        <input type="checkbox" value="yes" class="filled-in" id="transcript_required" name="transcript_required" checked/>
-                    {% else %}
-                        <input type="checkbox" value="no" class="filled-in" id="transcript_required" name="transcript_required"/>
-                    {% endif %}
-                        <span>
-                            <input class=" col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty" value={{ scholarship.documents.transcript_required }} >
-                        Transcript Required </span>
-                    </label>
-
-                <!-- ESSAY REQUIRED -->
-                <label class="input-field col s12">
-                {% if scholarship.documents.essay_required == "yes" %}
-                <input type="checkbox" class="filled-in" id="essay_required" name="essay_required" value="yes" checked/>
-                {% else %}
-                <input type="checkbox" class="filled-in" id="essay_required" name="essay_required" value="no" />
-                {% endif %}
-                <span>
-                <input class=" col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty" value={{ scholarship.documents.essay_count }}>
-                Essay(s) Required </span>
-                </label>
-
-                <!-- FIRST OTHER DOCUMENT -->
-                <label for="document_name1"hidden>Document 2</label>
-                <input class=" col s6" id="document_name1" name="document_name1" type="text" value={{ scholarship.documents.other1.document_name }}>
-                <label for="document_required1" class="input-field col s6">
-                    {% if scholarship.documents.other1.required == "yes" %}
-                    <input type="checkbox" id="document_required1" name="document_required1" value="yes" class="filled-in" checked/>
-                    {% else %}
-                    <input type="checkbox" id="document_required1" name="document_required1" class="filled-in" />
-                    {% endif %}
-                    <span>Required</span>
-                </label>
-
-                <!-- SECOND OTHER DOCUMENT -->
-                <label for="document_name2"hidden>Document 2</label>
-                <input class=" col s6" id="document_name2" name="document_name2" type="text" value={{ scholarship.documents.other2.document_name }}>
-                <label for="document_required2" class="input-field col s6">
-                    {% if scholarship.documents.other2.required == "yes" %}
-                    <input type="checkbox" id="document_required2" name="document_required2" value="yes" class="filled-in" checked/>
-                    {% else %}
-                    <input type="checkbox" id="document_required2" name="document_required2" class="filled-in" />
-                    {% endif %}
-                    <span>Required</span>
-                </label>
-
-                <!-- THIRD OTHER DOCUMENT -->
-                <label for="document_name3"hidden>Document 3</label>
-                <input class=" col s6" id="document_name3" name="document_name3" type="text" value={{ scholarship.documents.other3.document_name }}>
-                <label for="document_required3" class="input-field col s6">
-                    {% if scholarship.documents.other3.required == "yes" %}
-                    <input type="checkbox" id="document_required3" name="document_required3" value="yes" class="filled-in" checked/>
-                    {% else %}
-                    <input type="checkbox" id="document_required3" name="document_required3" class="filled-in" />
-                    {% endif %}
-                    <span>Required</span>
-                </label>
-                
-                </div>   
-                    <div class="card-action">
-                    <!-- UPDATE BUTTON -->
-                    <button class="btn waves-effect amber darken-4" type="submit" name="edit_scholarship">Update
-                        <i class="material-icons right">edit</i>
-                    </button>
-                   
-                    <!-- CANCEL BUTTON -->
-                    <button class="btn waves-effect amber darken-4" name="cancel_edit">
-                        <a href="{{ url_for('view_scholarship', scholarship_id=scholarship._id) }}">
-                        Cancel<i class="material-icons right">cancel_presentation</i>
-                        </a>
-                    </button>
+                        <div class="row">
+                            <!-- TRANSCRIPT REQUIRED -->
+                            <label class="input-field col s12 m6 l3 black-text">
+                            {% if scholarship.documents.transcript_required == "yes" %}
+                            <input type="checkbox" value="yes" class="filled-in" id="transcript_required" name="transcript_required" checked/>
+                            {% else %}
+                            <input type="checkbox" value="no" class="filled-in" id="transcript_required" name="transcript_required"/>
+                            {% endif %}
+                            <span>
+                            <input class="input-field col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty" value={{ scholarship.documents.transcript_required }} >
+                            Transcript Required </span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <!-- ESSAY REQUIRED -->
+                            <label class="input-field col s12 m6 l3 black-text">
+                            {% if scholarship.documents.essay_required == "yes" %}
+                            <input type="checkbox" class="filled-in" id="essay_required" name="essay_required" value="yes" checked/>
+                            {% else %}
+                            <input type="checkbox" class="filled-in" id="essay_required" name="essay_required" value="no" />
+                            {% endif %}
+                            <span>
+                            <input class="input-field col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty" value={{ scholarship.documents.essay_count }}>
+                            Essay(s) Required </span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <!-- FIRST OTHER DOCUMENT -->
+                            <label for="document_name1" hidden>Document 1</label>
+                            <input class=" col s12 m6 l3" id="document_name1" name="document_name1" type="text" value={{ scholarship.documents.other1.document_name }}>
+                            <label for="document_required1" class="input-field col s12 m6 l3">
+                            {% if scholarship.documents.other1.required == "yes" %}
+                            <input type="checkbox" id="document_required1" name="document_required1" value="yes" class="filled-in" checked/>
+                            {% else %}
+                            <input type="checkbox" id="document_required1" name="document_required1" class="filled-in" />
+                            {% endif %}
+                            <span class="black-text">Required</span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <!-- SECOND OTHER DOCUMENT -->
+                            <label for="document_name2"hidden>Document 2</label>
+                            <input class=" col s12 m6 l3" id="document_name2" name="document_name2" type="text" value={{ scholarship.documents.other2.document_name }}>
+                            <label for="document_required2" class="input-field col s12 m6 l3">
+                            {% if scholarship.documents.other2.required == "yes" %}
+                            <input type="checkbox" id="document_required2" name="document_required2" value="yes" class="filled-in" checked/>
+                            {% else %}
+                            <input type="checkbox" id="document_required2" name="document_required2" class="filled-in" />
+                            {% endif %}
+                            <span class="black-text">Required</span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <!-- THIRD OTHER DOCUMENT -->
+                            <label for="document_name3"hidden>Document 3</label>
+                            <input class=" col s12 m6 l3" id="document_name3" name="document_name3" type="text" value={{ scholarship.documents.other3.document_name }}>
+                            <label for="document_required3" class="input-field col s12 m6 l3">
+                            {% if scholarship.documents.other3.required == "yes" %}
+                            <input type="checkbox" id="document_required3" name="document_required3" value="yes" class="filled-in" checked/>
+                            {% else %}
+                            <input type="checkbox" id="document_required3" name="document_required3" class="filled-in" />
+                            {% endif %}
+                            <span class="black-text">Required</span>
+                            </label>
+                        </div>
+                    </span>
                 </div>
-            </div>
-        </form>
-                </div>
-            </div>
-            </main>
-    </center>
+            </form>
+    </li>
+</ul>
 {% endblock %}
-
