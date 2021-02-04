@@ -86,47 +86,47 @@
                 <hr>
                 <div class="container">
                     {% if scholarship.documents.recommendation_required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>{{ scholarship.documents.recomendation_count }} Recommendation(s) Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>Recommendation(s) Required </span>
                     {% endif %}
                     <br>
                     <!-- TRANSCRIPT REQUIRED -->
                     {% if scholarship.documents.transcript_required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>Transcript Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>Transcript Required </span>
                     {% endif %}
                     <br>
                     <!-- ESSAY REQUIRED -->
                     {% if scholarship.documents.essay_required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>{{ scholarship.documents.essay_count }} Essay(s) Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>Essay(s) Required </span>
                     {% endif %}
                     <br>
                     <!-- FIRST OTHER DOCUMENT -->
                     {% if scholarship.documents.other1.document_name != null %}
                     {% if scholarship.documents.other1.required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>{{ scholarship.documents.other1.document_name }} Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>{{ scholarship.documents.other1.document_name }} Optional </span>
                     {% endif %}
                     <br>
                     <!-- SECOND OTHER DOCUMENT -->
                     {% if scholarship.documents.other2.required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>{{ scholarship.documents.other2.document_name }} Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>{{ scholarship.documents.other2.document_name }} Optional </span>
                     {% endif %}
                     <br>
@@ -134,10 +134,10 @@
                     <!-- THIRD OTHER DOCUMENT -->
                     {% if scholarship.documents.other2.document_name != null %}
                     {% if scholarship.documents.other3.required == "yes" %}
-                    <input type="checkbox" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
                     <span>{{ scholarship.documents.other3.document_name }} Required </span>
                     {% else %}
-                    <input type="checkbox" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" disabled/>
                     <span>{{ scholarship.documents.other3.document_name }} Optional </span>
                     {% endif %}
                     <br>
