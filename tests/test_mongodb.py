@@ -1,14 +1,28 @@
-import unittest
-import env
 import os
-# from mockupdb import MockupDB, go, Command
+import unittest
 from pymongo import MongoClient
-# from bson import ObjectId as mockup_oid
-# from json import dumps
-# from pymongo import MongoClient
 from datetime import datetime
-# from app import string_to_array
-from app import app
+from flask import Flask
+
+app = Flask(__name__)
+
+
+def __init__(self, name=None, host='127.0.0.1', port=27017, clients=None):
+
+    self.clients = dict()
+
+    # Init default values
+    self.last_client = None
+    self.last_db = None
+    self.last_collection = None
+    self.runner = []
+
+    if clients:
+        for name, client in clients.items():
+            self.addClient(client, name)
+    elif name:
+        self.addClient(MongoClient(host, port), name)
+
 
 scholarship = {
     "scholarship_name": "Create-A-Greeting-Card Scholarship",
@@ -117,7 +131,7 @@ datafilter = [
 ]
 
 
-class TestAppScholarships(unittest.TestCase):
+class TestAppSearch(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         # create mongo connection to mock server
@@ -133,47 +147,16 @@ class TestAppScholarships(unittest.TestCase):
     def tearDownClass(self):
         self.mongo_client.drop_database('test_Scholarships')
 
-    # test CRUD operations
-    # test create
-    def test_insert_scholarship(self):
-        self.scholarship_coll.insert_one(scholarship)
-        number_scholarships = self.scholarship_coll.find().count()
-        self.assertEqual(number_scholarships, 1)
-"""
-    # test read
-    def test_read_scholarship(self):
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
-        self.assertEqual(number_scholarships, 4)
+    # test search
+    def test_search(self):
+        self.scholarship_coll.delete_one()
+        self.scholarship_coll.insert(datafilter)
+        self.scholarship_coll.create_index([("$**", 'text')])
+        scholarships = self.scholarship_coll.find(
+            {"$text": {"$search": "Hunter"}})
+        count = scholarships.count()
+        self.assertEqual(count, 3)
 
-    def test_read_scholarship2(self):
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
-        self.assertNotEqual(number_scholarships, 0)
-
-    # test update
-    def test_update_scholarship(self):
-        self.scholarship_coll.insert_one(scholarship)
-        self.scholarship_coll.update_one(
-            {"scholarship_sponsor": "The Gallery Collection"},
-            {'$set': {"scholarship_sponsor": "Collection of Memories"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
-            {"scholarship_sponsor": "Collection of Memories"})
-        self.assertEqual(scholarship_sponsor['scholarship_sponsor'],
-                         "Collection of Memories")
-
-    def test_update_scholarship2(self):
-        self.scholarship_coll.insert_one(scholarship)
-        self.scholarship_coll.update_one(
-            {"scholarship_sponsor": "The Gallery Collection"},
-            {'$set': {"scholarship_sponsor": "Collection of Memories"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
-            {"scholarship_sponsor": "Collection of Memories"})
-        self.assertNotEqual(scholarship_sponsor['scholarship_sponsor'],
-                            "The Gallery Collection")
-
-    # test delete
-"""
 
 if __name__ == '__main__':
     unittest.main()
