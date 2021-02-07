@@ -204,23 +204,13 @@
             $(document).ready(function(){
                 $('.modal').modal();
             });
-            
-            // to add text input when other selected as category
-            function categoryOtherCheck(that) {
-                if (that.value == "other") {
-                    document.getElementById("ifcategoryOther").style.display = "block";
-                } else {
-                    document.getElementById("ifcategoryOther").style.display = "none";
-                }
+
+            document.getElementById('categorySelect').onchange = function() {
+                window.location.href = this.children[this.selectedIndex].getAttribute('href');
             }
 
-            // to add text input when other selected as status
-            function statusOtherCheck(that) {
-                if (that.value == "other") {
-                    document.getElementById("ifstatusOther").style.display = "block";
-                } else {
-                    document.getElementById("ifstatusOther").style.display = "none";
-                }
+            document.getElementById('statusSelect').onchange = function() {
+                window.location.href = this.children[this.selectedIndex].getAttribute('href');
             }
         
         </script>
