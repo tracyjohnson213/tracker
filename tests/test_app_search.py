@@ -29,7 +29,7 @@ scholarship = {
     "application_status": "Information",
     "scholarship_status": "Active",
     "created_by": "alivia@example.com",
-    "create_date": datetime.datetime.now()
+    "create_date": datetime.now()
     }
 
 datafilter = [
@@ -51,7 +51,7 @@ datafilter = [
      "application_status": "Information",
      "scholarship_status": "Active",
      "created_by": "alivia@example.com",
-     "create_date": datetime.datetime.now()
+     "create_date": datetime.now()
     },
     {
      "scholarship_name": "Create-A-Greeting-Card Scholarship",
@@ -72,7 +72,7 @@ datafilter = [
      "application_status": "Information",
      "scholarship_status": "Active",
      "created_by": "alivia@example.com",
-     "create_date": datetime.datetime.now()
+     "create_date": datetime.now()
     },
     {
      "scholarship_name": "Hunter Garner Scholarship (Billboard)",
@@ -92,7 +92,7 @@ datafilter = [
      "application_status": "Applied",
      "scholarship_status": "Active",
      "created_by": "alivia@example.com",
-     "create_date": datetime.datetime.now()
+     "create_date": datetime.now()
     },
     {
      "scholarship_name": "Hunter Garner Scholarship (Radio Ad)",
@@ -112,7 +112,7 @@ datafilter = [
      "application_status": "Information",
      "scholarship_status": "Active",
      "created_by": "alivia@example.com",
-     "create_date": datetime.datetime.now()
+     "create_date": datetime.now()
     }
 ]
 
@@ -135,8 +135,8 @@ class TestAppSearch(unittest.TestCase):
 
     # test search
     def test_search(self):
-        self.scholarship_coll.remove()
-        self.scholarship_coll.insert(datafilter)
+        # self.scholarship_coll.delete_one()
+        self.scholarship_coll.insert_many(datafilter)
         self.scholarship_coll.create_index([("$**", 'text')])
         scholarships = self.scholarship_coll.find(
             {"$text": {"$search": "Hunter"}})

@@ -1,28 +1,14 @@
-import os
 import unittest
+import env
+import os
+# from mockupdb import MockupDB, go, Command
 from pymongo import MongoClient
+# from bson import ObjectId as mockup_oid
+# from json import dumps
+# from pymongo import MongoClient
 from datetime import datetime
-from flask import Flask
-
-app = Flask(__name__)
-
-
-def __init__(self, name=None, host='127.0.0.1', port=27017, clients=None):
-
-    self.clients = dict()
-
-    # Init default values
-    self.last_client = None
-    self.last_db = None
-    self.last_collection = None
-    self.runner = []
-
-    if clients:
-        for name, client in clients.items():
-            self.addClient(client, name)
-    elif name:
-        self.addClient(MongoClient(host, port), name)
-
+# from app import string_to_array
+from app import app
 
 scholarship = {
     "scholarship_name": "Create-A-Greeting-Card Scholarship",
@@ -131,7 +117,7 @@ datafilter = [
 ]
 
 
-class TestAppSearch(unittest.TestCase):
+class TestAppScholarships(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         # create mongo connection to mock server
@@ -147,15 +133,21 @@ class TestAppSearch(unittest.TestCase):
     def tearDownClass(self):
         self.mongo_client.drop_database('test_Scholarships')
 
-    # test search
-    def test_search(self):
-        self.scholarship_coll.delete_one()
-        self.scholarship_coll.insert(datafilter)
-        self.scholarship_coll.create_index([("$**", 'text')])
-        scholarships = self.scholarship_coll.find(
-            {"$text": {"$search": "Hunter"}})
-        count = scholarships.count()
-        self.assertEqual(count, 3)
+    def test_main_page(self):
+        response = self.app.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_page(self):
+        response = self.app.get('/login', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_scholarships_page(self):
+        response = self.app.get('/get_scholarships', follow_redirects=True)
+        self.assertEqual(response.status_code, 500)
+
+    def test_add_scholarship_page(self):
+        response = self.app.get('/add_scholarship', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
 
 
 if __name__ == '__main__':
