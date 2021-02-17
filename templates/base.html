@@ -204,6 +204,14 @@
             $(document).ready(function(){
                 $('.modal').modal();
             });
+
+            document.getElementById('categorySelect').onchange = function() {
+                window.location.href = this.children[this.selectedIndex].getAttribute('href');
+            }
+
+            document.getElementById('statusSelect').onchange = function() {
+                window.location.href = this.children[this.selectedIndex].getAttribute('href');
+            }
         
         </script>
   
