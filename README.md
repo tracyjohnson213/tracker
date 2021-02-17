@@ -320,6 +320,10 @@ FAILED (errors=6)
 
 * (Scholarship List page) Dates should display in m-d-Y format.
 
+* (Scholarship List page) Filter Categories, All Categories should reset list displayed.
+
+* (Scholarship List page) Filter Statuses should reset list displayed.
+
 * (Add Scholarship) Date applied should be limited to after deadline.
 
 * (Add Scholarship) Date awarded should be limited to after winner announced.
