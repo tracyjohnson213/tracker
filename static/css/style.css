@@ -1,3 +1,35 @@
 .sidenav {
-    transform: translateX(0%) !important;
-}
+        transform: translateX(0%) !important;
+    }
+    .modal {
+        height: 30%;
+    }
+    .close-modal {
+        background: #d73e4d;
+        background: rgba(215, 62, 77, 0.75);
+        border: 0 none !important;
+        color: #fff7cc;
+        display: inline-block;
+        float: right;
+        font-size: 34px;
+        height: 40px;
+        line-height: 1;
+        margin: 0px 1px;
+        opacity: 1;
+        text-align: center;
+        text-shadow: none;
+        -webkit-transition: background 0.2s ease-in-out;
+        transition: background 0.2s ease-in-out;
+        vertical-align: top;
+        width: 46px;
+    }
+    .checkbox-light-green[type="checkbox"].filled-in:checked+span:not(.lever):after{
+        border: 2px solid #8bc34a;
+        background-color: #8bc34a;
+    }
+    #sorting-row {
+        padding-top:0px;
+        @media only screen and (max-width: 992px) {
+            padding-top:46px;
+        }
+    }

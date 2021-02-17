@@ -12,47 +12,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 
     
 
     {% block styles %}
-    <style>
-    .sidenav {
-        transform: translateX(0%) !important;
-    }
-    .modal {
-        height: 30%;
-    }
-    .close-modal {
-        background: #d73e4d;
-        background: rgba(215, 62, 77, 0.75);
-        border: 0 none !important;
-        color: #fff7cc;
-        display: inline-block;
-        float: right;
-        font-size: 34px;
-        height: 40px;
-        line-height: 1;
-        margin: 0px 1px;
-        opacity: 1;
-        text-align: center;
-        text-shadow: none;
-        -webkit-transition: background 0.2s ease-in-out;
-        transition: background 0.2s ease-in-out;
-        vertical-align: top;
-        width: 46px;
-    }
-    .checkbox-light-green[type="checkbox"].filled-in:checked+span:not(.lever):after{
-        border: 2px solid #8bc34a;
-        background-color: #8bc34a;
-    }
-    #sorting-row {
-        padding-top:0px;
-        @media only screen and (max-width: 992px) {
-            padding-top:46px;
-        }
-    }
-    </style>
     {% endblock %}
 
     <title>Scholarship Tracker</title>
@@ -180,40 +144,6 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     
     {% block scripts %}
-   
-        <script>
-            // to make sidebar default to open
-            $(document).ready(function(){
-                $('.sidenav').sidenav();
-            });
-
-            // to make select options on form visible
-            $(document).ready(function(){
-                $('select').formSelect();
-            });
-
-            // to allow expansion of .collapsible item
-            $(document).ready(function(){
-                $('.collapsible').collapsible();
-            });
-
-            // to allow dropdown on side menu
-            $(".dropdown-trigger").dropdown();
-
-            // initialize modal
-            $(document).ready(function(){
-                $('.modal').modal();
-            });
-
-            document.getElementById('categorySelect').onchange = function() {
-                window.location.href = this.children[this.selectedIndex].getAttribute('href');
-            }
-
-            document.getElementById('statusSelect').onchange = function() {
-                window.location.href = this.children[this.selectedIndex].getAttribute('href');
-            }
-        
-        </script>
   
     {% endblock %}
   </body>
