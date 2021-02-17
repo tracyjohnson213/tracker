@@ -11,7 +11,7 @@
 				<div class="select-wrapper">
 					<select id="categorySelect">
 						<option class="filter" selected disabled>Filter Category</option>
-						<option class="filter" href="{{ get_categories }}" value="all" data-filter="all" selected>All Categories</option>
+						<option class="filter" href="{{ url_for('get_scholarships') }}" value="all" data-filter="all" selected>All Categories</option>
                         {% for category in categories %}
 						<option class="filter" href="{{ url_for("get_category", category=category.category) }}" value="{{ category.category }}">{{ category.category }}</option>
 						{% endfor %}
@@ -23,7 +23,7 @@
                 <div class="select-wrapper">
 					<select id="statusSelect">
 						<option class="filter" selected disabled>Filter Status</option>
-						<option class="filter" href="{{ get_statuses }}" value="all" data-filter="all" selected>All Statuses</option>
+						<option class="filter" href="{{ url_for('get_scholarships') }}" value="all" data-filter="all" selected>All Statuses</option>
                         {% for status in statuses %}
 						<option class="filter" href="{{ url_for("get_status", status=status.status) }}" value="{{ status.status }}">{{ status.status }}</option>
 						{% endfor %}
