@@ -109,7 +109,7 @@
                 <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id)}}" class="btn-floating btn-small waves-effect waves-light light-green darken-4 right" style="margin-right:10px;"><i class="material-icons">edit</i></a>
                 <div class="container">
                     <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
-                    <p class="left-align">Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
+                    <p class="left-align">Date to annouce winner: {{ scholarship.date_winner_announced}}</p>
                     <!-- APPLICATION STATUS -->
                     {% if scholarship.application_status == "Plan to Apply" %}
                     <span class="black badge">{{ scholarship.application_status }} by {{ scholarship.scholarship_deadline }}</span></br>

@@ -72,17 +72,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-                <div class="collapsible-body">
-                    <span>
-                    <div class="row">
+        </div>
+        <div class="collapsible-body">
+            <div class="container">
+                <div class="row">
                     <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                     <div class="input-field col s12 m6 l3">
                         <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
                         <label for="date_winner_announced">Date to annouce winner</label>
                     </div>
                 </div>
-                    <div class="row">
+                <div class="row">
                     <!-- APPLICATION STATUS -->
                     <div class="input-field col s12 m6 l3">
                         <select id="application_status" name="application_status" class="validate">
@@ -98,15 +98,18 @@
                         <label for="application_status">Application Status</label>
                     </div>
                 </div>
-                    <div class="row">
+                <div class="row">
                     <!-- SCHOLARSHIP NOTE -->
                     <span class="black badge">Notes</span>
                     <div class="input-field col s12 m6 l3">
                         <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate"></textarea>
                         <label for="note" hidden></label>
                     </div>
-                    </div>
-                    <hr><div class="row">
+                </div>
+
+                <hr>
+
+                <div class="row">
                     <!-- Date Applied -->
                     <div class="input-field col s12 m6 l3">
                         <input id="date_applied" name="date_applied" value="{{ scholarship.dates.date_applied  }}" type="date" class="validate">
@@ -117,8 +120,8 @@
                         <input id="date_awarded" name="date_awarded" value="{{ scholarship.dates.date_awarded  }}" type="date" class="validate">
                         <label for="date_awarded">Date Awarded</label>
                     </div>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- Date Rejected -->
                     <div class="input-field col s12 m6 l3">
                         <input id="date_rejected" name="date_rejected" value="{{ scholarship.dates.date_rejected  }}" type="date" class="validate">
@@ -129,9 +132,11 @@
                         <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
                         <label for="date_declined">Date Declined</label>
                     </div>
-                    </div>
-                    <hr>
-                    <div class="row">
+                </div>
+
+                <hr>
+
+                <div class="row">
                     <!-- RECOMMENDATION REQUIRED -->
                     <label class="input-field col s8 m4 black-text">
                     {% if scholarship.documents.recommendation_required == "yes" %}
@@ -143,8 +148,8 @@
                     <input class="input-field col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty" value={{ scholarship.documents.recomendation_count }}>
                     Recommendation(s) Required </span>
                     </label>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- TRANSCRIPT REQUIRED -->
                     <label class="input-field col s12 m6 l3 black-text">
                     {% if scholarship.documents.transcript_required == "yes" %}
@@ -156,8 +161,8 @@
                     <input class="input-field col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty" value={{ scholarship.documents.transcript_required }} >
                     Transcript Required </span>
                     </label>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- ESSAY REQUIRED -->
                     <label class="input-field col s12 m6 l3 black-text">
                     {% if scholarship.documents.essay_required == "yes" %}
@@ -169,8 +174,8 @@
                     <input class="input-field col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty" value={{ scholarship.documents.essay_count }}>
                     Essay(s) Required </span>
                     </label>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- FIRST OTHER DOCUMENT -->
                     <label for="document_name1" hidden>Document 1</label>
                     <input class=" col s12 m6 l3" id="document_name1" name="document_name1" type="text" value={{ scholarship.documents.other1.document_name }}>
@@ -182,8 +187,8 @@
                     {% endif %}
                     <span class="black-text">Required</span>
                     </label>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- SECOND OTHER DOCUMENT -->
                     <label for="document_name2"hidden>Document 2</label>
                     <input class=" col s12 m6 l3" id="document_name2" name="document_name2" type="text" value={{ scholarship.documents.other2.document_name }}>
@@ -195,8 +200,8 @@
                     {% endif %}
                     <span class="black-text">Required</span>
                     </label>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <!-- THIRD OTHER DOCUMENT -->
                     <label for="document_name3"hidden>Document 3</label>
                     <input class=" col s12 m6 l3" id="document_name3" name="document_name3" type="text" value={{ scholarship.documents.other3.document_name }}>
@@ -208,18 +213,18 @@
                     {% endif %}
                     <span class="black-text">Required</span>
                     </label>
-                    </div>
-                    </span>
                 </div>
-            </form>
+            </div>
         </div>
+            
 
-        <div class="card-action">
+        <div class="card-action"><center>
             <!-- UPDATE BUTTON -->
-            <button class="btn waves-effect amber darken-4" type="submit" name="edit_scholarship">Update
+            <button class="btn col s12 waves-effect amber darken-4" type="submit" name="edit_scholarship">Update
                 <i class="material-icons right">edit</i>
             </button>
-        </div>
+        </center></div>
+        </form>
     </li>
 </ul>
 {% endblock %}
