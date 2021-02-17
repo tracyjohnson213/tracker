@@ -19,7 +19,7 @@
                             <label for="scholarship_sponsor">Scholarship Sponsor</label>
                         </div>
                         <!-- CATEGORY -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <select id="category" name="category" class="validate" required>
                                 {% for category in categories %}
                                     {% if category.category == "College" %}
@@ -33,7 +33,7 @@
                         </div>
 
                         <!-- SCHOLARSHIP AMOUNT -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <input id="scholarship_amount" name="scholarship_amount" type="text" class="validate">
                             <label for="scholarship_amount">Award</label>
                         </div>
@@ -71,8 +71,31 @@
                             </textarea>
                             <label for="note"><span class="black badge">Notes</span></label>
                         </div>
-                    </div>
                     
+
+                    <div class="card-action">
+                        <!-- Date Applied -->
+                        <div class="input-field col s6">
+                            <input id="date_applied" name="date_applied" type="date" class="validate">
+                            <label for="date_applied">Date Applied</label>
+                        </div>
+                        <!-- Date Awarded -->
+                        <div class="input-field col s6">
+                            <input id="date_awarded" name="date_awarded" type="date" class="validate">
+                            <label for="date_awarded">Date Awarded</label>
+                        </div>
+                        <!-- Date Rejected -->
+                        <div class="input-field col s6">
+                            <input id="date_rejected" name="date_rejected" type="date" class="validate">
+                            <label for="date_rejected">Date Rejected</label>
+                        </div>
+                        <!-- Date Declined -->
+                        <div class="input-field col s6">
+                            <input id="date_declined" name="date_declined" type="date" class="validate">
+                            <label for="date_declined">Date Declined</label>
+                        </div>
+                    </div>
+                    </div>
                     <!-- DOCUMENTS REQUIRED -->
             <div class="card-action">
                 <span class="black badge">Documents Required</span>

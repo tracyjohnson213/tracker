@@ -209,10 +209,10 @@ def add_scholarship():
             "date_winner_announced": request.form.get("date_winner_announced"),
             "note": request.form.get("note"),
             "dates": {
-                "date_applied": "2000-01-01",
-                "date_awarded": "2000-01-01",
-                "date_rejected": "2000-01-01",
-                "date_declined": "2000-01-01"
+                "date_applied": request.form.get("date_applied"),
+                "date_awarded": request.form.get("date_awarded"),
+                "date_rejected": request.form.get("date_rejected"),
+                "date_declined": request.form.get("date_declined"),
             },
             "documents": {
                 "recommendation_required":
