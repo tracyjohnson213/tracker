@@ -317,7 +317,7 @@ def edit_scholarship(scholarship_id):
 # delete existing scholarship
 @app.route("/delete_scholarship/<scholarship_id>", methods=["GET"])
 def delete_scholarship(scholarship_id):
-    mongo.db.scholarships.remove({"_id": ObjectId(scholarship_id)})
+    mongo.db.scholarships.delete_one({"_id": ObjectId(scholarship_id)})
     flash("Scholarship Successfully Deleted")
     return redirect(url_for("get_scholarships",
                             username=session["user"]))
@@ -371,7 +371,7 @@ def delete_category(category_id):
     category = mongo.db.categories.find({"_id": ObjectId(category_id)})
     if request.method == "POST":
         category = mongo.db.categories.find({"_id": ObjectId(category_id)})
-        mongo.db.categories.remove({"_id": ObjectId(category_id)}, category)
+        mongo.db.categories.delete_one({"_id": ObjectId(category_id)}, category)
         flash("category Successfully Deleted")
         return redirect(url_for("get_categories",
                                 category=category))
@@ -422,7 +422,7 @@ def delete_status(status_id):
     status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
     if request.method == "POST":
         status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
-        mongo.db.statuses.remove({"_id": ObjectId(status_id)}, status)
+        mongo.db.statuses.delete_one({"_id": ObjectId(status_id)}, status)
         flash("Status Successfully Deleted")
         return redirect(url_for("get_statuses",
                                 status=status))
@@ -480,7 +480,7 @@ def delete_user(user_id):
     user = mongo.db.users.find({"_id": ObjectId(user_id)})
     if request.method == "POST":
         user = mongo.db.users.find({"_id": ObjectId(user_id)})
-        mongo.db.users.remove({"_id": ObjectId(user_id)}, user)
+        mongo.db.users.delete_one({"_id": ObjectId(user_id)}, user)
         flash("User Successfully Deleted")
         return redirect(url_for("get_users",
                                 user=user))
