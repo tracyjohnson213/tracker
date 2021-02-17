@@ -87,10 +87,10 @@ class TestAppCategories(unittest.TestCase):
         self.scholarship_coll.insert_one(scholarship)
         self.scholarship_coll.update_one(
             {"category": "Information"},
-            {'$set': {"category": "College"}})
+            {'$set': {"category": "Senior"}})
         scholarship_sponsor = self.scholarship_coll.find_one(
             {"category": "Information"})
-        self.assertEqual(category['category'],
+        self.assertEqual(scholarship_sponsor['category'],
                          "Information to Know")
 
     def test_update_scholarship2(self):
@@ -98,10 +98,10 @@ class TestAppCategories(unittest.TestCase):
         self.scholarship_coll.insert_one(scholarship)
         self.scholarship_coll.update_one(
             {"category": "Information"},
-            {'$set': {"category": "College"}})
+            {'$set': {"category": "Senior"}})
         scholarship_sponsor = self.scholarship_coll.find_one(
             {"category": "Information"})
-        self.assertNotEqual(category['category'],
+        self.assertNotEqual(scholarship_sponsor['category'],
                             "Information")
 
     # test delete

@@ -197,9 +197,11 @@ class TestAppScholarships(unittest.TestCase):
             }
 
         self.scholarship_coll.insert(scholarship)
-        self.scholarship_coll.remove({"scholarship_name": "Create-A-Greeting-Card Scholarship"})
+        self.scholarship_coll.remove(
+            {"scholarship_name": "Create-A-Greeting-Card Scholarship"})
         num_scholarships = self.scholarship_coll.find().count()
         self.assertEqual(num_scholarships, 3)
+
 
 if __name__ == '__main__':
     unittest.main()
