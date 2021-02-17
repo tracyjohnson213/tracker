@@ -19,20 +19,21 @@
                     <p>Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
                     <!-- SCHOLARSHIP NOTE -->
                     <p>Notes: {{ scholarship.note }}</p>
+                </div>
+                    
+                <div class="card-action">
                     <!-- SCHOLARSHIP URL -->
-                    <div class="card-action">
-                        <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
-                        <!-- CONFIRM BUTTON -->
-                        <button class="btn waves-effect waves-light" type="submit" name="confirm">Confirm Deletion
-                            <i class="material-icons right">published_with_changes</i>
-                        </button>
-                        <!-- CANCEL BUTTON -->
-                        <button class="btn waves-effect waves-light" name="cancel_delete">
-                            <a href="{{ url_for('view_scholarship', scholarship_id=scholarship._id) }}">
+                    <a href="https://{{ scholarship.scholarship_url }}" target="_blank">{{ scholarship.scholarship_url }}</a>
+                    <!-- CONFIRM BUTTON -->
+                    <button class="btn waves-effect waves-light" type="submit" name="confirm">Confirm Deletion
+                        <i class="material-icons right">published_with_changes</i>
+                    </button>
+                    <!-- CANCEL BUTTON -->
+                    <button class="btn waves-effect waves-light" name="cancel_delete">
+                        <a href="{{ url_for('view_scholarship', scholarship_id=scholarship._id) }}">
                             Cancel<i class="material-icons right">cancel_presentation</i>
-                            </a>
-                        </button>
-                    </div>
+                        </a>
+                    </button>
                 </div>
             </div>
         </div>

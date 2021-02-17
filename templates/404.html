@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<main>
-    <center>
+<div class="center">
     <h5 class="green-text">Page Not Found</h5>
-      <div class="section"></div>
-      <div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="section"></div>
+        <div class="container">
+            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-        <img class="responsive-img" style="width: 250px;" src="/static/images/404error.png" alt="404 Error" />
+            <img class="responsive-img" style="width: 250px;" src="/static/images/404error.png" alt="404 Error" />
 
+        </div>
+        <p>We can't find what you're looking for.</p>
+        <a class='brown-text' href="{{url_for('register')}}">Go back to homepage</a>
 </div>
-<p>We can't find what you're looking for.</p>
-<a class='brown-text' href="{{url_for('register')}}">Go back to homepage</a>
-</center>
-</main>
 
 {% endblock %}

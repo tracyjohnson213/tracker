@@ -1,73 +1,69 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <main>
-    <center>
-      <img class="responsive-img" style="width: 250px;" src="/static/images/scholarship.jpg" alt="banner"/>
-      <div class="section"></div>
+    <div class="center">
+        <img class="responsive-img" style="width: 250px;" src="/static/images/scholarship.jpg" alt="banner"/>
+        <div class="section"></div>
+        <h5 class="green-text">Register for a new account</h5>
+        <div class="section"></div>
+        <div class="container">
+            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-      <h5 class="green-text">Register for a new account</h5>
-      <div class="section"></div>
-
-      <div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-
-          <form class="col s12" action="{{ url_for('register') }}" method="POST">
-            <div class="row">
-              <div class='col s12'>
-              </div>
-            </div>
-
-            <div class='row'>
-                <!-- FIRST NAME -->
-                <div class='input-field col s6'>
-                    <input class='validate' type='text' name='first_name' id='first_name' required/>
-                    <label for='first_name'>First Name</label>
+            <form class="col s12" action="{{ url_for('register') }}" method="POST">
+                <div class="row">
+                    <!-- blank space -->
+                    <div class='col s12'>
+                    </div>
                 </div>
+                <div class='row'>
+                    <!-- FIRST NAME -->
+                    <div class='input-field col s6'>
+                        <input class='validate' type='text' name='first_name' id='first_name' required/>
+                        <label for='first_name'>First Name</label>
+                    </div>
                 </div>
-            <div class='row'>
-                <!-- LAST NAME -->
-                <div class='input-field col s6'>
-                    <input class='validate' type='text' name='last_name' id='last_name'/>
-                    <label for='last_name'>Last Name</label>
+                <div class='row'>
+                    <!-- LAST NAME -->
+                    <div class='input-field col s6'>
+                        <input class='validate' type='text' name='last_name' id='last_name'/>
+                        <label for='last_name'>Last Name</label>
+                    </div>
                 </div>
-            </div>
-            <div class='row'>
-            <!-- EMAIL -->
-              <div class='input-field col s12'>
-                <input class='validate' type='email' name='username' id='username' required/>
-                <label for='username'>Email</label>
-              </div>
-            </div>
+                <div class='row'>
+                    <!-- EMAIL -->
+                    <div class='input-field col s12'>
+                        <input class='validate' type='email' name='username' id='username' required/>
+                        <label for='username'>Email</label>
+                    </div>
+                </div>
+                <div class='row'>
+                    <!-- PASSWORD -->
+                    <div class='input-field col s12'>
+                        <input class='validate' type='password' name='password' id='password'  
+                        pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+                        <label for='password'>Password</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">UpperCase, LowerCase, Number/SpecialChar and min 8 Chars</span>
+                    </div>
+                </div>
+                <label style='float: right;'>
+                    <a class='orange-text' href='{{ url_for('login')}}'><b>Already have a login?</b></a>
+                    </label>
+                </div>
 
-            <div class='row'>
-            <!-- PASSWORD -->
-              <div class='input-field col s12'>
-                <input class='validate' type='password' name='password' id='password'  
-                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
-                <label for='password'>Password</label>
-                <span class="helper-text" data-error="wrong" data-success="right">UpperCase, LowerCase, Number/SpecialChar and min 8 Chars</span>
-              </div>
-            </div>
-            <label style='float: right;'>
-				    <a class='orange-text' href='{{ url_for('login')}}'><b>Already have a login?</b></a>
-			    </label>
-            </div>
-
-            <br />
-            <center>
-              <div class='row'>
-                <button type='submit' name='btn_register' class='col s12 btn btn-large waves-effect green darken-4'>Register</button>
-              </div>
-            </center>
-          </form>
-        
-      </div>
+                <br>
+                <div class="center">
+                    <div class='row'>
+                        <button type='submit' name='btn_register' class='col s12 btn btn-large waves-effect green darken-4'>Register</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
       
 
     <div class="section"></div>
     <div class="section"></div>
-  </main>
 {% endblock %}
 
 
