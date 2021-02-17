@@ -33,7 +33,7 @@ scholarship = {
     "application_status": "Information",
     "scholarship_status": "Active",
     "created_by": "alivia@example.com",
-    "create_date": datetime.datetime.now()
+    "create_date": datetime.now()
     }
 
 
@@ -63,45 +63,45 @@ class TestAppCategories(unittest.TestCase):
     # test CRUD operations
     # test create
     def test_insert_scholarship(self):
-        self.scholarship_coll.remove()
+        # self.scholarship_coll.delete_one()
         self.scholarship_coll.insert_one(scholarship)
         number_scholarships = self.scholarship_coll.find().count()
         self.assertEqual(number_scholarships, 1)
 
     # test read
     def test_read_scholarship(self):
-        self.scholarships_coll.remove()
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
+        # self.scholarship_coll.delete_one()
+        self.scholarship_coll.insert_many(datafilter)
+        number_scholarships = self.scholarship_coll.find().count()
         self.assertEqual(number_scholarships, 4)
 
     def test_read_scholarship2(self):
-        self.scholarships_coll.remove()
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
+        # self.scholarship_coll.delete_one()
+        self.scholarship_coll.insert_many(datafilter)
+        number_scholarships = self.scholarship_coll.find().count()
         self.assertNotEqual(number_scholarships, 0)
 
     # test update
     def test_update_scholarship(self):
-        self.scholarships_coll.remove()
+        # self.scholarship_coll.delete_one()
         self.scholarship_coll.insert_one(scholarship)
         self.scholarship_coll.update_one(
             {"category": "Information"},
-            {'$set': {"category": "College"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
+            {'$set': {"category": "Senior"}})
+        scholarship_sponsor = self.scholarship_coll.find_one(
             {"category": "Information"})
-        self.assertEqual(category['category'],
-                         "Collection of Memories")
+        self.assertEqual(scholarship_sponsor['category'],
+                         "Information to Know")
 
     def test_update_scholarship2(self):
-        self.scholarships_coll.remove()
+        # self.scholarship_coll.delete_one()
         self.scholarship_coll.insert_one(scholarship)
         self.scholarship_coll.update_one(
             {"category": "Information"},
-            {'$set': {"category": "College"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
+            {'$set': {"category": "Senior"}})
+        scholarship_sponsor = self.scholarship_coll.find_one(
             {"category": "Information"})
-        self.assertNotEqual(category['category'],
+        self.assertNotEqual(scholarship_sponsor['category'],
                             "Information")
 
     # test delete
@@ -111,8 +111,8 @@ class TestAppCategories(unittest.TestCase):
             {"category": "Second"},
             {"category": "Third"}
         ]
-        self.category_coll.insert(categories)
-        self.category_coll.remove({"category": "Second"})
+        self.category_coll.insert_many(categories)
+        self.category_coll.delete_one({"category": "Second"})
         num_categories = self.category_coll.find().count()
         self.assertEqual(num_categories, 2)
 
@@ -122,8 +122,8 @@ class TestAppCategories(unittest.TestCase):
             {"category": "Second"},
             {"category": "Third"}
         ]
-        self.category_coll.insert(categories)
-        self.category_coll.remove({"category": "Second"})
+        self.category_coll.insert_many(categories)
+        self.category_coll.delete_one({"category": "Second"})
         num_categories = self.category_coll.find().count()
         self.assertNotEqual(num_categories, 3)
 

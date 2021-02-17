@@ -1,6 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- SEARCH -->
+<center>
+    <div class='row'>
+        <form action="{{ url_for('search') }}" method="POST" class="col s12">
+            <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 m8">
+                <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                    <input type="text" name="query" id="query" minlength="3" class="validate" placeholder="Search..." required>
+                    <label for="query" hidden>Search Scholarships</label>
+                    <div class="col s12 m4">
+                    <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Reset</a>
+                    <button type="submit" class="light-green darken-1 btn text-shadow">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</center>
+
+<!-- FILTER AND SORT -->
+<center>
+    <div class="row">
+		<div class="col s12">
+			<!-- MATERIALIZE'S DROPDOWN SELECT FOR DESKTOP USERS -->
+            <!-- Categories -->
+			<div class="input-field col s12 m4 hide-on-med-and-down">
+				<div class="select-wrapper">
+					<i class="material-icons prefix">filter_list</i>
+					<select id="categorySelect">
+						<option class="filter" selected disabled>Filter Category</option>
+						<option class="filter" href="{{ get_categories }}" value="all" data-filter="all" selected>All Categories</option>
+                        {% for category in categories %}
+						<option class="filter" href="{{ url_for("get_category", category=category.category) }}" value="{{ category.category }}">{{ category.category }}</option>
+						{% endfor %}
+					</select>
+				</div>
+            </div>
+            <!-- Statuses -->
+            <div class="input-field col s12 m4 hide-on-med-and-down">
+                <div class="select-wrapper">
+					<i class="material-icons prefix">filter_list</i>
+					<select id="statusSelect">
+						<option class="filter" selected disabled>Filter Status</option>
+						<option class="filter" href="{{ get_statuses }}" value="all" data-filter="all" selected>All Statuses</option>
+                        {% for status in statuses %}
+						<option class="filter" href="{{ url_for("get_status", status=status.status) }}" value="{{ status.status }}">{{ status.status }}</option>
+						{% endfor %}
+					</select>
+				</div>
+            </div>
+	    </div>
+    </div>
+</center>
+
+<!-- ADD BUTTON -->
+<center>
+    <div class='row'>
+        <button type='submit' name='btn_register' class='col s12 btn btn-large waves-effect green darken-4'>Add Scholarship</button>
+    </div>
+</center>
+
 <ul class="collapsible">
     {% for scholarship in scholarships %}
     <li>
@@ -43,7 +105,8 @@
         </div>
         <div class="collapsible-body">
             <span>
-                <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id)}}" class="btn-floating btn-small waves-effect waves-light light-green darken-4 right"><i class="material-icons">edit</i></a>
+                <a href="#scholarship_delete_confirmation" class="btn-floating btn-small waves-effect waves-light modal-trigger red accent-1 right"><i class="material-icons">delete</i></a>
+                <a href="{{ url_for('edit_scholarship', scholarship_id=scholarship._id)}}" class="btn-floating btn-small waves-effect waves-light light-green darken-4 right" style="margin-right:10px;"><i class="material-icons">edit</i></a>
                 <div class="container">
                     <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
                     <p class="left-align">Date to annouce winner: {{ scholarship.date_winner_announced }}</p>
@@ -146,6 +209,17 @@
             </span>
         </div>
     </li>
+    <!-- Delete Scholarship Modal Structure -->
+    <div id="scholarship_delete_confirmation" class="modal orange lighten-5">
+        <div class="delete-modal-content center-align">
+            <h5>Delete {{ scholarship.scholarship_name }} </h5>
+            <p>Are you sure you want to proceed?</p>
+        </div>
+        <div class="delete-modal-footer center-align">
+            <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">No</a>
+            <a href="{{ url_for('delete_scholarship', scholarship_id=scholarship._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darken-1 btn text-shadow">Yes</a>
+        </div>
+    </div>
     {% else %}
     <li>
         <div class="collapsible-header">

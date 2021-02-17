@@ -14,6 +14,8 @@ User will be able to view page about website creation and contact site owner wit
 
 ## UI/UX
 
+Wireframe: [Wireframe](../static/docs/tracker.pdf)
+
 User Stories:
     * As a user, I want to register my email, in order to gain a login to access the application.
     * As a system, I want to store the user password encrypted, in order to provide security of user data.
@@ -123,6 +125,8 @@ Favicon - https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-
 Login form for materialize - https://codepen.io/T-P/pen/bpWqrr
 https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
 https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
+http:www.patricksoftwareblog.com/unit-testing-a-flask-application/
+
 
 ## Media
 

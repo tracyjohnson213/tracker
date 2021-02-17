@@ -139,16 +139,16 @@ class TestAppScholarships(unittest.TestCase):
         self.scholarship_coll.insert_one(scholarship)
         number_scholarships = self.scholarship_coll.find().count()
         self.assertEqual(number_scholarships, 1)
-"""
+
     # test read
     def test_read_scholarship(self):
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
-        self.assertEqual(number_scholarships, 4)
+        self.scholarship_coll.insert_many(datafilter)
+        number_scholarships = self.scholarship_coll.find().count()
+        self.assertEqual(number_scholarships, 5)
 
     def test_read_scholarship2(self):
-        self.scholarships_coll.insert(datafilter)
-        number_scholarships = self.scholarships_coll.find().count()
+        self.scholarship_coll.insert_many(datafilter)
+        number_scholarships = self.scholarship_coll.find().count()
         self.assertNotEqual(number_scholarships, 0)
 
     # test update
@@ -157,7 +157,7 @@ class TestAppScholarships(unittest.TestCase):
         self.scholarship_coll.update_one(
             {"scholarship_sponsor": "The Gallery Collection"},
             {'$set': {"scholarship_sponsor": "Collection of Memories"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
+        scholarship_sponsor = self.scholarship_coll.find_one(
             {"scholarship_sponsor": "Collection of Memories"})
         self.assertEqual(scholarship_sponsor['scholarship_sponsor'],
                          "Collection of Memories")
@@ -167,13 +167,41 @@ class TestAppScholarships(unittest.TestCase):
         self.scholarship_coll.update_one(
             {"scholarship_sponsor": "The Gallery Collection"},
             {'$set': {"scholarship_sponsor": "Collection of Memories"}})
-        scholarship_sponsor = self.scholarships_coll.find_one(
+        scholarship_sponsor = self.scholarship_coll.find_one(
             {"scholarship_sponsor": "Collection of Memories"})
         self.assertNotEqual(scholarship_sponsor['scholarship_sponsor'],
                             "The Gallery Collection")
 
     # test delete
-"""
+    def test_remove_scholarship(self):
+        scholarship = {
+            "scholarship_name": "Create-A-Greeting-Card Scholarship",
+            "scholarship_sponsor": "The Gallery Collection",
+            "category": "College",
+            "scholarship_amount": "10,000",
+            "scholarship_url":
+                "https://www.gallerycollection.com/greeting-cards-scholarship.htm",
+            "scholarship_deadline": "2021-03-09",
+            "date_winner_announced": "2021-05-17",
+            "note": "Submit original photo, artwork or computer graphics for the front of a greeting card.",
+            "dates": {
+                "date_applied": "2000-01-01",
+                "date_awarded": "2000-01-01",
+                "date_rejected": "2000-01-01",
+                "date_declined": "2000-01-01"
+                },
+            "application_status": "Information",
+            "scholarship_status": "Active",
+            "created_by": "alivia@example.com",
+            "create_date": datetime.now()
+            }
+
+        self.scholarship_coll.insert(scholarship)
+        self.scholarship_coll.remove(
+            {"scholarship_name": "Create-A-Greeting-Card Scholarship"})
+        num_scholarships = self.scholarship_coll.find().count()
+        self.assertEqual(num_scholarships, 3)
+
 
 if __name__ == '__main__':
     unittest.main()

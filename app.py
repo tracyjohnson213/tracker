@@ -339,6 +339,7 @@ def delete_scholarship(scholarship_id):
 
 
 # view admin panel to manage items in database
+"""
 @app.route("/get_adminpanel", methods=["GET"])
 def get_adminpanel():
     return render_template("admin.html")
@@ -444,6 +445,7 @@ def delete_status(status_id):
     statuses = list(mongo.db.statuses.find().sort("status", 1))
     return render_template("delete_status.html",
                            statuses=statuses)
+"""
 
 
 # view existing users via admin panel
