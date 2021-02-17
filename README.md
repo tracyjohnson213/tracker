@@ -1,4 +1,5 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+
+<img  src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png"  style="margin: 0;">
 
 # Scholarship Tracker
 
@@ -14,124 +15,373 @@ User will be able to view page about website creation and contact site owner wit
 
 ## UI/UX
 
-Wireframe: [Wireframe](../static/docs/tracker.pdf)
+Wireframes created with Figma: [Wireframe](../static/docs/tracker.pdf)
 
 User Stories:
-    * As a user, I want to register my email, in order to gain a login to access the application.
-    * As a system, I want to store the user password encrypted, in order to provide security of user data.
-    * :thumbsdown: As a user, I want to log into the application, in order to add scholarships for tracking.
-    * As a user, I want to view all scholarships previously added for tracking, in order to compare deadlines.
-    * :thumbsdown: As a system, I want to display only the scholarships that have been stored by a specific user, in order to not provide incorrect data.
-    * As a user, I want to view all scholarships previously added for tracking, in order to compare status.
-    * As a user, I want to edit a scholarship, in order to update the related information.
-    * As a user, I want to remove a scholarships, in order to longer view it as a tracked scholarship. 
-    * As a user, I want to link to the url of a scholarship or sponsor, in order to gain information not recorded in the application.
 
-Nice to haves
-    * As a user, I want to view information about the application or site owner, in order to build a rapport with the site owner.
-    * As a user, I want to contact the site owner within the application, in order to share information.
-- user dashboard
-    * total scholarship count
-    * applied for vs total count
-    * accepted scholarship vs applied for
-    * deadline within 30, 60, or 90 displays
-- deadline in red when past due
-- awarded in red when past due
-- scholarship status to record if plan to apply, applied, awarded, or award denied
-- scholarship documents required
-- email notification of deadlines
+* As a user, I want to register my email, in order to gain a login to access the application.
+
+* As a system, I want to store the user password encrypted, in order to provide security of user data.
+
+* As a user, I want to log into the application, in order to add scholarships for tracking.
+
+* As a user, I want to view all scholarships previously added for tracking, in order to compare deadlines and other details.
+
+* As a system, I want to display only the scholarships that have been stored by a specific user, in order to not provide incorrect data.
+
+* As a user, I want to add scholarships for tracking, in order to compare details.
+
+* As a user, I want to edit a scholarship, in order to update the related details.
+
+* As a user, I want to remove a scholarships, in order to longer view it as a tracked scholarship.
+
+* As a user, I want to link to the url of a scholarship or sponsor, in order to gain information not recorded in the application.
+
+* As a user, I want to filter scholarships by set category.
+
+* As a user, I want to filter scholarships by set status.
+
+* As a user, I want to search scholarships by name.
+
+* As a user, I want to easily distinguish when deadlines are past.
+
+* As a user, I want to easily distinguish when deadlines are near.
+
+* As a user, I want to see a list of documents required for a scholarship.
+
+* As a user, I want to see a list of dates associated to a scholarship.
+
 
 ## Features
 
-View Scholarships:
-Scholarships with deadline in past show with red colored tag.
-Scholarships with deadline within 30 days show with yellow colored tag.
-Add/Edit Scholarships:
-Associated documents for scholarship can be listed with quantity.
-Custom named documents for scholarship can be save as Required or Optional.
-Input field displayed when Other selected as Category and Status during Add Scholarship and Edit Scholarship.
-Category and Status list updated with submit of input to Other field.
-Category and Status can be removed from Add and Edit forms.
+1. Register new user.
 
+1. Authenticate and login existing user.
+
+1. Add scholarship with details.
+
+1. View scholarship with details.
+
+1. Edit scholarship details.
+
+1. Delete scholarship.
+
+1. Search scholarship by name.
+
+1. Filter scholarship list by category.
+
+1. Filter scholarship list by status.
+
+1. Logout
+
+1. Scholarships with deadline in past show with red colored tag.
+
+1. Scholarships with deadline within 30 days show with yellow colored tag.
+
+1. Associate quantity with document for scholarship.
+
+1. Associate custom named document with scholarship as Required or Optional.
+
+### Features left to implement
+
+* As a user, I want to view information about the application or site owner, in order to build a rapport with the site owner.
+
+* As a user, I want to contact the site owner within the application, in order to share information.
+
+* As a user, I want to view a user dashboard with a total scholarship count
+
+* As a user, I want to view a user dashboard to view applied for vs total scholarship count
+
+* As a user, I want to view a user dashboard to view accepted vs applied for scholarships
+
+* As a user, I want to receive email notification of deadlines
+
+* As a user, I want to limit the number of scholarships I view
+
+* As a user, I want to use pagination to see sets of scholarships
+
+* As a user, I want to delete my account
+
+* As an admin, I want to use a panel to add, edit, and remove categories
+
+* As an admin, I want to use a panel to add, edit, and remove statuses
 
 ## Technologies Used
 
+
+HTML5 - The project uses HTML5, a markup language used for structuring and presenting content on the World Wide Web.
+
+CSS3 - The project uses Cascading Style Sheets(CSS), a style sheet language used for describing the presentation of a document written in a markup language like HTML.
+
+JavaScript - The project uses JavaScript, a programming language that conforms to the ECMAScript specification.
+
+Python - The project uses Python, an interpreted, high-level, general-purpose programming language.
+
+Flask - The project uses Flask, which depends on the Jinja template engine and the Werkzeug WSGI toolkit.
+
+MongoDB - The project uses MongoDB, is a popular database for modern apps, and MongoDB Atlas, the global cloud database on AWS, Azure, and GCP. My database consist of collections for scholarships, categories, statues, and users.
+
+Gitpod - Gitpod is a development environment for any GitLab, GitHub, and Bitbucket project.
+
+Github - Github is a repository hosting service.
+
+Heroku - Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+StackEdit - README.md was generated within StackEdit, a full-featured, open-source Markdown editor based on PageDown, the Markdown library used by Stack Overflow and the other Stack Exchange sites.
+
+
+Unittest - unit testing framework was originally inspired by JUnit and has a similar flavor as major unit testing frameworks in other languages. It supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.
+
+
+Figma - free, online UI tool for design and prototypes.
+
+# Libraries:
+
+jQuery - JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
+
+Materialize CSS - modern responsive CSS framework based on Material Design by Google
+
+# Resources:
+
 https://www.html5pattern.com/Passwords
-https://materializecss.com/
+
+# Validation
+
+- https://validator.w3.org/ to validate the HTML code.
+
+- https://jigsaw.w3.org/css-validator/ to validate the CSS code.
+
+- https://jshint.com/ to check the JavaScript code.
+
+- gitpod used to check Python code for PEP.
 
 ## Testing
 
-1. Home page
-    * Verify display of marketing text
-    * Verify display of Register form
-    * Verify display of Login button
-1. Registration page
-    * Try to submit registration without first name and verify display of error message about required field.
-    * Try to submit registration without last name and verify display of error message about required field.
-    * Try to submit registration without email and verify display of error message about required field.
-    * Try to submit registration without password and verify display of error message about required field.
-    * Try to submit registration with no data and verify display of error message about required fields.
-    * Try to submit registration with invalid email and verify display of error message about valid format.
-    * Try to submit registration with invalid password and verify display of error message about valid format.
-    * Try to submit registration with valid set of data and verify display message about sucessful registration.
-1. Login page
-    * Try to login with email that does not exist in database and verify display of error message.
-    * Try to login without email and verify display of error message about required field.
-    * Try to login without password and verify display of error message about required field.
-1. User - Logout page
-    * Verify display of logout confirmation
-1. Scholarship List page
-    * Verify scholarship name is displayed
-    * Verify scholarship sponsor is displayed
-    * Verify scholarship award amount is displayed
-    * Verify scholarship deadline is displayed
-    * Verify scholarship website address is displayed
-    * Verify scholarship website links to new page with results of listed url
-    * Verify scholarship name links to page with more details
-1. Scholarship Details page
-    * Verify scholarship name is displayed
-    * Verify scholarship sponsor is displayed
-    * Verify scholarship award amount is displayed
-    * Verify scholarship deadline is displayed
-    * Verify scholarship website address is displayed
-    * Verify date to announce winner of scholarship is displayed
-    * Verify inputted notes for scholarship are displayed
-    * Verify scholarship website links to new page with results of listed url
-    * Verify edit button is displayed
-    * Verify edit button links to new page displaying input fields with data
-    * Verify delete button is displayed
-1. Add Scholarship page
-    * Try to add scholarship without name and verify error is displayed
-    * Try to add scholarship with only name
-1. edit
-1. delete
-    * Try to delete scholarship and cancel confirmation of deletion to verify scholarship remains in list of all scholarships
-    * Try to delete scholarship and confirm deletion to verify scholarship no longer displays in list of all scholarships
+Home page
 
-1. Look and Feel in browsers
-1. Bugs
-    * (Login Page) Try to login with valid email and password combination and verify display of /scholarships.
-    * (Scholarship Details page) Verify delete button leads to new page requesting confirmation before deleting
-    * Verify Login button is not displayed after login
-    * Verify Logout button is not displayed before login
-    * Verify navigation link to view all is not displayed after logout
-    * Verify all scholarships are displayed after delete of one
+- [ ] Verify display of marketing text.
+
+- [ ] Verify display of Register form.
+
+- [ ] Verify display of Login button.
+
+- [ ] Verify display of logo.
+
+Registration form
+
+- [ ] Try to submit registration without first name and verify display of error message about required field.
+
+- [ ] Try to submit registration without last name and verify display of error message about required field.
+
+- [ ] Try to submit registration without email and verify display of error message about required field.
+
+- [ ] Try to submit registration without password and verify display of error message about required field.
+
+- [ ] Try to submit registration with no data and verify display of error message about required fields.
+
+- [ ] Try to submit registration with invalid email and verify display of error message about valid format.
+
+- [ ] Try to submit registration with invalid password and verify display of error message about valid format.
+
+- [ ] Try to submit registration with valid set of data and verify display message about sucessful registration and login page.
+
+Login page
+
+- [ ] Try to login with email that does not exist in database and verify display of error message.
+
+- [ ] Try to login without email and verify display of error message about required field.
+
+- [ ] Try to login without password and verify display of error message about required field.
+
+- [ ] Try to login with valid credientials to view empty scholarship list.
+
+Scholarship List page
+
+- [ ] Verify scholarship name is displayed.
+
+- [ ] Verify scholarship sponsor is displayed.
+
+- [ ] Verify scholarship award amount is displayed.
+
+- [ ] Verify scholarship deadline is displayed.
+
+- [ ] Verify scholarship website address is displayed.
+
+- [ ] Verify scholarship website links to new page with results of listed url.
+
+- [ ] Verify click scholarship name expands pane with scholarship details.
+
+- [ ] Verify deadlines that are past due display in red.
+
+- [ ] Verify deadlines within 30 display in yellow.
+
+Scholarship Details pane
+
+- [ ] Verify scholarship name is displayed.
+
+- [ ] Verify scholarship sponsor is displayed.
+
+- [ ] Verify scholarship award amount is displayed.
+
+- [ ] Verify scholarship deadline is displayed.
+ 
+- [ ] Verify scholarship website address is displayed.
+
+- [ ] Verify date to announce winner of scholarship is displayed.
+
+- [ ] Verify inputted notes for scholarship are displayed.
+
+- [ ] Verify scholarship website links to new page with results of listed url.
+
+- [ ] Verify edit button is displayed.
+
+- [ ] Verify edit button links to new page displaying input fields with data.
+
+- [ ] Verify delete button is displayed.
+
+- [ ] Verify display of Add Scholarship button.
+
+Filter by category
+
+- [ ] Verify update of results when category is selected.
+
+- [ ] Verify update of results when reset is clicked.
+
+Filter by status
+
+- [ ] Verify update of results when category is selected.
+
+- [ ] Verify update of results when reset is clicked.
+
+Search by scholarship name
+
+- [ ] Try to click search without input of name to verify display of message.
+
+- [ ] Verify update of results when name is inputted before search is clicked.
+
+- [ ] Verify update of results when reset is clicked.
+
+- [ ] Verify no records found when name is inputted that is not in list of scholarships.
+
+Add Scholarship form
+
+- [ ] Try to add scholarship without name and verify error is displayed.
+
+- [ ] Try to add scholarship with only name.
+
+
+- [ ] Try to add scholarship(s) with various field values and verify update to details.
+
+Edit Scholarship form
+
+- [ ] Update each field and click update to verify value updated in details.
+
+Delete Scholarship
+
+
+- [ ] Try to delete scholarship and cancel confirmation of deletion to verify scholarship remains in list of all scholarships
+
+- [ ] Try to delete scholarship and confirm deletion to verify scholarship no longer displays in list of all scholarships
+
+Logo
+
+- [ ] Verify display of logo and link back to view of all scholarships.
+
+User - Logout page
+
+- [ ] Verify display of logout confirmation
+
+Error handling
+
+- [ ] Edit a scholarship and try to update the url by removing one or more characters and refresh the page to verify 500 error page.
+
+- [ ] View all scholarships and try to update the url by removing one or more characters and refresh the page to verify the 4040 error page.
+
+1. Test for responsive design in desktop, tablet, and mobile views.
+
+Unittests
+
+The tests are saved in the folder tests. In order to run the tests I typed the following on the terminal:
+ 
+```
+python3 -m unittest -v tests/*
+```
+
+Results:
+Ran 23 tests in 1.933s
+FAILED (errors=6)
+
+## Bugs
+
+
+* (Login page) Need to remove Forgot Password link or make work.
+
+* (Scholarship List page) Need to update Welcome message to show user's first name.
+
+* (Scholarship List page) Dates should display in m-d-Y format.
+
+* (Add Scholarship) Date applied should be limited to after deadline.
+
+* (Add Scholarship) Date awarded should be limited to after winner announced.
+
+* (Add Scholarship) When document with quantity field selected value should update to 1.
+
+* (Add Scholarship) Input of note should start at left.
+
+* (Edit Scholarship) Display award amount from scholarship details.
+
+* (Edit Scholarship) Display note from scholarship details.
+
+* (Edit Scholarship) When document with quantity field selected value should update to 1.
+
+* (Filter by status) Results should update when status is selected from dropdown.
 
 ## Deployment
 
+
+1. I created a Github repository and opened the repository in Gitpod IDE.
+
+1. I installed Flask, Flask-pymongo and dnspython.
+
+1. I created an env.py file that contains my environment variables.
+
+1. I created a new app in Heroku.
+
+1. I created requirements.txt and Procfile that Heroku requires to run the app.
+
+1. I pushed both files to GitHub.
+
+1. On the Deploy tab in Heroku I enabled automatic deploys to the master branch.
+
 ## Credits
 
+ 
 Favicon - https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-cap-152-190967.html
+
 Login form for materialize - https://codepen.io/T-P/pen/bpWqrr
+
 https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
+
 https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
+
 http:www.patricksoftwareblog.com/unit-testing-a-flask-application/
 
 
 ## Media
 
-- content used 
+
+- content used
 Scholarship list - https://docs.google.com/document/d/1hpL9JWL9nTBt9VoTfrIMW1Ie5sO5LvZmkWs8oDuHlBk/edit
 
 ## Acknowledgements
 
+
+Thanks to my Mentor Guido Cecilio Garcia Bernal for offering guidance, constructive crticism, and patience on my long process. I have gained confidence from my projects with CodeInstite and hope to grow with the experience.
+
+Thank you also to my daughter who is a high school senior. She inspired this project by looking for a better way to track her college scholarships. She currently has improved a collection on Google Sheets and has shared it with her high school class.
+
+
+## Disclaimer
+
+
+The page has been created for educational purpose only, not for commercial use.
