@@ -51,7 +51,7 @@
                         </div>
                         <!-- APPLICATION STATUS -->
                         <div class="input-field col s12 m6 l3">
-                            <select onchange="statusOtherCheck(this);" id="application_status" name="application_status" class="validate">
+                            <select id="application_status" name="application_status" class="validate">
                                 <option value="" disabled>Choose Status</option>
                                 {% for status in statuses %}
                                 {% if status.status == scholarship.application_status %}
@@ -80,22 +80,6 @@
                     <div class="input-field col s12 m6 l3">
                         <input id="date_winner_announced" name="date_winner_announced" value="{{ scholarship.date_winner_announced }}" type="date" class="validate">
                         <label for="date_winner_announced">Date to annouce winner</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- APPLICATION STATUS -->
-                    <div class="input-field col s12 m6 l3">
-                        <select id="application_status" name="application_status" class="validate">
-                        <option value="" disabled>Choose Status</option>
-                        {% for status in statuses %}
-                        {% if status.status == scholarship.application_status %}
-                        <option value="{{ status.status }}" selected>{{ status.status }}</option>
-                        {% else %}
-                        <option value="{{ status.status }}">{{ status.status }}</option>
-                        {% endif %}
-                        {% endfor %}
-                        </select>
-                        <label for="application_status">Application Status</label>
                     </div>
                 </div>
                 <div class="row">
@@ -218,13 +202,20 @@
         </div>
             
 
-        <div class="card-action"><center>
-            <!-- UPDATE BUTTON -->
-            <button class="btn col s12 waves-effect amber darken-4" type="submit" name="edit_scholarship">Update
-                <i class="material-icons right">edit</i>
-            </button>
-        </center></div>
-        </form>
+        <div class="card-action">
+        <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 m8">
+                    <div class="col s12 m4">
+                        <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Cancel</a>
+                        <button type="submit" class="light-green darken-1 btn text-shadow">
+                            <i class="material-icons right"></i>Update
+                        </button>
+                </div>
+            </div>
+            </form>
+
+        </div>
+        
     </li>
 </ul>
 {% endblock %}

@@ -300,7 +300,7 @@ def edit_scholarship(scholarship_id):
             "updated_by": session["user"],
             "last_updated": datetime.now()
         }
-        mongo.db.scholarships.update_one(
+        mongo.db.scholarships.update(
             {"_id": ObjectId(scholarship_id)}, scholarship)
         flash("Scholarship Successfully Updated")
         return redirect(url_for("get_scholarships",
@@ -358,7 +358,7 @@ def edit_category(category_id):
         category = {
             "category": request.form.get("category")
         }
-        mongo.db.categories.update_one(
+        mongo.db.categories.update(
             {"_id": ObjectId(category_id)}, category)
         flash("Category Successfully Updated")
     return redirect(url_for("get_categories",
@@ -409,7 +409,7 @@ def edit_status(status_id):
         status = {
             "status": request.form.get("status")
         }
-        mongo.db.statuses.update_one(
+        mongo.db.statuses.update(
             {"_id": ObjectId(status_id)}, status)
         flash("Status Successfully Updated")
     return redirect(url_for("get_statuses",
@@ -467,7 +467,7 @@ def edit_user(user_id):
             "username": request.form.get("username").lower(),
             "create_date": datetime.now()
         }
-        mongo.db.users.update_one(
+        mongo.db.users.update(
             {"_id": ObjectId(user_id)}, user)
         flash("User Successfully Updated")
     return redirect(url_for("get_users",
