@@ -165,17 +165,20 @@ def get_status(status):
 # search scholarship by text
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    scholarships = list(mongo.db.scholarships.find(
-        {"scholarship_status": "Active",
-         "$text": {"$search": query}
-         }))
-    today = datetime.now()
-    endate = datetime.now() + timedelta(30)
-    return render_template("scholarships.html",
-                           scholarships=scholarships,
-                           today=today,
-                           endate=endate)
+    if session["user"]:
+        user = mongo.db.users.find_one_or_404({"username": session["user"]})
+        query = request.form.get("query")
+        scholarships = list(mongo.db.scholarships.find(
+            {"created_by": user['username'],
+             "scholarship_status": "Active",
+             "$text": {"$search": query}
+             }))
+        today = datetime.now()
+        endate = datetime.now() + timedelta(30)
+        return render_template("scholarships.html",
+                               scholarships=scholarships,
+                               today=today,
+                               endate=endate)
 
 
 # view selected scholarship details
