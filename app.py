@@ -199,18 +199,10 @@ def view_scholarship(scholarship_id):
 @app.route("/add_scholarship", methods=["GET", "POST"])
 def add_scholarship():
     if request.method == "POST":
-        if request.form.get("category") == "other":
-            newcategory = request.form.get("categoryOther")
-        else:
-            newcategory = request.form.get("category")
-        if request.form.get("application_status") == "other":
-            newstatus = request.form.get("statusOther")
-        else:
-            newstatus = "Information"
         scholarship = {
             "scholarship_name": request.form.get("scholarship_name"),
             "scholarship_sponsor": request.form.get("scholarship_sponsor"),
-            "category": newcategory,
+            "category": request.form.get("category"),
             "scholarship_amount": request.form.get("scholarship_amount"),
             "scholarship_url": request.form.get("scholarship_url"),
             "scholarship_deadline": request.form.get("scholarship_deadline"),
@@ -243,19 +235,12 @@ def add_scholarship():
                     "required": request.form.get("document_required3")
                 }
             },
-            "application_status": newstatus,
+            "application_status": "Information",
             "scholarship_status": "Active",
             "created_by": session["user"],
             "create_date": datetime.now()
         }
         mongo.db.scholarships.insert_one(scholarship)
-        # https://stackoverflow.com/questions/42629206/how-to-check-if-object-is-not-in-array-in-mongodb
-        mongo.db.categories.update(
-            {"categories.category": {"$nin": newcategory}},
-            {"$push": {"categories": {"category": newcategory}}})
-        mongo.db.statuses.update(
-            {"statuses.status": {"$nin": newstatus}},
-            {"$push": {"statuses": {"status": newstatus}}})
         flash("Scholarship Successfully Added")
         return redirect(url_for("get_scholarships",
                                 username=session["user"]))
@@ -315,7 +300,7 @@ def edit_scholarship(scholarship_id):
             "updated_by": session["user"],
             "last_updated": datetime.now()
         }
-        mongo.db.scholarships.update(
+        mongo.db.scholarships.update_one(
             {"_id": ObjectId(scholarship_id)}, scholarship)
         flash("Scholarship Successfully Updated")
         return redirect(url_for("get_scholarships",
@@ -373,7 +358,7 @@ def edit_category(category_id):
         category = {
             "category": request.form.get("category")
         }
-        mongo.db.categories.update(
+        mongo.db.categories.update_one(
             {"_id": ObjectId(category_id)}, category)
         flash("Category Successfully Updated")
     return redirect(url_for("get_categories",
@@ -424,7 +409,7 @@ def edit_status(status_id):
         status = {
             "status": request.form.get("status")
         }
-        mongo.db.statuses.update(
+        mongo.db.statuses.update_one(
             {"_id": ObjectId(status_id)}, status)
         flash("Status Successfully Updated")
     return redirect(url_for("get_statuses",
@@ -482,7 +467,7 @@ def edit_user(user_id):
             "username": request.form.get("username").lower(),
             "create_date": datetime.now()
         }
-        mongo.db.users.update(
+        mongo.db.users.update_one(
             {"_id": ObjectId(user_id)}, user)
         flash("User Successfully Updated")
     return redirect(url_for("get_users",
