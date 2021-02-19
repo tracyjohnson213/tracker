@@ -25,7 +25,7 @@
                 <div class="row">
                     <!-- SCHOLARSHIP AMOUNT -->
                     <div class="input-field col s12 m6 l3">
-                        <textarea id="scholarship_amount" name="scholarship_amount" value="{{ scholarship.scholarship_amount }}" type="text" rows="6" class="validate"></textarea>
+                        <textarea id="scholarship_amount" name="scholarship_amount" value="{{ scholarship.scholarship_amount }}" rows="6" class="validate"></textarea>
                         <label for="scholarship_amount">Award</label>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     <!-- SCHOLARSHIP NOTE -->
                     <span class="black badge">Notes</span>
                     <div class="input-field col s12 m6 l3">
-                        <textarea id="note" name="note" value="{{ scholarship.note }}" type="text" rows="6" class="validate"></textarea>
+                        <textarea id="note" name="note" class="validate">{{ scholarship.note }}</textarea>
                         <label for="note" hidden></label>
                     </div>
                 </div>

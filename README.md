@@ -112,6 +112,10 @@ User Stories:
 
 * As an admin, I want to reset a user's password
 
+* (Add Scholarship) Date applied should be limited to after deadline.
+
+* (Add Scholarship) Date awarded should be limited to after winner announced.
+
 ## Technologies Used
 
 
@@ -383,6 +387,7 @@ FAILED (errors=6)
 
 ## Bugs
 
+* (Mobile Navbar) Navbar not displayed on mobile device.
 
 * (Scholarship List page) Dates should display in m-d-Y format.
 
@@ -390,23 +395,21 @@ FAILED (errors=6)
 
 * (Scholarship List page) Filter Statuses should reset list displayed.
 
-* (Add Scholarship) Date applied should be limited to after deadline.
-
-* (Add Scholarship) Date awarded should be limited to after winner announced.
-
 * (Add Scholarship) When document with quantity field selected value should update to 1.
 
 * (Add Scholarship) Input of note should start at left.
 
 * (Edit Scholarship) Display award amount from scholarship details.
 
-* (Edit Scholarship) Display note from scholarship details.
-
 * (Edit Scholarship) When document with quantity field selected value should update to 1.
+
+* (Delete Scholarship) Wrong scholarship name displayed in modal.
 
 * (Filter by status) Results should update when status is selected from dropdown.
 
 * (Admin - Add user) System should assign default password to user and notify them by email.
+
+* (Admin - Add user) Wrong user name displayed in modal.
 
 ## Deployment
 
