@@ -361,7 +361,9 @@ Admin Panel
 
 - [ ] Verify no user is not able to delete Primary Admin user (harry.potter@example.com, 1Student!)
 
-1. Test for responsive design in desktop, tablet, and mobile views.
+Responsive Design
+
+- [ ] Test for responsive design in desktop, tablet, and mobile views.
 
 Unittests
 
@@ -415,6 +417,17 @@ FAILED (errors=6)
 
 1. I created an env.py file that contains my environment variables.
 
+    ```
+    import os
+
+    os.environ.setdefault("IP", "0.0.0.0")
+    os.environ.setdefault("PORT", "5000")
+    os.environ.setdefault("SECRET_KEY", "")
+    os.environ.setdefault("MONGO_URI", "")
+    os.environ.setdefault("MONGO_DBNAME", "tracker")
+    os.environ.setdefault("TEST_MONGODB_URI", "")
+    ```
+
 1. I created a new app in Heroku.
 
 1. I created requirements.txt and Procfile that Heroku requires to run the app.
@@ -426,22 +439,21 @@ FAILED (errors=6)
 ## Credits
 
  
-Favicon - https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-cap-152-190967.html
+[Favicon](https://www.freefavicon.com/freefavicons/business/iconinfo/graduation-cap-152-190967.html)
 
-Login form for materialize - https://codepen.io/T-P/pen/bpWqrr
+[Login form for materialize](https://codepen.io/T-P/pen/bpWqrr)
 
-https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
+[Flask Authentication](https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login)
 
-https://stackoverflow.com/questions/29321494/show-input-field-only-if-a-specific-option-is-selected
 
-http:www.patricksoftwareblog.com/unit-testing-a-flask-application/
+[Flask Unittest Tutorial](http:www.patricksoftwareblog.com/unit-testing-a-flask-application/)
 
 
 ## Media
 
 
 - content used
-Scholarship list - https://docs.google.com/document/d/1hpL9JWL9nTBt9VoTfrIMW1Ie5sO5LvZmkWs8oDuHlBk/edit
+[Scholarship list](https://docs.google.com/document/d/1hpL9JWL9nTBt9VoTfrIMW1Ie5sO5LvZmkWs8oDuHlBk/edit)
 
 ## Acknowledgements
 
