@@ -399,8 +399,6 @@ FAILED (errors=6)
 
 * (Add Scholarship) Input of note should start at left.
 
-* (Edit Scholarship) Display award amount from scholarship details.
-
 * (Edit Scholarship) When document with quantity field selected value should update to 1.
 
 * (Delete Scholarship) Wrong scholarship name displayed in modal.
