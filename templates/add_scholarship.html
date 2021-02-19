@@ -1,167 +1,176 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="center">
-    <div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 8px 0px 8px; border: 1px solid #EEE;">
-            <form class="row" method="POST" action="{{ url_for('add_scholarship') }}">
-                <div class="col s6 m4">
-                    <div class="card light-green darken-4">
-                        <div class="card-content white-text">
-                            <!-- SCHOLARSHIP NAME -->
-                            <div class="input-field col s12 m6">
-                                <input id="scholarship_name" name="scholarship_name" type="text" class="validate" required>
-                                <label for="scholarship_name">Scholarship Name</label>
-                            </div>
-                            <!-- SCHOLARSHIP SPONSOR -->
-                            <div class="input-field col s12 m6">
-                                <input id="scholarship_sponsor" name="scholarship_sponsor" type="text" class="validate">
-                                <label for="scholarship_sponsor">Scholarship Sponsor</label>
-                            </div>
-                            <!-- CATEGORY -->
-                            <div class="input-field col s6">
-                                <select id="category" name="category" class="validate" required>
-                                    {% for category in categories %}
-                                        {% if category.category == "College" %}
-                                            <option value="{{ category.category }}" selected>{{ category.category }}</option>
-                                        {% else %}
-                                            <option value="{{ category.category }}">{{ category.category }}</option>
-                                        {% endif %}   
-                                    {% endfor %}
-                                </select>
-                                <label for="category">Category</label>
-                            </div>
-                            <!-- SCHOLARSHIP AMOUNT -->
-                            <div class="input-field col s6">
-                                <input id="scholarship_amount" name="scholarship_amount" type="text" class="validate">
-                                <label for="scholarship_amount">Award</label>
-                            </div>
-                            <!-- SCHOLARSHIP URL -->
-                            <div class="input-field col s12 m6">
-                                <input id="scholarship_url" name="scholarship_url" type="text" class="validate">
-                                <label for="scholarship_url">Website</label>
-                            </div>
-                            <!-- SCHOLARSHIP DEADLINE -->
-                            <div class="input-field col s12 m6">
-                                <input id="scholarship_deadline" name="scholarship_deadline" type="date" class="validate">
-                                <label for="scholarship_deadline">Deadline</label>
-                            </div>
-                            <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
-                            <div class="input-field col s6">
-                                <input id="date_winner_announced" name="date_winner_announced" type="date" class="validate">
-                                <label for="date_winner_announced">Date to annouce winner</label>
-                            </div>
-                            <!-- APPLICATION STATUS -->
-                            <div class="input-field col s6">
-                                <select id="application_status" name="application_status" class="validate">
-                                    {% for status in statuses %}
-                                        {% if status.status == "Information" %}
-                                            <option value="{{ status.status }}" selected>{{ status.status }}</option>
-                                        {% else %}
-                                            <option value="{{ status.status }}">{{ status.status }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                                <label for="application_status">Application Status</label>
-                            </div>
-                            <!-- SCHOLARSHIP NOTE -->
-                            <div class="input-field col s12">
-                                <textarea id="note" name="note" rows="6" class="validate left-align">
-                                </textarea>
-                                <label for="note"><span class="black badge">Notes</span></label>
-                            </div>
-                        </div>
+<ul class="collapsible">
+    <li class="active">
+        <div class="collapsible-header grey lighten-4" style="display: block;">
+            <i class="material-icons">school</i>
 
-                        <div class="card-action">
-                            <!-- Date Applied -->
-                            <div class="input-field col s6">
-                                <input id="date_applied" name="date_applied" type="date" class="validate">
-                                <label for="date_applied">Date Applied</label>
-                            </div>
-                            <!-- Date Awarded -->
-                            <div class="input-field col s6">
-                                <input id="date_awarded" name="date_awarded" type="date" class="validate">
-                                <label for="date_awarded">Date Awarded</label>
-                            </div>
-                            <!-- Date Rejected -->
-                            <div class="input-field col s6">
-                                <input id="date_rejected" name="date_rejected" type="date" class="validate">
-                                <label for="date_rejected">Date Rejected</label>
-                            </div>
-                            <!-- Date Declined -->
-                            <div class="input-field col s6">
-                                <input id="date_declined" name="date_declined" type="date" class="validate">
-                                <label for="date_declined">Date Declined</label>
-                            </div>
-                        </div>
+            <form method="POST" action="{{ url_for('add_scholarship') }}">
 
-                        <!-- DOCUMENTS REQUIRED -->
-                        <div class="card-action">
-                            <span class="black badge">Documents Required</span>
-
-                            <!-- RECOMMENDATION REQUIRED -->
-                            <label class="input-field col s12 m8">
-                                <input type="checkbox" value="yes" class="filled-in" id="recommendation_required" name="recommendation_required" />
-                                <span><input class="col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty">
-                                    Recommendation(s) Required</span>
-                            </label>
-
-                            <!-- TRANSCRIPT REQUIRED -->
-                            <label class="input-field col s12 m8">
-                                <input type="checkbox" value="yes" class="filled-in" id="transcript_required" name="transcript_required" />
-                                <span><input class="col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty">
-                                Transcript Required </span>
-                            </label>
-                            <!-- ESSAY REQUIRED -->
-                            <label class="input-field col s12 m8">
-                                <input type="checkbox" value="yes" class="filled-in" id="essay_required" name="essay_required" />
-                                <span>
-                                <input class="col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty">
-                                Essay(s) Required </span>
-                            </label>
-
-                            <!-- FIRST OTHER DOCUMENT -->
-                            <label for="document_name1" hidden>Document 1</label>
-                                <input class="col s6" id="document_name1" name="document_name1" type="text" placeholder="Document Name">
-                                <label for="document_required1" class="input-field col s6">
-                                    <input type="checkbox" id="document_required1" name="document_required1" value="yes" class="filled-in"/>
-                                    <span>Required</span>
-                            </label>
-                            <!-- SECOND OTHER DOCUMENT -->
-                            <label for="document_name2" hidden>Document 2</label>
-                                <input class="col s6" id="document_name2" name="document_name2" type="text" placeholder="Document Name">
-                                <label for="document_required2" class="input-field col s6">
-                                    <input type="checkbox" id="document_required2" name="document_required2" value="yes" class="filled-in"/>
-                                    <span>Required</span>
-                            </label>
-                            <!-- THIRD OTHER DOCUMENT -->
-                            <label for="document_name3" hidden>Document 3</label>
-                                <input class="col s6" id="document_name3" name="document_name3" type="text" placeholder="Document Name">
-                                <label for="document_required3" class="input-field col s6">
-                                    <input type="checkbox" id="document_required3" name="document_required3" value="yes" class="filled-in"/>
-                                    <span>Required</span>
-                            </label>
-                        </div>
-
-                        <div class="card-action">
-                        <!-- ADD BUTTON -->
-                            <div class="row valign-wrapper center-align">
-                                <div class="input-field col s12 m8">
-                                    <div class="col s12 m4">
-                                        <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Cancel</a>
-                                        <button type="submit" class="light-green darken-1 btn text-shadow">
-                                            <i class="material-icons right"></i>Add
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                
-                        
+            <div class="container">
+                <div class="row">
+                    <!-- SCHOLARSHIP NAME -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="scholarship_name" name="scholarship_name" type="text" class="validate">
+                        <label for="scholarship_name">Scholarship Name</label>
                     </div>
                 </div>
+                    <!-- SCHOLARSHIP SPONSOR -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="scholarship_sponsor" name="scholarship_sponsor" type="text" class="validate">
+                        <label for="scholarship_sponsor">Scholarship Sponsor</label>
+                    </div>
+                    <!-- SCHOLARSHIP AMOUNT -->
+                    <div class="input-field col s12 m6 l3">
+                        <textarea placeholder="Award" id="scholarship_amount" name="scholarship_amount" rows="6" class="validate"></textarea>
+                        <label for="scholarship_amount">Award</label>
+                    </div>
+                    <!-- SCHOLARSHIP DEADLINE -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="scholarship_deadline" name="scholarship_deadline" type="date" class="validate">
+                        <label for="scholarship_deadline">Deadline</label>
+                    </div>
+                    <!-- CATEGORY -->
+                    <div class="input-field col s12 m6 l3">
+                        <select id="category" name="category" class="validate">
+                            <option value="" disabled>Choose Category</option>
+                            {% for category in categories %}
+                            <option value="{{ category.category }}">{{ category.category }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="category">Category</label>
+                    </div>
+                    <!-- APPLICATION STATUS -->
+                    <div class="input-field col s12 m6 l3">
+                        <select id="application_status" name="application_status" class="validate">
+                            <option value="" disabled>Choose Status</option>
+                            {% for status in statuses %}
+                            <option value="{{ status.status }}">{{ status.status }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="application_status">Application Status</label>
+                    </div>
+                    <!-- SCHOLARSHIP URL -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="scholarship_url" name="scholarship_url" type="text" class="validate">
+                        <label for="scholarship_url">Website</label>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible-body">
+            <div class="container">
+                <div class="row">
+                    <!-- SCHOLARSHIP WINNER DATE TO BE ANNOUNCED -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="date_winner_announced" name="date_winner_announced" type="date" class="validate">
+                        <label for="date_winner_announced">Date to annouce winner</label>
+                    </div>
+                </div>
+                    <!-- SCHOLARSHIP NOTE -->
+                    <div class="input-field col s12 m6 l3">
+                        <textarea placeholder="Note" id="note" name="note" class="validate" rows="6" ></textarea>
+                        <label for="note">Note</label>
+                    </div>
+
+                <hr>
+
+                    <!-- Date Applied -->
+                    <div class="input-field col s12 m6 l3">
+                        <input id="date_applied" name="date_applied" type="date" class="validate">
+                        <label for="date_applied">Date Applied</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                    <!-- Date Awarded -->
+                        <input id="date_awarded" name="date_awarded" type="date" class="validate">
+                        <label for="date_awarded">Date Awarded</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                    <!-- Date Rejected -->
+                        <input id="date_rejected" name="date_rejected" type="date" class="validate">
+                        <label for="date_rejected">Date Rejected</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                    <!-- Date Declined -->
+                        <input id="date_declined" name="date_declined" type="date" class="validate">
+                        <label for="date_declined">Date Declined</label>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <!-- RECOMMENDATION REQUIRED -->
+                    <label class="input-field col s12 m6 black-text">
+                        <input type="checkbox" value="no" class="filled-in checkbox-light-green" id="recommendation_required" name="recommendation_required"/>
+                        <span>
+                        <input class="input-field col s2" id="recomendation_count" name="recomendation_count" type="number" placeholder="Qty">
+                        Recommendation(s) Required </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <!-- TRANSCRIPT REQUIRED -->
+                    <label class="input-field col s12 m6 l3 black-text">
+                        <input type="checkbox" value="no" class="filled-in checkbox-light-green" id="transcript_required" name="transcript_required"/>
+                        <span>
+                        <input class="input-field col s2" id="transcript_count" name="transcript_count" type="number" placeholder="Qty" >
+                        Transcript Required </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <!-- ESSAY REQUIRED -->
+                    <label class="input-field col s12 m6 l3 black-text">
+                        <input type="checkbox" class="filled-in checkbox-light-green" id="essay_required" name="essay_required" value="no" />
+                        <span>
+                        <input class="input-field col s2" id="essay_count" name="essay_count" type="number" placeholder="Qty">
+                        Essay(s) Required </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <!-- FIRST OTHER DOCUMENT -->
+                    <label for="document_name1" hidden>Document 1</label>
+                        <input class=" col s12 m6 l3" id="document_name1" name="document_name1" type="text">
+                        <label for="document_required1" class="input-field col s12 m6 l3">
+                        <input type="checkbox" id="document_required1" name="document_required1" class="filled-in checkbox-light-green" />
+                        <span class="black-text">Required</span>
+                    </label>
+                </div>
+                <div class="row">
+                    <!-- SECOND OTHER DOCUMENT -->
+                    <label for="document_name2"hidden>Document 2</label>
+                        <input class=" col s12 m6 l3" id="document_name2" name="document_name2" type="text" >
+                        <label for="document_required2" class="input-field col s12 m6 l3">
+                        <input type="checkbox" id="document_required2" name="document_required2" class="filled-in checkbox-light-green" />
+                        <span class="black-text">Required</span>
+                    </label>
+                </div>
+                <div class="row">
+                    <!-- THIRD OTHER DOCUMENT -->
+                    <label for="document_name3"hidden>Document 3</label>
+                        <input class=" col s12 m6 l3" id="document_name3" name="document_name3" type="text">
+                        <label for="document_required3" class="input-field col s12 m6 l3">
+                        <input type="checkbox" id="document_required3" name="document_required3" class="filled-in checkbox-light-green" />
+                        <span class="black-text">Required</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-action">
+            <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 m8">
+                    <div class="col s12 m4">
+                        <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Cancel</a>
+                        <button type="submit" class="light-green darken-1 btn text-shadow">
+                            <i class="material-icons right"></i>Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             </form>
         </div>
-    </div>
-</div>
+
+    </li>
+</ul>
 {% endblock %}
