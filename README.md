@@ -82,6 +82,8 @@ User Stories:
 
 1. Associate custom named document with scholarship as Required or Optional.
 
+1. Admin panel to add, edit, and remove users
+
 ### Features left to implement
 
 * As a user, I want to view information about the application or site owner, in order to build a rapport with the site owner.
@@ -106,6 +108,8 @@ User Stories:
 
 * As an admin, I want to use a panel to add, edit, and remove statuses
 
+* As an admin, I want to reset a user's password
+
 ## Technologies Used
 
 
@@ -129,11 +133,55 @@ Heroku - Heroku is a platform as a service (PaaS) that enables developers to bui
 
 StackEdit - README.md was generated within StackEdit, a full-featured, open-source Markdown editor based on PageDown, the Markdown library used by Stack Overflow and the other Stack Exchange sites.
 
-
 Unittest - unit testing framework was originally inspired by JUnit and has a similar flavor as major unit testing frameworks in other languages. It supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.
 
-
 Figma - free, online UI tool for design and prototypes.
+
+# Database collections
+
+scholarships = {
+    "_id": "",
+    "scholarship_name": "Create-A-Greeting-Card Scholarship",
+    "scholarship_sponsor": "The Gallery Collection",
+    "category": "College",
+    "scholarship_amount": "10,000",
+    "scholarship_url":
+        "https://www.gallerycollection.com/greeting-cards-scholarship.htm",
+    "scholarship_deadline": "2021-03-09",
+    "date_winner_announced": "2021-05-17",
+    "note": "Submit original photo, artwork or computer graphics for the front of a greeting card.",
+    "dates": {
+        "date_applied": "2000-01-01",
+        "date_awarded": "2000-01-01",
+        "date_rejected": "2000-01-01",
+        "date_declined": "2000-01-01"
+        },
+    "application_status": "Information",
+    "scholarship_status": "Active",
+    "created_by": "alivia@example.com",
+    "create_date": datetime.now()
+}
+
+categories = {
+    "_id": "",
+    "category": "Information to Know"
+}
+
+statuses = {
+    "_id": "",
+    "status": "Plan to Apply"
+}
+
+users = {
+    "_id": "",
+    "first_name": "",
+    "last_name": "",
+    "username": "",
+    "password": "",
+    "role": "",
+    "create_date": "",
+    "last_login": ""
+}
 
 # Libraries:
 
@@ -297,6 +345,22 @@ Error handling
 
 - [ ] View all scholarships and try to update the url by removing one or more characters and refresh the page to verify the 4040 error page.
 
+Admin Panel
+
+- [ ] Try to add user without email to verify error displayed
+
+- [ ] Try to add user without first name to verify error displayed
+
+- [ ] Try to add user without last name to verify error displayed
+
+- [ ] Try to add user with all inputs and Admin role to verify user added to full list with Admin role
+
+- [ ] Try to add user with all inputs and Student role to verify user added to full list with Student role
+
+- [ ] Verify logged in user is not able to delete self
+
+- [ ] Verify no user is not able to delete Primary Admin user (harry.potter@example.com, 1Student!)
+
 1. Test for responsive design in desktop, tablet, and mobile views.
 
 Unittests
@@ -339,6 +403,8 @@ FAILED (errors=6)
 * (Edit Scholarship) When document with quantity field selected value should update to 1.
 
 * (Filter by status) Results should update when status is selected from dropdown.
+
+* (Admin - Add user) System should assign default password to user and notify them by email.
 
 ## Deployment
 
