@@ -104,6 +104,8 @@ User Stories:
 
 * As a user, I want to delete my account
 
+* As a user, I want to recover my password
+
 * As an admin, I want to use a panel to add, edit, and remove categories
 
 * As an admin, I want to use a panel to add, edit, and remove statuses
@@ -245,6 +247,8 @@ Login page
 
 Scholarship List page
 
+- [ ] Verify welcome message to user displayed with first name
+
 - [ ] Verify scholarship name is displayed.
 
 - [ ] Verify scholarship sponsor is displayed.
@@ -379,10 +383,6 @@ FAILED (errors=6)
 
 ## Bugs
 
-
-* (Login page) Need to remove Forgot Password link or make work.
-
-* (Scholarship List page) Need to update Welcome message to show user's first name.
 
 * (Scholarship List page) Dates should display in m-d-Y format.
 

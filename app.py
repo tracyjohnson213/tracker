@@ -64,7 +64,8 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 session["role"] = existing_user["role"]
-                flash("Welcome, {}".format(request.form.get("username")))
+                flash("Welcome, {}".format(existing_user["first_name"]
+                                           .title()))
                 return redirect(url_for("get_scholarships",
                                 username=session["user"],
                                 role=session["role"]))
