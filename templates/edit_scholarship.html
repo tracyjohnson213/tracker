@@ -2,7 +2,7 @@
 {% block content %}
 <ul class="collapsible">
     <li class="active">
-        <div class="collapsible-header grey lighten-4">
+        <div class="collapsible-header grey lighten-4" style="display: block;">
             <i class="material-icons">school</i>
 
             <form method="POST" action="{{ url_for('edit_scholarship', scholarship_id=scholarship._id) }}">
@@ -15,28 +15,21 @@
                         <label for="scholarship_name">Scholarship Name</label>
                     </div>
                 </div>
-                <div class="row">
                     <!-- SCHOLARSHIP SPONSOR -->
                     <div class="input-field col s12 m6 l3">
                         <input id="scholarship_sponsor" name="scholarship_sponsor" value="{{ scholarship.scholarship_sponsor }}" type="text" class="validate">
                         <label for="scholarship_sponsor">Scholarship Sponsor</label>
                     </div>
-                </div>
-                <div class="row">
                     <!-- SCHOLARSHIP AMOUNT -->
                     <div class="input-field col s12 m6 l3">
                         <textarea id="scholarship_amount" name="scholarship_amount" rows="6" class="validate">{{ scholarship.scholarship_amount }}</textarea>
                         <label for="scholarship_amount">Award</label>
                     </div>
-                </div>
-                <div class="row">
                     <!-- SCHOLARSHIP DEADLINE -->
                     <div class="input-field col s12 m6 l3">
                         <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline }}" type="date" class="validate">
                         <label for="scholarship_deadline">Deadline</label>
                     </div>
-                </div>
-                <div class="row">
                     <!-- CATEGORY -->
                     <div class="input-field col s12 m6 l3">
                         <select id="category" name="category" class="validate">
@@ -65,13 +58,11 @@
                         </select>
                         <label for="application_status">Application Status</label>
                     </div>
-                </div>
-                <div class="row">
                     <!-- SCHOLARSHIP URL -->
                     <div class="input-field col s12 m6 l3">
                         <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
                         <label for="scholarship_url">Website</label>
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -85,47 +76,40 @@
                         <label for="date_winner_announced">Date to annouce winner</label>
                     </div>
                 </div>
-                <div class="row">
                     <!-- SCHOLARSHIP NOTE -->
-                    <span class="black badge">Notes</span>
                     <div class="input-field col s12 m6 l3">
                         <textarea id="note" name="note" class="validate">{{ scholarship.note }}</textarea>
-                        <label for="note" hidden></label>
+                        <label for="note">Note</label>
                     </div>
-                </div>
 
                 <hr>
 
-                <div class="row">
                     <!-- Date Applied -->
                     <div class="input-field col s12 m6 l3">
                         <input id="date_applied" name="date_applied" value="{{ scholarship.dates.date_applied  }}" type="date" class="validate">
                         <label for="date_applied">Date Applied</label>
                     </div>
-                    <!-- Date Awarded -->
                     <div class="input-field col s12 m6 l3">
+                    <!-- Date Awarded -->
                         <input id="date_awarded" name="date_awarded" value="{{ scholarship.dates.date_awarded  }}" type="date" class="validate">
                         <label for="date_awarded">Date Awarded</label>
                     </div>
-                </div>
-                <div class="row">
-                    <!-- Date Rejected -->
                     <div class="input-field col s12 m6 l3">
+                    <!-- Date Rejected -->
                         <input id="date_rejected" name="date_rejected" value="{{ scholarship.dates.date_rejected  }}" type="date" class="validate">
                         <label for="date_rejected">Date Rejected</label>
                     </div>
-                    <!-- Date Declined -->
                     <div class="input-field col s12 m6 l3">
+                    <!-- Date Declined -->
                         <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
                         <label for="date_declined">Date Declined</label>
-                    </div>
                 </div>
 
                 <hr>
 
                 <div class="row">
                     <!-- RECOMMENDATION REQUIRED -->
-                    <label class="input-field col s8 m4 black-text">
+                    <label class="input-field col s12 m6 black-text">
                         {% if scholarship.documents.recommendation_required == "yes" %}
                         <input type="checkbox" value="yes" class="filled-in checkbox-light-green" id="recommendation_required" name="recommendation_required" checked/>
                         {% else %}

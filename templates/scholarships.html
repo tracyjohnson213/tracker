@@ -30,15 +30,15 @@
 					</select>
 				</div>
             </div>
-	    </div>
+	    
         <!-- SEARCH -->
-        <form action="{{ url_for('search') }}" method="POST" class="col s12">
+        <form action="{{ url_for('search') }}" method="POST">
             <div class="row valign-wrapper center-align">
                 <div class="input-field col s12 m6">
                 <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
                     <input type="text" name="query" id="query" minlength="3" class="validate" placeholder="Search..." required>
                     <label for="query" hidden>Search Scholarships</label>
-                    <div class="col s12">
+                    <div>
                         <a href="{{ url_for('get_scholarships') }}" class="red accent-1 btn text-shadow">Reset</a>
                         <button type="submit" class="light-green darken-1 btn text-shadow">
                             <i class="fas fa-search left"></i> Search
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
 </div>
 
@@ -69,8 +70,7 @@
                 <p class="black-text">Sponsor: {{ scholarship.scholarship_sponsor }}</p>
                 <!-- AMOUNT -->
                 <p class="black-text">Amount: ${{ scholarship.scholarship_amount }}</p>
-            </div>
-            <div class="container">
+
                 <!-- DEADLINE -->
                 {% if scholarship.scholarship_deadline < today.isoformat() %}
                 <div class="chip red accent-1">
@@ -122,24 +122,20 @@
                     <p class="left-align">Notes: {{ scholarship.note }}</p>
                 </div>
                 <hr>
-                <div class="container"><div class="row">
+                <div class="container">
                     <div class="col s12 m6 l3">
                     <!-- Date Applied -->
                     <p class="black-text">Date Applied: {{ scholarship.dates.date_applied }}</p>
-                    </div>
-                    <div class="col s12 m6 l3">
+
                     <!-- Date Awarded -->
                     <p class="black-text">Date Awarded: {{ scholarship.dates.date_awarded }}</p>
-                    </div>
-                    <div class="col s12 m6 l3">
+
                     <!-- Date Rejected -->
                     <p class="black-text">Date Rejected: {{ scholarship.dates.date_rejected }}</p>
-                    </div>
-                    <div class="col s12 m6 l3">
+
                     <!-- Date Declined -->
                     <p class="black-text">Date Declined: {{ scholarship.dates.date_declined }}</p>
-                    </div>
-                </div></div>
+                </div>
                 <hr>
                 <div class="container">
                     {% if scholarship.documents.recommendation_required == "yes" %}
