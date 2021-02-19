@@ -43,6 +43,7 @@ def register():
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
+        session["role"] = "Student"
         flash("Registration Successful!")
         return redirect(url_for("login"))
 
@@ -62,9 +63,11 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
+                session["role"] = existing_user["role"]
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for("get_scholarships",
-                                username=session["user"]))
+                                username=session["user"],
+                                role=session["role"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -326,116 +329,6 @@ def delete_scholarship(scholarship_id):
                             username=session["user"]))
 
 
-# view admin panel to manage items in database
-"""
-@app.route("/get_adminpanel", methods=["GET"])
-def get_adminpanel():
-    return render_template("admin.html")
-
-
-# view existing categories via admin panel
-@app.route("/get_categories", methods=["GET", "POST"])
-def get_categories():
-    categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("categories.html", categories=categories)
-
-
-# add new category via admin panel
-@app.route("/add_category", methods=["GET", "POST"])
-def add_category():
-    if request.method == "POST":
-        category = {
-            "category": request.form.get("category")
-        }
-        mongo.db.categories.insert_one(category)
-        flash("Category Successfully Added")
-        return redirect(url_for("get_categories"))
-    categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("add_category.html", categories=categories)
-
-
-# edit existing category via admin panel
-@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
-def edit_category(category_id):
-    if request.method == "POST":
-        category = {
-            "category": request.form.get("category")
-        }
-        mongo.db.categories.update(
-            {"_id": ObjectId(category_id)}, category)
-        flash("Category Successfully Updated")
-    return redirect(url_for("get_categories",
-                            category=category))
-
-
-# delete existing category via admin panel
-@app.route("/delete_category/<category_id>", methods=["GET", "POST"])
-def delete_category(category_id):
-    category = mongo.db.categories.find({"_id": ObjectId(category_id)})
-    if request.method == "POST":
-        category = mongo.db.categories.find({"_id": ObjectId(category_id)})
-        mongo.db.categories.delete_one({"_id": ObjectId(category_id)}, category)
-        flash("category Successfully Deleted")
-        return redirect(url_for("get_categories",
-                                category=category))
-    flash("Are you sure you want to delete this category?")
-    categories = list(mongo.db.categories.find().sort("category", 1))
-    return render_template("delete_category.html",
-                           categories=categories)
-
-
-# view existing statuses via admin panel
-@app.route("/get_statuses", methods=["GET", "POST"])
-def get_statuses():
-    statuses = list(mongo.db.statuses.find().sort("status", 1))
-    return render_template("statuses.html", statuses=statuses)
-
-
-# add new status via admin panel
-@app.route("/add_status", methods=["GET", "POST"])
-def add_status():
-    if request.method == "POST":
-        status = {
-            "status": request.form.get("status")
-        }
-        mongo.db.statuses.insert_one(status)
-        flash("Status Successfully Added")
-        return redirect(url_for("get_statuses"))
-    statuses = list(mongo.db.statuses.find().sort("status", 1))
-    return render_template("add_status.html", statuses=statuses)
-
-
-# edit existing status via admin panel
-@app.route("/edit_status/<status_id>", methods=["GET", "POST"])
-def edit_status(status_id):
-    if request.method == "POST":
-        status = {
-            "status": request.form.get("status")
-        }
-        mongo.db.statuses.update(
-            {"_id": ObjectId(status_id)}, status)
-        flash("Status Successfully Updated")
-    return redirect(url_for("get_statuses",
-                            status=status))
-
-
-# delete existing status via admin panel
-@app.route("/delete_status/<status_id>", methods=["GET", "POST"])
-def delete_status(status_id):
-    status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
-    if request.method == "POST":
-        status = mongo.db.statuses.find({"_id": ObjectId(status_id)})
-        mongo.db.statuses.delete_one({"_id": ObjectId(status_id)}, status)
-        flash("Status Successfully Deleted")
-        return redirect(url_for("get_statuses",
-                                status=status))
-    flash("Are you sure you want to delete this status?")
-    statuses = list(mongo.db.statuses.find().sort("status", 1))
-    return render_template("delete_status.html",
-                           statuses=statuses)
-"""
-
-
 # view existing users via admin panel
 @app.route("/get_users", methods=["GET", "POST"])
 def get_users():
@@ -446,52 +339,59 @@ def get_users():
 # add new user via admin panel
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
+    # check if username already exists in db
+    existing_user = mongo.db.users.find_one(
+        {"username": request.form.get("username").lower()})
+    if existing_user:
+        flash("This email already exists.")
+        flash("Please login or try a different email.")
+        return redirect(url_for("get_users"))
+
+    if request.form.get("role") == "no":
+        role = "Student"
+    else:
+        role = "Admin"
+
     if request.method == "POST":
         user = {
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "username": request.form.get("username").lower(),
+            "role": role,
             "create_date": datetime.now()
         }
         mongo.db.users.insert_one(user)
-        flash("user Successfully Added")
+        flash("User Successfully Added")
         return redirect(url_for("get_users"))
-    users = list(mongo.db.users.find().sort("username", 1))
-    return render_template("add_user.html", users=users)
 
 
 # edit existing user via admin panel
 @app.route("/edit_user/<user_id>", methods=["GET", "POST"])
 def edit_user(user_id):
+    if request.form.get("role") == "no":
+        role = "Student"
+    else:
+        role = "Admin"
     if request.method == "POST":
         user = {
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "username": request.form.get("username").lower(),
+            "role": role,
             "create_date": datetime.now()
         }
         mongo.db.users.update(
             {"_id": ObjectId(user_id)}, user)
         flash("User Successfully Updated")
-    return redirect(url_for("get_users",
-                            user=user))
+    return redirect(url_for("get_users"))
 
 
 # delete existing user via admin panel
 @app.route("/delete_user/<user_id>", methods=["GET", "POST"])
 def delete_user(user_id):
-    user = mongo.db.users.find({"_id": ObjectId(user_id)})
-    if request.method == "POST":
-        user = mongo.db.users.find({"_id": ObjectId(user_id)})
-        mongo.db.users.delete_one({"_id": ObjectId(user_id)}, user)
-        flash("User Successfully Deleted")
-        return redirect(url_for("get_users",
-                                user=user))
-    flash("Are you sure you want to delete this user?")
-    users = list(mongo.db.users.find().sort("user", 1))
-    return render_template("delete_user.html",
-                           user=user,
-                           users=users)
+    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("User Successfully Deleted")
+    return redirect(url_for("get_users"))
 
 
 # error handling

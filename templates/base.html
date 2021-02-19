@@ -22,10 +22,18 @@
 		<nav>
 			<div class="nav-wrapper green accent-4"> <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"> <i class="material-icons">menu</i> </a>
-				<ul class="right hide-on-med-and-down"> {% if "/register" == request.path or "/" == request.path%}
-					<li> <a class="nav-link" href="{{ url_for('login')}}">Login</a> </li> {% elif "/login" == request.path %}
-					<li> <a class="nav-link" href="{{ url_for('register')}}">Register</a> </li> {% else %}
-					<li> <a class="nav-link" href="{{ url_for('logout')}}">Logout</a> </li> {% endif %} </ul>
+				<ul class="right hide-on-med-and-down"> 
+                    {% if "/register" == request.path or "/" == request.path%}
+					<li> <a class="nav-link" href="{{ url_for('login')}}">Login</a> </li> 
+                    {% elif "/login" == request.path %}
+					<li> <a class="nav-link" href="{{ url_for('register')}}">Register</a> </li> 
+                    {% elif session["role"] == "Admin" or session["role"] == "Primary Admin" %}
+                    <li> <a class="nav-link" href="{{ url_for('get_users')}}">Admin</a> </li>
+                    <li> <a class="nav-link" href="{{ url_for('logout')}}">Logout</a> </li>
+                    {% else %}
+                    <li> <a class="nav-link" href="{{ url_for('logout')}}">Logout</a> </li>
+                    {% endif %} 
+                    </ul>
 			</div>
 		</nav>
 		<!--<ul class="sidenav" id="mobile-demo">
