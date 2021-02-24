@@ -10,12 +10,12 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Compiled and minified CSS -->
-    <link rel = "stylesheet" 
-         href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.green-light_green.min.css">
+    <link rel="stylesheet" 
+         href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.green-light_green.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
-    <link rel = "stylesheet" 
-         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" 
+         href="https://fonts.googleapis.com/icon?family=Material+Icons">
    
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"> {% block styles %} {% endblock %}
 	<title>Scholarship Tracker</title>
@@ -23,39 +23,39 @@
 
 <body>
         <!-- Always shows a header, even in smaller screens. -->
-        <div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <header class = "mdl-layout__header">
-                <div class = "mdl-layout__header-row">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
                 <!-- Title -->
                 <span class="mdl-layout-title"> <a href="{{ url_for('get_scholarships')}}" >Tracker</a></span>
                 <!-- Add spacer, to align navigation to the right -->
-                <div class = "mdl-layout-spacer"></div>
+                <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
-                <nav class = "mdl-navigation green accent-4" style="width: auto;%">
+                <nav class="mdl-navigation green accent-4" style="width: auto;%">
 
                         {% if "/register" == request.path or "/" == request.path%}
-                        <a class="mdl-navigation__link" href="{{ url_for('login')}}" style = "color:black">Login</a> 
+                        <a class="mdl-navigation__link" href="{{ url_for('login')}}" style="color:black">Login</a> 
                         {% elif "/login" == request.path %}
-                        <a class="mdl-navigation__link" href="{{ url_for('register')}}" style = "color:black">Register</a>  
+                        <a class="mdl-navigation__link" href="{{ url_for('register')}}" style="color:black">Register</a>  
                         {% elif session["role"] == "Admin" or session["role"] == "Primary Admin" %}
-                        <a class="mdl-navigation__link" href="{{ url_for('get_users')}}" style = "color:black">Admin</a> 
-                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}" style = "color:black">Logout</a> 
+                        <a class="mdl-navigation__link" href="{{ url_for('get_users')}}" style="color:black">Admin</a> 
+                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}" style="color:black">Logout</a> 
                         {% else %}
-                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}" style = "color:black">Logout</a> 
+                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}" style="color:black">Logout</a> 
                         {% endif %}
 
                 </nav>
                 </div>
             </header>
             
-            <div class = "mdl-layout__drawer">
+            <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title green accent-4"> <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a></span>
-                <nav class = "mdl-navigation">
+                <nav class="mdl-navigation">
                 {% if "/register" == request.path or "/" == request.path%}
                         <a class="mdl-navigation__link" href="{{ url_for('login')}}">Login</a> 
                         {% elif "/login" == request.path %}
                         <a class="mdl-navigation__link" href="{{ url_for('register')}}">Register</a>  
-                        {% elif session["role"] == "Admin" or session["role"] == "Primary Admin" %}
+                        {% elif "Admin" in session["role"] %}
                         <a class="mdl-navigation__link" href="{{ url_for('get_users')}}">Admin</a> 
                         <a class="mdl-navigation__link" href="{{ url_for('logout')}}">Logout</a> 
                         {% else %}
@@ -66,7 +66,7 @@
 
             <!-- FLASH MESSAGES -->
             <section> 
-                {% with messages = get_flashed_messages() %} 
+                {% with messages=get_flashed_messages() %} 
                 {% if messages %} {% for message in messages %}
                 <div class="row flashes justify-content-center">
                     <h5 class="lighten-4 center-align">{{ message }}</h5> 
@@ -75,7 +75,7 @@
                 {% endwith %} 
             </section>
         
-            <main class = "mdl-layout__content"> 
+            <main class="mdl-layout__content"> 
                 {% if request.path == "/" or request.path == "/register"%}
                 <!-- INFORMATION FOR REGISTER PAGE -->
                 <div class="col s12 m4">
@@ -111,7 +111,7 @@
         </div>
 
         <!-- Optional JavaScript -->
-        <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

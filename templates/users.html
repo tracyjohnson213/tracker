@@ -1,118 +1,111 @@
 {% extends "base.html" %}
 {% block content %}
 
-    
-    <div class="row">
-        <table class="responsive-table centered striped table-sm" style="width:100%">
-            <!-- NEW USER TABLE -->
-            <tr>
-                <form class="card-content white-text" method="POST" action="{{ url_for('add_user') }}">
-                    <th>
-                        <!-- EMAIL -->
-                        <div class="input-field col s12">
-                            <input id="username" name="username" type="email" class="validate" placeholder="Email" required>
-                        </div>
-                    </th>
-                    <th>
-                        <!-- FIRST NAME -->
-                        <div class="input-field col s12">
-                            <input id="first_name" name="first_name" type="text" class="validate" placeholder="First Name" required>
-                        </div>
-                    </th>
-                    <th>
-                        <!-- LAST NAME -->
-                        <div class="input-field col s12">
-                            <input id="last_name" name="last_name" type="text" class="validate" placeholder="Last Name" required>
-                        </div>
-                    </th>
-                    <th colspan="2">
-                        <label>
-                            <input type="checkbox" class="filled-in" value="no" />
-                            <span>Admin</span>
-                        </label>
-                    </th>
-                    <th>
-                        <!-- SAVE BUTTON -->
-                        <button class="btn btn-floating waves-effect waves-light light-green darker-1" type="submit" name="save">
-                            <i class="material-icons right">add</i>
-                        </button>
-                    </th>
-                </form>
-            </tr>
-            <!-- EXISTING USER TABLE -->
-            {% for user in users %}
-            <form class="card-content white-text" method="POST" action="{{ url_for('edit_user', user_id=user._id) }}">
-            <tr>
-                <th>
-                    <!-- EMAIL -->
-                    <div class="input-field col s12">
-                        <input id="username" name="username" value="{{ user.username }}" type="email" class="validate" required>
-                    </div>
-                </th>
-                <th>
-                    <!-- FIRST NAME -->
-                    <div class="input-field col s12">
-                        <input id="first_name" name="first_name" value="{{ user.first_name.title() }}" type="text" class="validate" required>
-                    </div>
-                </th>
-                <th>
-                    <!-- LAST NAME -->
-                    <div class="input-field col s12">
-                        <input id="last_name" name="last_name" value="{{ user.last_name.title() }}" type="text" class="validate" required>
-                    </div>
-                </th>
-                <th>
-                    <div class="switch">
-                        <label>
-                            {% if user.role == "Admin" %}
-                            <!-- Admin Switch -->
-                            <input type="checkbox" value="Admin" name="role" id="role" checked>
-                            <span class="lever light-green lighten-1"></span>
-                            Admin
-                            {% else %}
-                            <!-- Student Switch -->
-                            <input type="checkbox" value="Student" name="role" id="role">
-                            <span class="lever light-green accent-1"></span>
-                            Student
-                            {% endif %}
-                        </label>
-                    </div>
-                </th>
-                <th>
+<div style="margin:15px">
+    <!-- NEW USER TABLE -->
+    <form method="POST" action="{{ url_for('add_user') }}">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp table-responsive" style="width:100%">
+    <tbody>
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input id="username" name="username" type="email" class="mdl-textfield__input validate" placeholder="Email" required>
+                </div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input id="first_name" name="first_name" type="text" class="mdl-textfield__input validate" placeholder="First Name" required>
+                </div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input id="last_name" name="last_name" type="text" class="mdl-textfield__input validate" placeholder="Last Name" required>
+                </div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <label>
+                    <input type="checkbox" class="filled-in" value="no" />
+                        <span>Admin</span>
+                </label>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <div class="mdl-textfield mdl-js-textfield">
                     <!-- SAVE BUTTON -->
                     <button class="btn-floating btn-small waves-effect waves-light light-green darker-1" type="submit" name="save">
                         <i class="material-icons right">save</i>
                     </button>
-                </th>
-                <!-- TODO: ADD RESET PASSWORD BUTTON -->
-                <th>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    </form>
+    <!-- EXISTING USER TABLE -->
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp table-responsive" style="width:100%">
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <form method="POST" action="{{ url_for('edit_user', user_id=user._id) }}">
+                <td class="mdl-data-table__cell--non-numeric">
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input id="username" name="username" type="email" class="mdl-textfield__input validate" value="{{ user.username }}" required>
+                        </div>
+                    </td>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input id="first_name" name="first_name" type="text" class="mdl-textfield__input validate" value="{{ user.first_name.title() }}" required>
+                    </div>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input id="last_name" name="last_name" type="text" class="mdl-textfield__input validate" value="{{ user.last_name.title() }}" required>
+                    </div>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="role">
+                        {% if "Admin" in user.role %}
+                        <!-- Admin Switch -->
+                        <input type="checkbox" id="role" name="role" class="mdl-switch__input" checked>
+                        <span class="mdl-switch__label">Admin</span>
+                        {% else %}
+                        <!-- Student Switch -->
+                        <input type="checkbox" id="role" name="role" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Student</span>
+                        {% endif %}
+                    </label>
+                    <!-- SAVE BUTTON -->
+                    <button class="btn-floating btn-small waves-effect waves-light light-green darker-1" type="submit" name="save">
+                        <i class="material-icons right">save</i>
+                    </button>
+                    <!-- TODO: ADD RESET PASSWORD BUTTON -->
                     <!-- DELETE BUTTON -->
                     {% if user.username == session["user"] or user.role == "Primary Admin" %}
-                    <a href="#user_delete_confirmation" class="btn-floating btn-small waves-effect waves-light modal-trigger light-green darker-1 disabled"><i class="material-icons">delete</i></a>
+                    <span href="#user_delete_confirmation" class="btn-floating btn-small waves-effect waves-light modal-trigger light-green darker-1 disabled"><i class="material-icons">delete</i></span>
                     {% else %}
-                    <a href="#user_delete_confirmation" class="btn-floating btn-small waves-effect waves-light modal-trigger light-green darker-1"><i class="material-icons">delete</i></a>
+                    <span href="#user_delete_confirmation" class="btn-floating btn-small waves-effect waves-light modal-trigger light-green darker-1"><i class="material-icons">delete</i></span>
                     {% endif %}
-                </th>
+                </td>
+
+                <!-- Delete Scholarship Modal Structure -->
+                <div id="user_delete_confirmation" class="modal orange lighten-5">
+                    <div class="delete-modal-content center-align">
+                        <h5>Delete {{ user.username }} </h5>
+                        <p>Are you sure you want to proceed?</p>
+                    </div>
+                    <div class="delete-modal-footer center-align">
+                        <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">No</a>
+                        <a href="{{ url_for('delete_user', user_id=user._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darker-1 btn text-shadow">Yes</a>
+                    </div>
+                </div>
+
+                </form>
             </tr>
-
-
-            <!-- Delete Scholarship Modal Structure -->
-            <div id="user_delete_confirmation" class="modal orange lighten-5">
-                <div class="delete-modal-content center-align">
-                    <h5>Delete {{ user.username }} </h5>
-                    <p>Are you sure you want to proceed?</p>
-                </div>
-                <div class="delete-modal-footer center-align">
-                    <a href="#" rel="modal:close" class="modal-close btn-small red accent-1 btn text-shadow" id="modal-cancel-btn">No</a>
-                    <a href="{{ url_for('delete_user', user_id=user._id) }}" id="modal-yes-btn" class="modal-close btn-small light-green darker-1 btn text-shadow">Yes</a>
-                </div>
-            </div>
-            </form>
-
             {% endfor %}
-            
-        </table>
-        
-    </div>
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}
 
