@@ -1,5 +1,6 @@
 
 <img  src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png"  style="margin: 0;" alt="Code Institute">
+<img  src="static/images/scholarship.jpg"  style="margin: 0;" alt="Scholarship Tracker">
 
 # Scholarship Tracker
 
@@ -15,7 +16,7 @@ User will be able to view page about website creation and contact site owner wit
 
 ## UI/UX
 
-Wireframes created with Figma: [Wireframe](../static/docs/tracker.pdf)
+Wireframes created with Figma: [Wireframe](static/docs/tracker.pdf)
 
 User Stories:
 
@@ -112,11 +113,11 @@ User Stories:
 
 * As an admin, I want to reset a user's password
 
-* (Add Scholarship) Date applied should be limited to after deadline.
+* As a system, I want to limit Date applied to after deadline.
 
-* (Add Scholarship) Date awarded should be limited to after winner announced.
+* As a system, I want to limit Date awarded to after winner announced.
 
-* (Admin - Add user) System should assign default password to user and notify them by email.
+* As an admin, I want to assign default password to user and notify them by email.
 
 ## Technologies Used
 
@@ -135,11 +136,9 @@ MongoDB - The project uses MongoDB, is a popular database for modern apps, and M
 
 Gitpod - Gitpod is a development environment for any GitLab, GitHub, and Bitbucket project.
 
-Github - Github is a repository hosting service.
+Github - Github is a repository hosting service used to version control and deployment.
 
 Heroku - Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
-
-StackEdit - README.md was generated within StackEdit, a full-featured, open-source Markdown editor based on PageDown, the Markdown library used by Stack Overflow and the other Stack Exchange sites.
 
 Unittest - unit testing framework was originally inspired by JUnit and has a similar flavor as major unit testing frameworks in other languages. It supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.
 
@@ -147,8 +146,9 @@ Figma - free, online UI tool for design and prototypes.
 
 # Database collections
 
+```
 scholarships = {
-    "_id": "",
+    "_id": ObjectId("5fe0ed9676acf6a9e7e4ad07"),
     "scholarship_name": "Create-A-Greeting-Card Scholarship",
     "scholarship_sponsor": "The Gallery Collection",
     "category": "College",
@@ -167,29 +167,37 @@ scholarships = {
     "application_status": "Information",
     "scholarship_status": "Active",
     "created_by": "alivia@example.com",
-    "create_date": datetime.now()
+    "create_date": "2000-01-01T08:00:00.000+00:00"
 }
+```
 
+```
 categories = {
-    "_id": "",
+    "_id": ObjectId("5fe0ed9676acf6a9e7e4ad07"),
     "category": "Information to Know"
 }
+```
 
+```
 statuses = {
-    "_id": "",
+    "_id": ObjectId("5fe0ed9676acf6a9e7e4ad07"),
     "status": "Plan to Apply"
 }
+```
 
+```
 users = {
-    "_id": "",
-    "first_name": "",
-    "last_name": "",
-    "username": "",
-    "password": "",
-    "role": "",
-    "create_date": "",
-    "last_login": ""
+    "_id": ObjectId("5fe0ed9676acf6a9e7e4ad07"),
+    "first_name": "Alivia",
+    "last_name": "Ross",
+    "username": "alivia@example.com",
+    "password": "pbkdf2:sha256:150000$m4uCzZ3E$3841f4e64111e6b8b964fe1bce201682c3c0b9f0a140ace26d1dd43d68dd81bb",
+    "role": "Student",
+    "create_date": "2000-01-01T08:00:00.000+00:00",
+    "last_login": "2000-01-01T08:00:00.000+00:00"
 }
+```
+
 
 # Libraries:
 
@@ -452,7 +460,7 @@ FAILED (errors=6)
 
 
 - content used
-[Scholarship list](https://docs.google.com/document/d/1hpL9JWL9nTBt9VoTfrIMW1Ie5sO5LvZmkWs8oDuHlBk/edit)
+[Scholarship list](https://docs.google.com/document/d/1hpL9JWL9nTBt9VoTfrIMW1Ie5sO5LvZmkWs8oDuHlBk/edit); compiled by Alivia Ross
 
 ## Acknowledgements
 
