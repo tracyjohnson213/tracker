@@ -1,6 +1,6 @@
 
 <img  src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png"  style="margin: 0;" alt="Code Institute">
-<img  src="static/images/scholarship.jpg"  style="margin: 0;" alt="Scholarship Tracker">
+<img  src="static/images/scholarship.jpg"  style="margin: 0; width: 50%;" alt="Scholarship Tracker">
 
 # Scholarship Tracker
 
@@ -10,9 +10,8 @@ Project is deployed to https://scholarshiptracker.herokuapp.com/.
 
 Scholarship data to include Name, Sponsor, website, amount, deadline, documents required (including count of recommendations and essays), date applied, and date winner to be announced.
 
-User will be able to complete profile information to be used in the future.
-
-User will be able to view page about website creation and contact site owner with form.
+<img  src="static/images/am_i_responsive.png"  style="margin: 0; width: 100%;" alt="Responsive Preview">
+Image produced from [Am I Responsive](http://ami.responsivedesign.is/#)
 
 ## UI/UX
 
@@ -441,6 +440,7 @@ FAILED (errors=6)
 1. I pushed both files to GitHub.
 
 1. On the Deploy tab in Heroku I enabled automatic deploys to the master branch.
+
 
 ## Credits
 
