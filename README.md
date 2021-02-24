@@ -116,6 +116,8 @@ User Stories:
 
 * (Add Scholarship) Date awarded should be limited to after winner announced.
 
+* (Admin - Add user) System should assign default password to user and notify them by email.
+
 ## Technologies Used
 
 
@@ -387,27 +389,22 @@ FAILED (errors=6)
 
 ## Bugs
 
-* (Mobile Navbar) Navbar not displayed on mobile device.
+* High Priority - (Scholarship List page) Dates should display in m-d-Y format.
 
-* (Scholarship List page) Dates should display in m-d-Y format.
+* High Priority - (Scholarship List page) Filter Categories, All Categories should reset list displayed.
 
-* (Scholarship List page) Filter Categories, All Categories should reset list displayed.
+* High Priority - (Scholarship List page) Filter Statuses should reset list displayed.
 
-* (Scholarship List page) Filter Statuses should reset list displayed.
+* High Priority - (Delete Scholarship) Wrong scholarship name displayed in modal.
+
+* High Priority - (Filter by status) Results should update when status is selected from dropdown.
+
+* High Priority - (Admin - Add user) Wrong user name displayed in modal.
 
 * (Add Scholarship) When document with quantity field selected value should update to 1.
 
-* (Add Scholarship) Input of note should start at left.
-
 * (Edit Scholarship) When document with quantity field selected value should update to 1.
 
-* (Delete Scholarship) Wrong scholarship name displayed in modal.
-
-* (Filter by status) Results should update when status is selected from dropdown.
-
-* (Admin - Add user) System should assign default password to user and notify them by email.
-
-* (Admin - Add user) Wrong user name displayed in modal.
 
 ## Deployment
 

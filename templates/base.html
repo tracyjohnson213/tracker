@@ -50,7 +50,7 @@
             
             <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title green accent-4"> <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a></span>
-                <nav class="mdl-navigation">
+                <nav class="mdl-navigation green accent-4">
                 {% if "/register" == request.path or "/" == request.path%}
                         <a class="mdl-navigation__link" href="{{ url_for('login')}}">Login</a> 
                         {% elif "/login" == request.path %}
