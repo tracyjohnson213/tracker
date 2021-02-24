@@ -139,61 +139,50 @@
                 <hr>
                 <div class="container">
                     {% if scholarship.documents.recommendation_required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
-                    <span>{{ scholarship.documents.recomendation_count }} Recommendation(s) Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
-                    <span>Recommendation(s) Required </span>
+                        <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
+                        <span>{{ scholarship.documents.recomendation_count }} Recommendation(s) Required </span>
                     {% endif %}
-                    <br>
                     <!-- TRANSCRIPT REQUIRED -->
                     {% if scholarship.documents.transcript_required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
-                    <span>Transcript Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
                     <span>Transcript Required </span>
                     {% endif %}
-                    <br>
                     <!-- ESSAY REQUIRED -->
                     {% if scholarship.documents.essay_required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
+                    <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
                     <span>{{ scholarship.documents.essay_count }} Essay(s) Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
-                    <span>Essay(s) Required </span>
                     {% endif %}
-                    <br>
+
                     <!-- FIRST OTHER DOCUMENT -->
                     {% if scholarship.documents.other1.document_name != null %}
-                    {% if scholarship.documents.other1.required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
-                    <span>{{ scholarship.documents.other1.document_name }} Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
-                    <span>{{ scholarship.documents.other1.document_name }} Optional </span>
+                        {% if scholarship.documents.other1.required == "yes" %}
+                            <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other1.document_name }} Required </span>
+                        {% else %}
+                            <input type="checkbox" class="checkbox-light-green" value="no" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other1.document_name }} Optional </span>
+                        {% endif %}
+                        <br>
                     {% endif %}
-                    <br>
                     <!-- SECOND OTHER DOCUMENT -->
-                    {% if scholarship.documents.other2.required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
-                    <span>{{ scholarship.documents.other2.document_name }} Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
-                    <span>{{ scholarship.documents.other2.document_name }} Optional </span>
-                    {% endif %}
-                    <br>
+                    {% if scholarship.documents.other2.document_name != null %}
+                        {% if scholarship.documents.other2.required == "yes" %}
+                            <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other2.document_name }} Required </span>
+                        {% else %}
+                            <input type="checkbox" class="checkbox-light-green" value="no" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other2.document_name }} Optional </span>
+                        {% endif %}
                     {% endif %}
                     <!-- THIRD OTHER DOCUMENT -->
-                    {% if scholarship.documents.other2.document_name != null %}
-                    {% if scholarship.documents.other3.required == "yes" %}
-                    <input type="checkbox" class="checkbox-light-green" checked="checked" disabled/>
-                    <span>{{ scholarship.documents.other3.document_name }} Required </span>
-                    {% else %}
-                    <input type="checkbox" class="checkbox-light-green" disabled/>
-                    <span>{{ scholarship.documents.other3.document_name }} Optional </span>
-                    {% endif %}
-                    <br>
+                    {% if scholarship.documents.other3.document_name != "None" %}
+                        {% if scholarship.documents.other3.required == "yes" %}
+                            <input type="checkbox" class="checkbox-light-green" value="yes" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other3.document_name }} Required </span>
+                        {% else %}
+                            <input type="checkbox" class="checkbox-light-green" value="no" checked="checked" disabled/>
+                            <span>{{ scholarship.documents.other3.document_name }} Optional </span>
+                        {% endif %}
                     {% endif %}
                 </div>
             </span>

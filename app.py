@@ -223,7 +223,7 @@ def add_scholarship():
             },
             "documents": {
                 "recommendation_required":
-                request.form.get("recommendation_required"),
+                str(request.form.get("recommendation_required")),
                 "recomendation_count": request.form.get("recomendation_count"),
                 "transcript_required": request.form.get("transcript_required"),
                 "transcript_count": request.form.get("transcript_count"),
