@@ -9,7 +9,7 @@
             <!-- Categories -->
 			<div class="input-field col s12 m6">
 				<div class="select-wrapper">
-					<select id="categorySelect">
+					<select id="categorySelect" name="categorySelect">
 						<option class="filter" selected disabled>Filter Category</option>
 						<option class="filter" href="{{ url_for('get_scholarships') }}" value="all" data-filter="all" selected>All Categories</option>
                         {% for category in categories %}
@@ -21,7 +21,7 @@
             <!-- Statuses -->
             <div class="input-field col s12 m6">
                 <div class="select-wrapper">
-					<select id="statusSelect">
+					<select id="statusSelect" name="statusSelect">
 						<option class="filter" selected disabled>Filter Status</option>
 						<option class="filter" href="{{ url_for('get_scholarships') }}" value="all" data-filter="all" selected>All Statuses</option>
                         {% for status in statuses %}

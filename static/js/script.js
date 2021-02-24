@@ -1,24 +1,15 @@
-// to make sidebar default to open
+
 $(document).ready(function() {
+    // to make sidebar default to open
     $('.sidenav').sidenav();
-});
-
-// to make select options on form visible
-$(document).ready(function() {
+    // to make select options on form visible
     $('select').formSelect();
-});
-
-// to allow expansion of .collapsible item
-$(document).ready(function() {
+    // to allow expansion of .collapsible item
     $('.collapsible').collapsible();
-});
-
-// to allow dropdown on side menu
-$(".dropdown-trigger").dropdown();
-
-// initialize modal
-$(document).ready(function() {
+    // initialize modal
     $('.modal').modal();
+    // to allow dropdown on side menu
+    $('.dropdown-trigger').dropdown();
 });
 
 // sets href with category selection
