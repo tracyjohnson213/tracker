@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <ul class="collapsible">
     <li class="active">
         <div class="collapsible-header grey lighten-4" style="display: block;">
@@ -10,28 +11,27 @@
             <div class="container">
                 <div class="row">
                     <!-- SCHOLARSHIP NAME -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_name" name="scholarship_name" value="{{ scholarship.scholarship_name }}" type="text" class="validate">
                         <label for="scholarship_name">Scholarship Name</label>
                     </div>
-                </div>
                     <!-- SCHOLARSHIP SPONSOR -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_sponsor" name="scholarship_sponsor" value="{{ scholarship.scholarship_sponsor }}" type="text" class="validate">
                         <label for="scholarship_sponsor">Scholarship Sponsor</label>
                     </div>
                     <!-- SCHOLARSHIP AMOUNT -->
-                    <div class="input-field col s12 m6 l3">
-                        <textarea id="scholarship_amount" name="scholarship_amount" rows="6" class="validate">{{ scholarship.scholarship_amount }}</textarea>
+                    <div class="input-field col-lg-6">
+                        <textarea placeholder="Award" id="scholarship_amount" name="scholarship_amount" rows="6" class="validate">{{ scholarship.scholarship_amount }}</textarea>
                         <label for="scholarship_amount">Award</label>
                     </div>
                     <!-- SCHOLARSHIP DEADLINE -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_deadline" name="scholarship_deadline" value="{{ scholarship.scholarship_deadline }}" type="date" class="validate">
                         <label for="scholarship_deadline">Deadline</label>
                     </div>
                     <!-- CATEGORY -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <select id="category" name="category" class="validate">
                             <option value="" disabled>Choose Category</option>
                             {% for category in categories %}
@@ -45,7 +45,7 @@
                         <label for="category">Category</label>
                     </div>
                     <!-- APPLICATION STATUS -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <select id="application_status" name="application_status" class="validate">
                             <option value="" disabled>Choose Status</option>
                             {% for status in statuses %}
@@ -59,10 +59,10 @@
                         <label for="application_status">Application Status</label>
                     </div>
                     <!-- SCHOLARSHIP URL -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_url" name="scholarship_url" value="{{ scholarship.scholarship_url }}" type="text" class="validate">
                         <label for="scholarship_url">Website</label>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                 </div>
                     <!-- SCHOLARSHIP NOTE -->
                     <div class="input-field col s12 m6 l3">
-                        <textarea id="note" name="note" class="validate">{{ scholarship.note }}</textarea>
+                        <textarea placeholder="Note" id="note" name="note" class="validate" rows="6" >{{ scholarship.note }}</textarea>
                         <label for="note">Note</label>
                     </div>
 
@@ -103,7 +103,7 @@
                     <!-- Date Declined -->
                         <input id="date_declined" name="date_declined" value="{{ scholarship.dates.date_declined  }}" type="date" class="validate">
                         <label for="date_declined">Date Declined</label>
-                </div>
+                    </div>
 
                 <hr>
 
@@ -205,4 +205,5 @@
 
     </li>
 </ul>
+
 {% endblock %}

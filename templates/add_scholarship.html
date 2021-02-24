@@ -10,28 +10,27 @@
             <div class="container">
                 <div class="row">
                     <!-- SCHOLARSHIP NAME -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_name" name="scholarship_name" type="text" class="validate">
                         <label for="scholarship_name">Scholarship Name</label>
                     </div>
-                </div>
                     <!-- SCHOLARSHIP SPONSOR -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_sponsor" name="scholarship_sponsor" type="text" class="validate">
                         <label for="scholarship_sponsor">Scholarship Sponsor</label>
                     </div>
                     <!-- SCHOLARSHIP AMOUNT -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <textarea placeholder="Award" id="scholarship_amount" name="scholarship_amount" rows="6" class="validate"></textarea>
                         <label for="scholarship_amount">Award</label>
                     </div>
                     <!-- SCHOLARSHIP DEADLINE -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_deadline" name="scholarship_deadline" type="date" class="validate">
                         <label for="scholarship_deadline">Deadline</label>
                     </div>
                     <!-- CATEGORY -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <select id="category" name="category" class="validate">
                             <option value="" disabled>Choose Category</option>
                             {% for category in categories %}
@@ -41,7 +40,7 @@
                         <label for="category">Category</label>
                     </div>
                     <!-- APPLICATION STATUS -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <select id="application_status" name="application_status" class="validate">
                             <option value="" disabled>Choose Status</option>
                             {% for status in statuses %}
@@ -51,10 +50,10 @@
                         <label for="application_status">Application Status</label>
                     </div>
                     <!-- SCHOLARSHIP URL -->
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col-lg-6">
                         <input id="scholarship_url" name="scholarship_url" type="text" class="validate">
                         <label for="scholarship_url">Website</label>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +94,7 @@
                     <!-- Date Declined -->
                         <input id="date_declined" name="date_declined" type="date" class="validate">
                         <label for="date_declined">Date Declined</label>
-                </div>
+                    </div>
 
                 <hr>
 
