@@ -57,7 +57,18 @@ main .mdl-layout__content {
 /* Add color contrast for accessibility */
 
 .mdl-layout-title a {
-    color: #fff;
+    color: #424242;
+}
+
+.brand-logo {
+    color: #000;
+}
+
+.logout {
+    color: #424242;
+}
+.error {
+    color: #212529;
 }
 
 .input-field label {

@@ -27,7 +27,12 @@
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title"> <a href="{{ url_for('get_scholarships')}}" >Tracker</a></span>
+                <span class="mdl-layout-title">
+                {% if "/register" == request.path or "/" == request.path or "/login" == request.path%}
+                <a class="brand-logo">Tracker</a>
+                {% else %}
+                <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a>
+                {% endif %}</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
@@ -49,7 +54,12 @@
             </header>
             
             <div class="mdl-layout__drawer">
-                <span class="mdl-layout-title green accent-4"> <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a></span>
+                <span class="mdl-layout-title green accent-4"> 
+                {% if "/register" == request.path or "/" == request.path or "/login" == request.path%}
+                <a class="brand-logo">Tracker</a>
+                {% else %}
+                <a href="{{ url_for('get_scholarships')}}" class="brand-logo">Tracker</a>
+                {% endif %} </span>
                 <nav class="mdl-navigation green accent-4">
                 {% if "/register" == request.path or "/" == request.path%}
                         <a class="mdl-navigation__link" href="{{ url_for('login')}}">Login</a> 
@@ -57,9 +67,9 @@
                         <a class="mdl-navigation__link" href="{{ url_for('register')}}">Register</a>  
                         {% elif "Admin" in session["role"] %}
                         <a class="mdl-navigation__link" href="{{ url_for('get_users')}}">Admin</a> 
-                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}">Logout</a> 
+                        <a class="mdl-navigation__link logout" href="{{ url_for('logout')}}">Logout</a> 
                         {% else %}
-                        <a class="mdl-navigation__link" href="{{ url_for('logout')}}">Logout</a> 
+                        <a class="mdl-navigation__link logout" href="{{ url_for('logout')}}">Logout</a> 
                         {% endif %}    
                 </nav>
             </div>
